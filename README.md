@@ -1,3 +1,3 @@
 # TCC-Game
 
-Jogo baseado em JavaScript &amp; HTML Canva
+Jogo baseado em JavaScript &amp; HTML Canvas
