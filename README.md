@@ -1,4 +1,4 @@
-# TCC-Game
+# Game
 
 Jogo baseado em JavaScript
 
