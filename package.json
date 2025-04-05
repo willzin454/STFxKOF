@@ -1,0 +1,19 @@
+{
+  "name": "tcc-fightersss",
+  "version": "1.0.0",
+  "description": "Jogo baseado em JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willzin454/TCC-FighterSSS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willzin454/TCC-FighterSSS/issues"
+  },
+  "homepage": "https://github.com/willzin454/TCC-FighterSSS#readme"
+}
