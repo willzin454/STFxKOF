@@ -25,8 +25,8 @@ window.onload = function() {
             velocity = -velocity;
         }
 
+        context.clearRect(0, 0, canvasEl.width, canvasEl.height);
         context.drawImage(riustage, 0, 0);  
-        context.strokeStyle = 'yellow';
         context.drawImage(ryu, position.x, position.y); 
         window.requestAnimationFrame(frame)
     }
