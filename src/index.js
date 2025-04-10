@@ -1,6 +1,6 @@
-import { Ryu } from "./ryu.js";
+import { Ryu } from "./Ryu.js";
 import { Iori } from "./Iori.js";
-import { Stage } from "./stage.js";
+import { Stage } from "./Stage.js";
 
 const GameViewport = {
     width: 384,
@@ -27,6 +27,5 @@ window.onload = function() {
 
         window.requestAnimationFrame(frame)
     }
-
     window.requestAnimationFrame(frame)
 }
