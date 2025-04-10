@@ -1,5 +1,5 @@
 import { Ryu } from "./ryu.js";
-import { Iori } from "./iori.js";
+import { Iori } from "./Iori.js";
 import { Stage } from "./stage.js";
 
 const GameViewport = {
@@ -14,8 +14,8 @@ window.onload = function() {
     canvasEl.width  = GameViewport.width;
     canvasEl.height = GameViewport.height;
 
-    const ryu = new Ryu(80, 110, 1);
-    const iori = new Iori(80, 110, -1);
+    const ryu = new Ryu(80, 110, 3);
+    const iori = new Iori(80, 110, -3);
     const stage = new Stage();
 
     function frame(){
