@@ -1,4 +1,4 @@
-import { Fighter } from "./Fighter.js";
+import { Fighter } from "./Fighters.js";
 
 export class Iori extends Fighter {
     constructor(x, y, velocity) {

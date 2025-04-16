@@ -1,11 +1,12 @@
-import { Ryu } from "./Ryu.js";
-import { Iori } from "./Iori.js";
-import { Stage } from "./Stage.js";
+import { Ryu } from "./entities/fighters/Ryu.js";
+import { Iori } from "./entities/fighters/Iori.js";
+import { Stage } from "./entities/Stage.js";
+import { FpsCounter } from "./entities/FpsCounter.js";
 
 const GameViewport = {
     width: 384,
     height: 224,
-}
+}   
 
 window.onload = function() {
     const canvasEl = document.querySelector('canvas');
@@ -14,18 +15,30 @@ window.onload = function() {
     canvasEl.width  = GameViewport.width;
     canvasEl.height = GameViewport.height;
 
-    const ryu = new Ryu(80, 110, 3);
-    const iori = new Iori(80, 110, -3);
-    const stage = new Stage();
+    const entities = [
+        new Stage(),
+        new Ryu(80, 110, 150),
+        new Iori(80, 110, -150),
+        new FpsCounter(),
+    ];
 
-    function frame(){
-        ryu.update(context);
-        iori.update(context);
-        stage.draw(context);
-        ryu.draw(context);
-        iori.draw(context);
+    let previousTime = 0;
+    let secondsPassed = 0;
+
+    function frame(time){
+        secondsPassed = (time - previousTime) / 1000;
+        previousTime = time;
+
+        for (const entity of entities){
+            entity.update(secondsPassed, context);
+        }
+
+        for (const entity of entities) {
+            entity.draw(context);
+        }
 
         window.requestAnimationFrame(frame)
     }
+
     window.requestAnimationFrame(frame)
 }

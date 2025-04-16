@@ -6,8 +6,8 @@ export class Fighter{
         this.velocity = velocity;
     }
 
-    update(context){
-        this.position.x += this.velocity;
+    update(secondsPassed, context){
+        this.position.x += this.velocity * secondsPassed;
 
         if (this.position.x > context.canvas.width - this.image.width || this.position.x < 0) {
             this.velocity = -this.velocity;
