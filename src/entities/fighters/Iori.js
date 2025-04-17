@@ -5,6 +5,7 @@ export class Iori extends Fighter {
         super("Iori", x, y, velocity);
 
         this.image = document.querySelector('img[alt="Iori"]');
+
+        this.frame = [7, 1, 78, 104];
     }
 }
-
