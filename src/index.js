@@ -1,7 +1,7 @@
 import { Ryu } from "./entities/fighters/Ryu.js";
 import { Iori } from "./entities/fighters/Iori.js";
 import { Stage } from "./entities/Stage.js";
-import { FpsCounter } from "./entities/FpsCounter.js";
+import { FpsCounter } from "./entities/overlays/FpsCounter.js";
 
 const GameViewport = {
     width: 384,
