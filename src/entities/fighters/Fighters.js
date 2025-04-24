@@ -12,11 +12,11 @@ export class Fighter{
     update(time, context){
         const [, , width] = this.frames.get(`forwards-${this.animationFrame}`);
 
-        if(time.previous > this.animationTimer + 90){
+        if(time.previous > this.animationTimer + 130){
             this.animationTimer = time.previous;
 
             this.animationFrame++;
-            if (this.animationFrame > 6) this.animationFrame = 1;
+            if (this.animationFrame > 10 || this.animationFrame > 6) this.animationFrame = 1;
         }
 
         this.position.x += this.velocity * time.secondsPassed;
