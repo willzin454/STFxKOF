@@ -18,7 +18,7 @@ window.addEventListener = ('load', function() {
     const entities = [
         new Stage(),
         new Ryu(80, 110, 150),
-        new Iori(80, 97, -150),
+        new Iori(80, 92, -150),
         new FpsCounter(),
     ];
 
