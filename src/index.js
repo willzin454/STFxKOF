@@ -3,19 +3,12 @@ import { Iori } from "./entities/fighters/Iori.js";
 import { Stage } from "./entities/Stage.js";
 import { FpsCounter } from "./entities/FpsCounter.js";
 import { STAGE_FLOOR } from "./constants/stage.js";
-import { FighterDirection } from "./constants/fighter.js";
-
-const GameViewport = {
-    width: 384,
-    height: 224,
-}   
+import { FighterDirection } from "./constants/fighter.js";  
 
 window.addEventListener = ('load', function() {
     const canvasEl = document.querySelector('canvas');
     const context = canvasEl.getContext('2d'); 
-    
-    canvasEl.width  = GameViewport.width;
-    canvasEl.height = GameViewport.height;
+    context.imageSmoothingEnabled = false;
 
     const entities = [
         new Stage(),
