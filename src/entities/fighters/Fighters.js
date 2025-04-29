@@ -20,8 +20,25 @@ export class Fighter{
         if(time.previous > this.animationTimer + 60){
             this.animationTimer = time.previous;
             this.animationFrame++;
+            
             if (this.animationFrame > 5) this.animationFrame = 0;
         }
+
+        //     // Verifica se o estado mudou e reseta o frame de animação
+        // if (this.previousState !== this.state) {
+        //     this.animationFrame = 0;
+        //     this.previousState = this.state;
+        // }
+
+        // if(time.previous > this.animationTimer + 60){
+        //     this.animationTimer = time.previous;
+        //     this.animationFrame++;
+            
+        //     // Reseta o frame de animação ao atingir o limite
+        //     if (this.animationFrame >= this.animations[this.state].length) {
+        //         this.animationFrame = 0;
+        //     }
+        // }
 
         this.position.x += this.velocity * time.secondsPassed;
 
