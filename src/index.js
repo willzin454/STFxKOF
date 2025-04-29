@@ -2,6 +2,7 @@ import { Ryu } from "./entities/fighters/Ryu.js";
 import { Iori } from "./entities/fighters/Iori.js";
 import { Stage } from "./entities/Stage.js";
 import { FpsCounter } from "./entities/FpsCounter.js";
+import { STAGE_FLOOR } from "./constants/stage.js";
 
 const GameViewport = {
     width: 384,
@@ -17,8 +18,8 @@ window.addEventListener = ('load', function() {
 
     const entities = [
         new Stage(),
-        new Ryu(80, 110, 150),
-        new Iori(80, 92, -150),
+        new Ryu(80, STAGE_FLOOR, 150),
+        new Iori(80, STAGE_FLOOR, -150),
         new FpsCounter(),
     ];
 

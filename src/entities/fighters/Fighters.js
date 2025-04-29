@@ -10,9 +10,9 @@ export class Fighter{
     }
 
     update(time, context){
-        const [, , width] = this.frames.get(`forwards-${this.animationFrame}`);
+        const [[, , width]] = this.frames.get(`forwards-${this.animationFrame}`);
 
-        if(time.previous > this.animationTimer + 125){
+        if(time.previous > this.animationTimer + 120){
             this.animationTimer = time.previous;
 
             this.animationFrame++;
@@ -21,14 +21,36 @@ export class Fighter{
 
         this.position.x += this.velocity * time.secondsPassed;
 
-        if (this.position.x > context.canvas.width - width || this.position.x < 0) {
+        if (this.position.x > context.canvas.width - width / 2 || this.position.x < width / 2) {
             this.velocity = -this.velocity;
         }
     }
 
-    draw(context){
-        const [x, y, width, height] = this.frames.get(`forwards-${this.animationFrame}`);
+    drawDebug(context){
+        context.lineWidth =1;
+        context.beginPath();
+        context.strokeStyle = "White";
+        context.moveTo(this.position.x - 5, this.position.y);
+        context.lineTo(this.position.x + 4, this.position.y);
+        context.moveTo(this.position.x, this.position.y - 5);
+        context.moveTo(this.position.x, this.position.y + 4);
+        context.stroke();
+    }
 
-        context.drawImage(this.image, x, y, width, height, this.position.x, this.position.y, width, height);
+    draw(context){
+        const [
+            [x, y, width, height], 
+            [originX, originY],
+        ] = this.frames.get(`forwards-${this.animationFrame}`);
+
+        context.drawImage(
+            this.image, 
+            x, y, 
+            width, height, 
+            this.position.x - originX, this.position.y - originY, 
+            width, height
+        );
+
+        this.drawDebug(context);
     }
 }

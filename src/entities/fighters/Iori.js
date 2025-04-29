@@ -7,12 +7,12 @@ export class Iori extends Fighter {
         this.image = document.querySelector('img[alt="Iori"]');
 
         this.frames = new Map([
-            ['forwards-1', [2, 448, 76, 116]],
-            ['forwards-2', [144, 452, 58, 109]],
-            ['forwards-3', [259, 452, 62, 111]],
-            ['forwards-4', [327, 452, 57, 109]],
-            ['forwards-5', [385, 451, 55, 114]],
-            ['forwards-6', [585, 452, 78, 112]],
+            ['forwards-1', [[2, 582, 76, 110], [29, 106]]],
+            ['forwards-2', [[146, 581, 67, 112], [25, 107]]],
+            ['forwards-3', [[261, 453, 61, 111], [29, 106]]],
+            ['forwards-4', [[381, 450, 62, 115], [29, 106]]],
+            ['forwards-5', [[504, 451, 83, 114], [29, 107]]],
+            ['forwards-6', [[588, 452, 77, 111], [24, 106]]],
         ]);
     }
 }
