@@ -10,6 +10,7 @@ export class Fighter{
         this.animationTimer = 0;
         this.animations = {};
         this.state = this.changeState();
+        // this.previousState = this.state; Inicializa o estado anterior com o estado atual
     }
 
     changeState = () => this.velocity * this.direction < 0 ? 'walkBackwards' : 'walkForwards';
