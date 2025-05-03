@@ -18,3 +18,24 @@ PATCH: muda quando você corrige bugs ou ajusta pequenos detalhes.
     npm version patch     # +0.0.1
     npm version minor     # +0.1.0
     npm version major     # +1.0.0
+
+
+ideias:
+
+        // this.previousState = this.state; Inicializa o estado anterior com o estado atual
+
+        // Verifica se o estado mudou e reseta o frame de animação
+        // if (this.previousState !== this.state) {
+        //     this.animationFrame = 0;
+        //     this.previousState = this.state;
+        // }
+
+        // if(time.previous > this.animationTimer + 60){
+        //     this.animationTimer = time.previous;
+        //     this.animationFrame++;
+            
+        //     // Reseta o frame de animação ao atingir o limite
+        //     if (this.animationFrame >= this.animations[this.state].length) {
+        //         this.animationFrame = 0;
+        //     }
+        // }

@@ -8,9 +8,23 @@
         <script type="module" src="../src/index.js"></script>
     </head>
     <body>
-        <canvas width="384" height="224"></canvas>
-        <img id="id_ryu" src="./img/STF_Ryu.png" alt="Ryu" />
-        <img id="id_ryustage" src="./img/RyuStage.png" alt="RyuStage" />
-        <img id="id_iori" src="./img/KOF03_IoriYagami.png" alt="Iori">
+        <form>
+            <div>
+                <input id="iori" type="checkbox" name="fighter" value="Iori">
+                <label for="iori">Iori</label>
+            </div>
+            <div>
+                <input id="ryu" type="checkbox" name="fighter" value="Ryu">
+                <label for="ryu">Ryu</label>
+            </div>
+            <select id="state-dropdown" name="state"></select>
+            <button type="submit">Transition!</button>
+        </form>
+        <main>
+            <canvas width="384" height="224"></canvas>
+        </main>
+        <img src="./img/STF_Ryu.png" alt="ryu" />
+        <img src="./img/RyuStage.png" alt="background" />
+        <img src="./img/KOF03_IoriYagami.png" alt="iori">
     </body>
 </html>

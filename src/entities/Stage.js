@@ -1,6 +1,6 @@
 export class Stage{
     constructor(){
-        this.image = document.querySelector("img[alt=RyuStage]");
+        this.image = document.querySelector("img[alt=background]");
     }
 
     update() {
