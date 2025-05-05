@@ -45,7 +45,8 @@ export class Fighter{
     }
 
     handleWalkIdleInit(){
-        this.velocity = 0;
+        this.velocity.x = 0;
+        this.velocity.y = 0;
     }
 
     handleWalkIdleState(){
@@ -53,7 +54,7 @@ export class Fighter{
     }
 
     handleWalkForwardInit(){
-        this.velocity = 150 * this.direction;
+        this.velocity.x = 150 * this.direction;
 
     }
 
@@ -62,7 +63,7 @@ export class Fighter{
     }
 
     handleWalkBackWardsInit(){
-        this.velocity = -150 * this.direction;
+        this.velocity.x= -150 * this.direction;
 
     }
 
@@ -74,7 +75,7 @@ export class Fighter{
        this.velocity.y = this.initialVelocity.jump;
     }
 
-    handleJumpUpState(){
+    handleJumpUpState(time){
         this.velocity.y += this.gravity * time.secondsPassed;
 
         if(this.position.y > STAGE_FLOOR){
