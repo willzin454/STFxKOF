@@ -32,18 +32,46 @@ export class Iori extends Fighter {
 
             // Pular
             ['jump-up-1', [[88, 910, 41, 148], [15, 144]]],
-            ['jump-up-2', [[138, 233, 50, 89], [25, 103]]],
-            ['jump-up-3', [[197, 233, 54, 77], [25, 103]]],
-            ['jump-up-4', [[259, 240, 48, 70], [28, 101]]],
-            ['jump-up-5', [[319, 234, 48, 89], [25, 206]]],
-            ['jump-up-6', [[375, 244, 55, 109], [31, 113]]],
+            ['jump-up-2', [[144, 940, 46, 118], [17, 113]]],
+            ['jump-up-3', [[205, 971, 60, 87], [25, 84]]],
+            ['jump-up-4', [[280, 990, 57, 68], [23, 66]]],
+            ['jump-up-5', [[497, 940, 46, 118], [16, 113]]],
+            ['jump-up-6', [[558, 970, 63, 88], [30, 86]]],
         ]);
 
         this.animations = {
-            [FighterState.IDLE] : ['idle-1', 'idle-2', 'idle-3', 'idle-4', 'idle-3', 'idle-2'],
-            [FighterState.WALK_FORWARD] : ['forwards-1', 'forwards-2', 'forwards-3', 'forwards-4', 'forwards-5', 'forwards-6'],
-            [FighterState.WALK_BACKWARD] : ['backwards-1', 'backwards-2', 'backwards-3', 'backwards-4', 'backwards-5', 'backwards-6'],
-            [FighterState.JUMP_UP] : ['jump-up-1'],
+            [FighterState.IDLE]: [
+                ['idle-1', 68],
+                ['idle-2', 68],
+                ['idle-3', 68],
+                ['idle-4', 68],
+                ['idle-3', 68],
+                ['idle-2', 68],
+            ],
+            [FighterState.WALK_FORWARD]: [
+                ['forwards-1', 65],
+                ['forwards-2', 65],
+                ['forwards-3', 65],
+                ['forwards-4', 65],
+                ['forwards-5', 65],
+                ['forwards-6', 65],
+            ],
+            [FighterState.WALK_BACKWARD]: [
+                ['backwards-1', 65],
+                ['backwards-2', 65],
+                ['backwards-3', 65],
+                ['backwards-4', 65],
+                ['backwards-5', 65],
+                ['backwards-6', 65],
+            ],
+            [FighterState.JUMP_UP]: [
+                ['jump-up-1', 180],
+                ['jump-up-2', 100],
+                ['jump-up-3', 100],
+                ['jump-up-4', 100],
+                ['jump-up-5', 100],
+                ['jump-up-6', -1],
+            ],
         };
 
         this.initialVelocity = {
