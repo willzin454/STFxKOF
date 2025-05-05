@@ -39,3 +39,5 @@ ideias:
         //         this.animationFrame = 0;
         //     }
         // }
+
+//20:30 https://www.youtube.com/watch?v=c2un9AyHvTs&list=PLf9yt-2olqyLxr-vouWl-qk4toUfjF2LC&index=5
