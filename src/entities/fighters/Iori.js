@@ -41,36 +41,20 @@ export class Iori extends Fighter {
 
         this.animations = {
             [FighterState.IDLE]: [
-                ['idle-1', 68],
-                ['idle-2', 68],
-                ['idle-3', 68],
-                ['idle-4', 68],
-                ['idle-3', 68],
-                ['idle-2', 68],
+                ['idle-1', 68], ['idle-2', 68], ['idle-3', 68],
+                ['idle-4', 68], ['idle-3', 68], ['idle-2', 68],
             ],
             [FighterState.WALK_FORWARD]: [
-                ['forwards-1', 65],
-                ['forwards-2', 65],
-                ['forwards-3', 65],
-                ['forwards-4', 65],
-                ['forwards-5', 65],
-                ['forwards-6', 65],
+                ['forwards-1', 65], ['forwards-2', 65], ['forwards-3', 65],
+                ['forwards-4', 65], ['forwards-5', 65], ['forwards-6', 65],
             ],
             [FighterState.WALK_BACKWARD]: [
-                ['backwards-1', 65],
-                ['backwards-2', 65],
-                ['backwards-3', 65],
-                ['backwards-4', 65],
-                ['backwards-5', 65],
-                ['backwards-6', 65],
+                ['backwards-1', 65], ['backwards-2', 65], ['backwards-3', 65],
+                ['backwards-4', 65], ['backwards-5', 65], ['backwards-6', 65],
             ],
             [FighterState.JUMP_UP]: [
-                ['jump-up-1', 180],
-                ['jump-up-2', 100],
-                ['jump-up-3', 100],
-                ['jump-up-4', 100],
-                ['jump-up-5', 100],
-                ['jump-up-6', -1],
+                ['jump-up-1', 180], ['jump-up-2', 100], ['jump-up-3', 100],
+                ['jump-up-4', 100], ['jump-up-5', 100], ['jump-up-6', -1],
             ],
         };
 

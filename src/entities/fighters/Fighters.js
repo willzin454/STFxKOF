@@ -107,7 +107,7 @@ export class Fighter{
                 this.animationFrame++;
             }
             
-            if (this.animationFrame >= this.animations.length){
+            if (this.animationFrame >= animation.length){
                 this.animationFrame = 0;
             }
         }
