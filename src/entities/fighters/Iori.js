@@ -37,6 +37,17 @@ export class Iori extends Fighter {
             ['jump-up-4', [[280, 990, 57, 68], [23, 66]]],
             ['jump-up-5', [[497, 940, 46, 118], [16, 113]]],
             ['jump-up-6', [[558, 970, 63, 88], [30, 86]]],
+
+            // Pular para frente/tras
+            ['jump-roll-1', [[10, 970, 63, 88], [31, 85]]],
+            ['jump-roll-2', [[88, 910, 41, 148], [17, 143]]],
+            ['jump-roll-3', [[144, 940, 46, 118], [19, 113]]],
+            ['jump-roll-4', [[205, 971, 60, 87], [25, 82]]],
+            ['jump-roll-5', [[280, 990, 57, 68], [23, 65]]],
+            ['jump-roll-6', [[352, 983, 55, 75], [20, 71]]],
+            ['jump-roll-7', [[422, 971, 60, 87], [25, 81]]],
+            ['jump-roll-8', [[497, 940, 46, 118], [17, 113]]],
+            ['jump-roll-9', [[558, 970, 63, 88], [28, 85]]],
         ]);
 
         this.animations = {
@@ -56,9 +67,26 @@ export class Iori extends Fighter {
                 ['jump-up-1', 180], ['jump-up-2', 100], ['jump-up-3', 100],
                 ['jump-up-4', 100], ['jump-up-5', 100], ['jump-up-6', -1],
             ],
+            [FighterState.JUMP_FORWARD]: [
+                ['jump-roll-1', 200], ['jump-roll-2', 50], ['jump-roll-3', 50],
+                ['jump-roll-4', 50], ['jump-roll-5', 50], ['jump-roll-6', 50],
+                ['jump-roll-7', 50], ['jump-roll-8', 50], ['jump-roll-9', 0],
+            ],
+            [FighterState.JUMP_BACKWARD]: [
+                ['jump-roll-9', 200], ['jump-roll-8', 50],['jump-roll-7', 50], 
+                ['jump-roll-6', 50], ['jump-roll-5', 50],['jump-roll-4', 50], 
+                ['jump-roll-3', 50], ['jump-roll-2', 50],['jump-roll-1', 0],
+            ],
+            
         };
 
         this.initialVelocity = {
+            x: {
+                [FighterState.WALK_FORWARD]: 200,
+                [FighterState.WALK_BACKWARD]: -150,
+                [FighterState.JUMP_FORWARD]: 170,
+                [FighterState.JUMP_BACKWARD]: -200,
+            },
             jump: -420,
         };
 
