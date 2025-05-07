@@ -63,7 +63,7 @@ export class Fighter{
     }
 
     handleWalkBackWardsInit(){
-        this.velocity.x= -150 * this.direction;
+        this.velocity.x = -150 * this.direction;
 
     }
 
@@ -97,11 +97,19 @@ export class Fighter{
     }
 
     updateAnimation(time){
-        if(time.previous > this.animationTimer + 60){
+        const animation = this.animations[this.currentState];
+        const [, frameDelay] = animation[this.animationFrame];
+
+        if(time.previous > this.animationTimer + frameDelay){
             this.animationTimer = time.previous;
-            this.animationFrame++;
+
+            if(frameDelay > 0){
+                this.animationFrame++;
+            }
             
-            if (this.animationFrame >= this.animations[this.currentState].length) this.animationFrame = 0;
+            if (this.animationFrame >= animation.length){
+                this.animationFrame = 0;
+            }
         }
     }
 
@@ -125,10 +133,11 @@ export class Fighter{
     }
 
     draw(context){
+        const [frameKey] = this.animations[this.currentState][this.animationFrame];
         const [
             [x, y, width, height], 
             [originX, originY],
-        ] = this.frames.get(this.animations[this.currentState][this.animationFrame]);
+        ] = this.frames.get(frameKey);
 
         context.scale(this.direction, 1);
         context.drawImage(
