@@ -58,6 +58,11 @@ export class Iori extends Fighter {
             ['jump-roll-7', [[422, 971, 60, 87], [25, 81]]],
             ['jump-roll-8', [[497, 940, 46, 118], [17, 113]]],
             ['jump-roll-9', [[558, 970, 63, 88], [28, 85]]],
+
+            // Agachar
+            ['crouch-1', [[10, 343, 63, 97], [30, 94]]],
+            ['crouch-2', [[88, 373, 64, 67], [31, 64]]],
+            ['crouch-3', [[167, 380, 65, 60], [30, 57]]],
         ]);
 
         this.animations = {
@@ -91,7 +96,13 @@ export class Iori extends Fighter {
                 ['jump-roll-6', 50], ['jump-roll-5', 50],['jump-roll-4', 50], 
                 ['jump-roll-3', 50], ['jump-roll-2', 50],['jump-roll-1', 0],
             ],
-            
+            [FighterState.CROUCH]: [['crouch-3', 0]],
+            [FighterState.CROUCH_DOWN]: [
+                ['crouch-1', 30], ['crouch-2', 30], ['crouch-3', 30], ['crouch-3', -2],
+            ],
+            [FighterState.CROUCH_UP]:[
+                ['crouch-3', 30], ['crouch-2', 30], ['crouch-1', 30], ['crouch-1', -2],
+            ],
         };
 
         this.initialVelocity = {

@@ -82,7 +82,7 @@ export class Ryu extends Fighter{
                 ['crouch-1', 30], ['crouch-2', 30], ['crouch-3', 30], ['crouch-3', -2],
             ],
             [FighterState.CROUCH_UP]:[
-                ['crouch-1', 30], ['crouch-2', 30], ['crouch-3', 30], ['crouch-3', -2],
+                ['crouch-3', 30], ['crouch-2', 30], ['crouch-1', 30], ['crouch-1', -2],
             ],
         };
 

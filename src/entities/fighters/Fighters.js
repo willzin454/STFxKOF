@@ -28,14 +28,14 @@ export class Fighter{
             },
             [FighterState.WALK_FORWARD] : {
                 init: this.handleMoveInit.bind(this),
-                update: this.handleMoveState.bind(this),
+                update: () => { },
                 validFrom: [
                     FighterState.IDLE, FighterState.WALK_BACKWARD
                 ],
             },
             [FighterState.WALK_BACKWARD] : {
                 init: this.handleMoveInit.bind(this),
-                update: this.handleMoveState.bind(this),
+                update: () => { },
                 validFrom: [
                     FighterState.IDLE, FighterState.WALK_FORWARD
                 ],
@@ -90,7 +90,7 @@ export class Fighter{
         this.states[this.currentState].init();
     }
 
-    handleWalkIdleInit(){
+    handleIdleInit(){
         this.velocity.x = 0;
         this.velocity.y = 0;
     }
@@ -105,13 +105,15 @@ export class Fighter{
     }
 
     handleCrouchDownState(){
-        if(this.animations[this.currentState]){ //30:00
-
+        if(this.animations[this.currentState][this.animationFrame][1] == -2){
+            this.changeState(FighterState.CROUCH);
         }
     }
 
     handleCrouchUpState(){
-
+        if(this.animations[this.currentState][this.animationFrame][1] == -2){
+            this.changeState(FighterState.IDLE);
+        }
     }
 
     handleJumpState(time){
