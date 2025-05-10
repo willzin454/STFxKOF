@@ -45,6 +45,11 @@ export class Ryu extends Fighter{
             ['jump-roll-4', [[676, 257, 122, 44], [71, 81]]],
             ['jump-roll-5', [[804, 258, 71, 87], [53, 98]]],
             ['jump-roll-6', [[883, 261, 54, 109], [31, 113]]],
+
+            // Agachar
+            ['crouch-1', [[551, 21, 53, 83], [27, 81]]],
+            ['crouch-2', [[611, 36, 57, 69], [25, 66]]],
+            ['crouch-3', [[679, 44, 61, 61], [25, 58]]],
         ]);
 
         this.animations = {
@@ -71,6 +76,13 @@ export class Ryu extends Fighter{
             [FighterState.JUMP_BACKWARD]: [
                 ['jump-roll-6', 200], ['jump-roll-5', 50], ['jump-roll-4', 50], 
                 ['jump-roll-3', 50], ['jump-roll-2', 50], ['jump-roll-1', 0],
+            ],
+            [FighterState.CROUCH]: [['crouch-3', 0]],
+            [FighterState.CROUCH_DOWN]: [
+                ['crouch-1', 30], ['crouch-2', 30], ['crouch-3', 30], ['crouch-3', -2],
+            ],
+            [FighterState.CROUCH_UP]:[
+                ['crouch-3', 30], ['crouch-2', 30], ['crouch-1', 30], ['crouch-1', -2],
             ],
         };
 
