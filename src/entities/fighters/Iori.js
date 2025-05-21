@@ -2,8 +2,8 @@ import { FighterState } from "../../constants/fighter.js";
 import { Fighter } from "./Fighters.js";
 
 export class Iori extends Fighter {
-    constructor(x, y, velocity) {
-        super("Iori", x, y, velocity);
+    constructor(x, y, direction, playerId) {
+        super("Iori", x, y, direction, playerId);
 
         this.image = document.querySelector('img[alt="iori"]');
 

@@ -10,8 +10,8 @@ export class StreetFighterGame {
     constructor() {
         this.context = this.getContext();
         this.fighters = [
-            new Iori(100, STAGE_FLOOR, FighterDirection.RIGHT),
-            new Ryu(310, STAGE_FLOOR, FighterDirection.LEFT),
+            new Iori(100, STAGE_FLOOR, FighterDirection.RIGHT, 0),
+            new Ryu(310, STAGE_FLOOR, FighterDirection.LEFT, 1),
         ];
         
         this.entities = [
