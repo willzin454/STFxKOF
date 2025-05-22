@@ -15,12 +15,16 @@ export class Shadow {
             [originX, originY]
         ] = this.frames;
 
+        const scale = 1 - (STAGE_FLOOR - this.fighter.position.y) / 250;
+
+        context.globalAlpha = 0.5;
         context.drawImage(
             this.image,
             x, y, width, height,
-            Math.floor(this.fighter.position.x - originX),
-            Math.floor(STAGE_FLOOR - originY),
-            width, height,
+            Math.floor(this.fighter.position.x - originX * scale),
+            Math.floor(STAGE_FLOOR - originY * scale),
+            Math.floor(width * scale), Math.floor(height * scale),
         )
+        context.globalAlpha = 1;
     }
 }
