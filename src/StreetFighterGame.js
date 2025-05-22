@@ -4,17 +4,20 @@ import { Stage } from "./entities/Stage.js";
 import { FpsCounter } from "./entities/FpsCounter.js";
 import { STAGE_FLOOR } from "./constants/stage.js";
 import { FighterDirection } from "./constants/fighter.js";  
+import { pollGamepads, registerGamepadEvents, registerKeyboardEvents } from "./InputHandler.js";
+import { Shadow } from "./entities/fighters/Shadow.js";
 
 export class StreetFighterGame {
     constructor() {
         this.context = this.getContext();
         this.fighters = [
-            new Iori(100, STAGE_FLOOR, FighterDirection.RIGHT),
-            new Ryu(310, STAGE_FLOOR, FighterDirection.LEFT),
+            new Iori(100, STAGE_FLOOR, FighterDirection.RIGHT, 0),
+            new Ryu(310, STAGE_FLOOR, FighterDirection.LEFT, 1),
         ];
         
         this.entities = [
             new Stage(),
+            ...this.fighters.map(fighter => new Shadow(fighter)),
             ...this.fighters,
             new FpsCounter(),
         ];
@@ -52,28 +55,15 @@ export class StreetFighterGame {
             previous: time,
         }
 
+        pollGamepads();
         this.update();
         this.draw();
     }
 
-    handleFormSubmit(event){
-        event.preventDefault();
+    start(){  
+        registerKeyboardEvents();
+        registerGamepadEvents();
 
-        const selectedCheckboxes = Array
-        .from(event.target.querySelectorAll('input:checked'))
-        .map(checkbox => checkbox.value);
-
-        const options = event.target.querySelector('select');
-
-        this.fighters.forEach(fighter => {
-            if(selectedCheckboxes.includes(fighter.name)){
-                fighter.changeState(options.value);
-            }
-        });
-    }
-
-    start(){
-        document.addEventListener('submit', this.handleFormSubmit.bind(this));   
         window.requestAnimationFrame(this.frame.bind(this));
     }
 }
