@@ -16,6 +16,7 @@ export class Fighter{
         this.animationTimer = 0;
         this.animations = {};
         this.image = new Image();
+        this.opponent;
         
         this.states = {
             [FighterState.IDLE] : {
@@ -25,7 +26,7 @@ export class Fighter{
                     undefined,
                     FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
                     FighterState.JUMP_UP, FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
-                    FighterState.CROUCH_UP,
+                    FighterState.CROUCH_UP, FighterState.JUMP_LAND,
                 ],
             },
             [FighterState.WALK_FORWARD] : {
@@ -46,7 +47,7 @@ export class Fighter{
                 init: this.handleJumpStartInit.bind(this),
                 update: this.handleJumpStartState.bind(this),
                 validFrom: [
-                    FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
+                    FighterState.IDLE, FighterState.JUMP_LAND, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
                 ],
             },
             [FighterState.JUMP_UP] : {
@@ -68,6 +69,13 @@ export class Fighter{
                 update: this.handleJumpState.bind(this),
                 validFrom: [
                     FighterState.JUMP_START,
+                ],
+            },
+            [FighterState.JUMP_LAND]: {
+                init: this.handleJumpLandInit.bind(this),
+                update: this.handleJumpLandState.bind(this),
+                validFrom: [
+                    FighterState.JUMP_UP, FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
                 ],
             },
             [FighterState.CROUCH]: {
@@ -121,6 +129,10 @@ export class Fighter{
         this.handleIdleInit();
     }
 
+    handleJumpLandInit(){
+        this.handleIdleInit();
+    }
+
     handleIdleState(){
         if(control.isUp(this.playerId)) this.changeState(FighterState.JUMP_START);
         if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
@@ -168,12 +180,24 @@ export class Fighter{
         }
     }
 
+    handleJumpLandState(){
+        if(this.animationFrame < 1) return;
+
+        if(!control.isIdle(this.playerId)) {
+            this.handleIdleState();
+        } else if (this.animations[this.currentState][this.animationFrame][1] !== -2){
+            return;
+        }
+ 
+        this.changeState(FighterState.IDLE);
+    }
+
     handleJumpState(time){
         this.velocity.y += this.gravity * time.secondsPassed;
 
         if(this.position.y > STAGE_FLOOR){
             this.position.y = STAGE_FLOOR;
-            this.changeState(FighterState.IDLE);
+            this.changeState(FighterState.JUMP_LAND);
         }
     }
 

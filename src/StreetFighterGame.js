@@ -14,6 +14,9 @@ export class StreetFighterGame {
             new Iori(100, STAGE_FLOOR, FighterDirection.RIGHT, 0),
             new Ryu(310, STAGE_FLOOR, FighterDirection.LEFT, 1),
         ];
+
+        this.fighters[0].opponent = this.fighters[1];
+        this.fighters[1].opponent = this.fighters[0];
         
         this.entities = [
             new Stage(),
