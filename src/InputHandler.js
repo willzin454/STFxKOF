@@ -84,7 +84,7 @@ export const isDown = (id) => (
     isAxesGreater(id, controls[id].gamePad[GamepadThumbstick.VERTICAL_AXE_ID], controls[id].gamePad[GamepadThumbstick.DEAD_ZONE])
 );
 
-export const isFoward = (id, direction) => direction === FighterDirection.RIGHT ? isRight(id) : isLeft(id);
+export const isForward = (id, direction) => direction === FighterDirection.RIGHT ? isRight(id) : isLeft(id);
 export const isBackward = (id, direction) => direction === FighterDirection.LEFT ? isRight(id) : isLeft(id);
 
 export const isIdle = (id) => !(isLeft(id) || isRight(id) || isUp(id) || isDown(id));

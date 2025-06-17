@@ -66,6 +66,14 @@ export class Iori extends Fighter {
             ['crouch-1', [[10, 343, 63, 97], [30, 94]]],
             ['crouch-2', [[88, 373, 64, 67], [31, 64]]],
             ['crouch-3', [[167, 380, 65, 60], [30, 57]]],
+
+            // Virar em pé
+            ['idle-turn-1', [[519, 8226, 61, 103], [28, 99]]],
+            ['idle-turn-2', [[595, 8226, 61, 103], [32, 98]]],
+
+            // Virar agachado
+            ['crouch-turn-1', [[412, 8350, 63, 62], [31, 58]]],
+            ['crouch-turn-2', [[490, 8350, 63, 62], [32, 57]]],
         ]);
 
         this.animations = {
@@ -111,6 +119,12 @@ export class Iori extends Fighter {
             ],
             [FighterState.CROUCH_UP]:[
                 ['crouch-3', 30], ['crouch-2', 30], ['crouch-1', 30], ['crouch-1', -2],
+            ],
+            [FighterState.IDLE_TURN]: [
+                ['idle-turn-2', 33], ['idle-turn-1', 33], ['idle-turn-1', -2],
+            ],
+            [FighterState.CRUNCH_TURN]: [
+                ['crouch-turn-2', 33], ['crouch-turn-1', 33], ['crouch-turn-1', -2],
             ],
         };
 
