@@ -17,7 +17,8 @@ export class Fighter{
         this.animations = {};
         this.image = new Image();
         this.opponent;
-        
+        this.pushBox = {x: 0, y: 0, width: 0, height: 0};
+
         this.states = {
             [FighterState.IDLE] : {
                 init: this.handleIdleInit.bind(this),
@@ -112,6 +113,12 @@ export class Fighter{
     }
 
     getDirection = () => this.position.x >= this.opponent.position.x ? FighterDirection.LEFT : FighterDirection.RIGHT;
+
+    getPushBox(frameKey){
+        const [, [x, y, width, height] = [0, 0, 0, 0]] = this.frames.get(frameKey);
+
+        return {x, y, width, height};
+    }
 
     changeState (newState) { 
         if(newState == this.currentState || !this.states[newState].validFrom.includes(this.currentState)) return;
@@ -274,13 +281,14 @@ export class Fighter{
 
     updateAnimation(time){
         const animation = this.animations[this.currentState];
-        const [, frameDelay] = animation[this.animationFrame];
+        const [frameKey, frameDelay] = animation[this.animationFrame];
 
         if(time.previous > this.animationTimer + frameDelay){
             this.animationTimer = time.previous;
 
             if(frameDelay > 0){
                 this.animationFrame++;
+                this.pushBox = this.getPushBox(frameKey);
             }
             
             if (this.animationFrame >= animation.length){
@@ -298,22 +306,44 @@ export class Fighter{
     }
 
     drawDebug(context){
+        const [frameKey] = this.animations[this.currentState][this.animationFrame];
+        const pushBox = this.getPushBox(frameKey);
         context.lineWidth =1;
+
+        //pushBox
+        context.beginPath();
+        context.strokeStyle = '#55FF55';
+        context.fillStyle = '#55FF5555';
+        context.fillRect(
+            Math.floor(this.position.x + pushBox.x) + 0.5,
+            Math.floor(this.position.y + pushBox.y) + 0.5,
+            pushBox.width,
+            pushBox.height,
+        )
+        context.rect(
+            Math.floor(this.position.x + pushBox.x) + 0.5,
+            Math.floor(this.position.y + pushBox.y) + 0.5,
+            pushBox.width,
+            pushBox.height,
+        );
+        context.stroke();
+
+        //Origem
         context.beginPath();
         context.strokeStyle = "White";
-        context.moveTo(Math.floor(this.position.x) - 4.5, Math.floor(this.position.y));
-        context.lineTo(Math.floor(this.position.x) + 4.5, Math.floor(this.position.y));
-        context.moveTo(Math.floor(this.position.x), Math.floor(this.position.y) - 4.5);
-        context.moveTo(Math.floor(this.position.x), Math.floor(this.position.y) + 4.5);
+        context.moveTo(Math.floor(this.position.x) - 4, Math.floor(this.position.y) - 0.5);
+        context.lineTo(Math.floor(this.position.x) + 5, Math.floor(this.position.y) - 0.5);
+        context.moveTo(Math.floor(this.position.x) + 0.5, Math.floor(this.position.y) - 5);
+        context.moveTo(Math.floor(this.position.x) + 0.5, Math.floor(this.position.y) + 4);
         context.stroke();
     }
 
     draw(context){
         const [frameKey] = this.animations[this.currentState][this.animationFrame];
-        const [
+        const [[
             [x, y, width, height], 
             [originX, originY],
-        ] = this.frames.get(frameKey);
+        ]] = this.frames.get(frameKey);
 
         context.scale(this.direction, 1);
         context.drawImage(

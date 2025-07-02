@@ -1,5 +1,5 @@
-import { FighterState } from "../../constants/fighter.js";  
 import { Fighter } from "./Fighters.js";
+import { FighterState, PushBox } from "../../constants/fighter.js";  
 
 export class Iori extends Fighter {
     constructor(x, y, direction, playerId) {
@@ -38,42 +38,42 @@ export class Iori extends Fighter {
             ['backwards-9', [[[521, 586, 58, 103], [31, 100]], PushBox.IDLE]],
 
             // Pular
-            ['jump-up-1', [[10, 970, 63, 88], [30, 85]]],
-            ['jump-up-2', [[88, 910, 41, 148], [14, 143]]],
-            ['jump-up-3', [[144, 940, 46, 118], [17, 113]]],
-            ['jump-up-4', [[205, 971, 60, 87], [25, 81]]],
-            ['jump-up-5', [[280, 990, 57, 68], [23, 63]]],
-            ['jump-up-6', [[352, 983, 55, 75], [30, 86]]],
-            ['jump-up-7', [[422, 971, 60, 87], [27, 82]]],
-            ['jump-up-8', [[497, 940, 46, 118], [19, 113]]],
-            ['jump-up-9', [[558, 970, 63, 88], [29, 83]]],
+            ['jump-up-1', [[[10, 970, 63, 88], [30, 85]], PushBox.JUMP]],
+            ['jump-up-2', [[[88, 910, 41, 148], [14, 143]], PushBox.JUMP]],
+            ['jump-up-3', [[[144, 940, 46, 118], [17, 113]], PushBox.JUMP]],
+            ['jump-up-4', [[[205, 971, 60, 87], [25, 81]], PushBox.JUMP]],
+            ['jump-up-5', [[[280, 990, 57, 68], [23, 63]], PushBox.JUMP]],
+            ['jump-up-6', [[[352, 983, 55, 75], [30, 86]], PushBox.JUMP]],
+            ['jump-up-7', [[[422, 971, 60, 87], [27, 82]], PushBox.JUMP]],
+            ['jump-up-8', [[[497, 940, 46, 118], [19, 113]], PushBox.JUMP]],
+            ['jump-up-9', [[[558, 970, 63, 88], [29, 83]], PushBox.JUMP]],
 
             //Pulo primeiro/ultimo frame
-            ['jump-land', [[10, 970, 63, 88], [29, 83]]],
+            ['jump-land', [[[10, 970, 63, 88], [29, 83]], PushBox.IDLE]],
 
             // Pular para frente/tras
-            ['jump-roll-1', [[10, 970, 63, 88], [31, 85]]],
-            ['jump-roll-2', [[88, 910, 41, 148], [17, 143]]],
-            ['jump-roll-3', [[144, 940, 46, 118], [19, 113]]],
-            ['jump-roll-4', [[205, 971, 60, 87], [25, 82]]],
-            ['jump-roll-5', [[280, 990, 57, 68], [23, 65]]],
-            ['jump-roll-6', [[352, 983, 55, 75], [20, 71]]],
-            ['jump-roll-7', [[422, 971, 60, 87], [25, 81]]],
-            ['jump-roll-8', [[497, 940, 46, 118], [17, 113]]],
-            ['jump-roll-9', [[558, 970, 63, 88], [28, 85]]],
+            ['jump-roll-1', [[[10, 970, 63, 88], [31, 85]], PushBox.JUMP]],
+            ['jump-roll-2', [[[88, 910, 41, 148], [17, 143]], PushBox.JUMP]],
+            ['jump-roll-3', [[[144, 940, 46, 118], [19, 113]], PushBox.JUMP]],
+            ['jump-roll-4', [[[205, 971, 60, 87], [25, 82]], PushBox.JUMP]],
+            ['jump-roll-5', [[[280, 990, 57, 68], [23, 65]], PushBox.JUMP]],
+            ['jump-roll-6', [[[352, 983, 55, 75], [20, 71]], PushBox.JUMP]],
+            ['jump-roll-7', [[[422, 971, 60, 87], [25, 81]], PushBox.JUMP]],
+            ['jump-roll-8', [[[497, 940, 46, 118], [17, 113]], PushBox.JUMP]],
+            ['jump-roll-9', [[[558, 970, 63, 88], [28, 85]], PushBox.JUMP]],
 
             // Agachar
-            ['crouch-1', [[10, 343, 63, 97], [30, 94]]],
-            ['crouch-2', [[88, 373, 64, 67], [31, 64]]],
-            ['crouch-3', [[167, 380, 65, 60], [30, 57]]],
+            ['crouch-1', [[[10, 343, 63, 97], [30, 94]], PushBox.IDLE]],
+            ['crouch-2', [[[88, 373, 64, 67], [31, 64]], PushBox.BEND]],
+            ['crouch-3', [[[167, 380, 65, 60], [30, 57]], PushBox.CRUNCH]],
 
             // Virar em pé
-            ['idle-turn-1', [[519, 8226, 61, 103], [28, 99]]],
-            ['idle-turn-2', [[595, 8226, 61, 103], [32, 98]]],
+            ['idle-turn-1', [[[519, 8226, 61, 103], [28, 99]], PushBox.IDLE]],
+            ['idle-turn-2', [[[595, 8226, 61, 103], [32, 98]], PushBox.IDLE]],
 
             // Virar agachado
-            ['crouch-turn-1', [[412, 8350, 63, 62], [31, 58]]],
-            ['crouch-turn-2', [[490, 8350, 63, 62], [32, 57]]],
+            ['crouch-turn-1', [[[412, 8350, 63, 62], [31, 58]], PushBox.CRUNCH]],
+            ['crouch-turn-2', [[[490, 8350, 63, 62], [32, 57]], PushBox.CRUNCH]],
         ]);
 
         this.animations = {
