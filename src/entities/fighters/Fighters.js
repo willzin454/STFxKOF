@@ -104,7 +104,7 @@ export class Fighter{
             },
             [FighterState.CRUNCH_TURN]: {
                 init: () => { },
-                update: this.handleCrouchUpState.bind(this),
+                update: this.handleCrouchTurnState.bind(this),
                 validFrom: [FighterState.CROUCH],
             },
         };
@@ -321,7 +321,7 @@ export class Fighter{
     drawDebug(context){
         const [frameKey] = this.animations[this.currentState][this.animationFrame];
         const pushBox = this.getPushBox(frameKey);
-        context.lineWidth =1;
+        context.lineWidth = 1;
 
         //pushBox
         context.beginPath();
