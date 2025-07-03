@@ -1,5 +1,5 @@
-import { Fighter } from "./Fighters.js";
 import { FighterState, PushBox } from "../../constants/fighter.js";
+import { Fighter } from "./Fighters.js";
 
 export class Ryu extends Fighter{
     constructor(x, y, direction, playerId){
