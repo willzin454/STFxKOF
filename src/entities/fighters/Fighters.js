@@ -104,7 +104,7 @@ export class Fighter{
             },
             [FighterState.CRUNCH_TURN]: {
                 init: () => { },
-                update: this.handleCrouchTurnState.bind(this),
+                update: this.handleCrunchTurnState.bind(this),
                 validFrom: [FighterState.CROUCH],
             },
         };
