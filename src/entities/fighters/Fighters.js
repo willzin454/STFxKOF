@@ -194,7 +194,7 @@ export class Fighter{
 
     handleWalkBackwardState(){
         if(!control.isBackward(this.playerId, this.direction)) this.changeState(FighterState.IDLE);
-        if (control.isUp(this.playerId)) this.changeState(FighterState.JUMP_START);
+        if(control.isUp(this.playerId)) this.changeState(FighterState.JUMP_START);
         if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
 
         this.direction = this.getDirection();
