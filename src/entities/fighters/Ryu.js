@@ -112,11 +112,11 @@ export class Ryu extends Fighter{
         };
 
         this.initialVelocity = {
-            x:{
-                [FighterState.WALK_FORWARD]: 200,
-                [FighterState.WALK_BACKWARD]: -150,
-                [FighterState.JUMP_FORWARD]: 170,
-                [FighterState.JUMP_BACKWARD]: -200,
+            x: {
+                [FighterState.WALK_FORWARD]: 3 * 60,
+                [FighterState.WALK_BACKWARD]: -(2 * 60),
+                [FighterState.JUMP_FORWARD]: ((48 * 3) + (12 * 2)),
+                [FighterState.JUMP_BACKWARD]: -((45 * 4) + (15 * 3)),
             },
             jump: -420,
         };

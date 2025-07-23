@@ -1,3 +1,5 @@
+export const PUSH_FRICTION = 66;
+
 export const FighterDirection = {
     LEFT: -1,
     RIGHT: 1,
@@ -21,7 +23,7 @@ export const FighterState = {
 
 export const FrameDelay = {
     FREEZE: 0,
-    TRANSITION: -2,
+    TRANSITION: -1,
 }
 
 export const PushBox = {
