@@ -30,7 +30,7 @@ export class StreetFighterGame {
         this.frameTime = {
             previous:0,
             secondsPassed:0,
-        }
+        };
     }
 
     getContext(){
