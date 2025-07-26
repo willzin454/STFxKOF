@@ -6,6 +6,7 @@ import { STAGE_FLOOR } from "./constants/stage.js";
 import { FighterDirection } from "./constants/fighter.js";  
 import { pollGamepads, registerGamepadEvents, registerKeyboardEvents } from "./InputHandler.js";
 import { Shadow } from "./entities/fighters/Shadow.js";
+import { StatusBar } from "./entities/overlays/StatusBar.js";
 
 export class StreetFighterGame {
     constructor() {
@@ -23,6 +24,7 @@ export class StreetFighterGame {
             ...this.fighters.map(fighter => new Shadow(fighter)),
             ...this.fighters,
             new FpsCounter(),
+            new StatusBar(this.fighters),
         ];
         
         this.frameTime = {

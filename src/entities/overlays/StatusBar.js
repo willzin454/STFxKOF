@@ -4,7 +4,7 @@ export class StatusBar{
         this.time = 99;
         this.timeTimer = 0;
         this.fighters = fighters;
-        this.frame = new map([
+        this.frame = new Map([
             ['health-bar', [16, 18, 145, 11]],
             ['ko-white', [161, 16, 32, 14]],
             ['time-0', [16, 32, 14, 16]],
@@ -18,10 +18,23 @@ export class StatusBar{
             ['time-8', [144, 32, 14, 16]],
             ['time-9', [160, 32, 14, 16]],
 
-            ['tag-ken', [128, 56, 30, 9]],
-            ['tag-ryu', [16, 56, 28, 9]],
+            //names
+            ['tag-Iori', [265, 45, 28, 9]],
+            ['tag-Ryu', [16, 56, 28, 9]],
 
         ]);
+    }
+
+    drawFrame(context, frameKey, x, y, direction = 1) {
+        const [sourceX, sourceY, sourceWidth, sourceHeight] = this.frame.get(frameKey);
+
+        context.scale(direction, 1);
+        context.drawImage(
+            this.image,
+            sourceX, sourceY, sourceWidth, sourceHeight,
+            x * direction, y, sourceWidth, sourceHeight,
+        );
+        context.setTransform(1, 0, 0, 1, 0, 0);
     }
 
     update(time){
@@ -29,6 +42,8 @@ export class StatusBar{
     }
 
     draw(context){
-        
+        this.drawFrame(context, 'health-bar', 31, 20);
+        this.drawFrame(context, 'ko-white', 176, 18);
+        this.drawFrame(context, 'health-bar', 353, 20, -1);
     }
 }
