@@ -7,6 +7,7 @@ import { FighterDirection } from "./constants/fighter.js";
 import { pollGamepads, registerGamepadEvents, registerKeyboardEvents } from "./InputHandler.js";
 import { Shadow } from "./entities/fighters/Shadow.js";
 import { StatusBar } from "./entities/overlays/StatusBar.js";
+import { Camera } from "./Camera.js";
 
 export class StreetFighterGame {
     constructor() {
@@ -18,6 +19,8 @@ export class StreetFighterGame {
 
         this.fighters[0].opponent = this.fighters[1];
         this.fighters[1].opponent = this.fighters[0];
+
+        this.camera = new Camera(448, 16, this.fighters);
         
         this.entities = [
             new Stage(),
@@ -42,14 +45,16 @@ export class StreetFighterGame {
     }
 
     update(){
+        this.camera.update(this.frameTime, this.context);
+
         for (const entity of this.entities){
-            entity.update(this.frameTime, this.context);
+            entity.update(this.frameTime, this.context, this.camera);
         }
     }
 
     draw(){
         for (const entity of this.entities) {
-            entity.draw(this.context);
+            entity.draw(this.context, this.camera);
         }
     }
 
