@@ -9,7 +9,7 @@ export class Shadow {
 
     update(){ }
 
-    draw(context){
+    draw(context, camera){
         const[
             [x, y, width, height],
             [originX, originY]
@@ -21,8 +21,8 @@ export class Shadow {
         context.drawImage(
             this.image,
             x, y, width, height,
-            Math.floor(this.fighter.position.x - originX * scale),
-            Math.floor(STAGE_FLOOR - originY * scale),
+            Math.floor(this.fighter.position.x - camera.position.x - originX * scale),
+            Math.floor(STAGE_FLOOR - camera.position.y - originY * scale),
             Math.floor(width * scale), Math.floor(height * scale),
         )
         context.globalAlpha = 1;
