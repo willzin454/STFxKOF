@@ -13,15 +13,15 @@ export class StreetFighterGame {
     constructor() {
         this.context = this.getContext();
         this.fighters = [
-            new Iori(100, STAGE_FLOOR, FighterDirection.RIGHT, 0),
-            new Ryu(310, STAGE_FLOOR, FighterDirection.LEFT, 1),
+            new Iori(550, STAGE_FLOOR, FighterDirection.RIGHT, 0),
+            new Ryu(750, STAGE_FLOOR, FighterDirection.LEFT, 1),
         ];
 
         this.fighters[0].opponent = this.fighters[1];
         this.fighters[1].opponent = this.fighters[0];
 
         this.camera = new Camera(448, 16, this.fighters);
-        
+
         this.entities = [
             new Stage(),
             ...this.fighters.map(fighter => new Shadow(fighter)),

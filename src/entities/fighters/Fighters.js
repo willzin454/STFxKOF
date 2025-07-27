@@ -315,13 +315,13 @@ export class Fighter{
         }
     }
 
-    updateStageConstraints(time, context){
-        if (this.position.x > context.canvas.width - this.pushBox.width){
-            this.position.x = context.canvas.width - this.pushBox.width; 
+    updateStageConstraints(time, context, camera){
+        if (this.position.x > camera.position.x + context.canvas.width - this.pushBox.width){
+            this.position.x = camera.position.x + context.canvas.width - this.pushBox.width; 
         }
-    
-        if (this.position.x < this.pushBox.width){
-            this.position.x = this.pushBox.width;
+
+        if (this.position.x < camera.position.x + this.pushBox.width){
+            this.position.x = camera.position.x + this.pushBox.width;
         }
 
         if(this.hasCollidedWithOpponent()){
@@ -343,7 +343,7 @@ export class Fighter{
                 this.position.x = Math.min(
                     (this.opponent.position.x + this.opponent.pushBox.x + this.opponent.pushBox.width)
                     + (this.pushBox.width + this.pushBox.x),
-                    context.canvas.width - this.pushBox.width,
+                    camera.position.x + context.canvas.width - this.pushBox.width,
                 );
 
                 if([
@@ -374,15 +374,15 @@ export class Fighter{
         }
     }
 
-    update(time, context){
+    update(time, context, camera){
         this.position.x += (this.velocity.x * this.direction) * time.secondsPassed;
         this.position.y += this.velocity.y * time.secondsPassed;
         this.states[this.currentState].update(time, context); 
         this.updateAnimation(time);
-        this.updateStageConstraints(time, context);      
+        this.updateStageConstraints(time, context, camera);      
     }
 
-    drawDebug(context){
+    drawDebug(context, camera){
         const [frameKey] = this.animations[this.currentState][this.animationFrame];
         const pushBox = this.getPushBox(frameKey);
         context.lineWidth = 1;
@@ -392,15 +392,15 @@ export class Fighter{
         context.strokeStyle = '#55FF55';
         context.fillStyle = '#55FF5555';
         context.fillRect(
-            Math.floor(this.position.x + pushBox.x) + 0.5,
-            Math.floor(this.position.y + pushBox.y) + 0.5,
-            pushBox.width,
+            Math.floor(this.position.x + (pushBox.x * this.direction) - camera.position.x + 0.5),
+            Math.floor(this.position.y + pushBox.y - camera.position.y + 0.5),
+            pushBox.width * this.direction,
             pushBox.height,
         )
         context.rect(
-            Math.floor(this.position.x + pushBox.x) + 0.5,
-            Math.floor(this.position.y + pushBox.y) + 0.5,
-            pushBox.width,
+            Math.floor(this.position.x + (pushBox.x * this.direction) - camera.position.x + 0.5),
+            Math.floor(this.position.y + pushBox.y - camera.position.y + 0.5),
+            pushBox.width * this.direction,
             pushBox.height,
         );
         context.stroke();
@@ -408,14 +408,26 @@ export class Fighter{
         //Origem
         context.beginPath();
         context.strokeStyle = "White";
-        context.moveTo(Math.floor(this.position.x) - 4, Math.floor(this.position.y) - 0.5);
-        context.lineTo(Math.floor(this.position.x) + 5, Math.floor(this.position.y) - 0.5);
-        context.moveTo(Math.floor(this.position.x) + 0.5, Math.floor(this.position.y) - 5);
-        context.moveTo(Math.floor(this.position.x) + 0.5, Math.floor(this.position.y) + 4);
+        context.moveTo(
+            Math.floor(this.position.x - camera.position.x) - 4, 
+            Math.floor(this.position.y - camera.position.y) - 0.5
+        );
+        context.lineTo(
+            Math.floor(this.position.x - camera.position.x) + 5, 
+            Math.floor(this.position.y - camera.position.y) - 0.5
+        );
+        context.moveTo(
+            Math.floor(this.position.x - camera.position.x) + 0.5, 
+            Math.floor(this.position.y - camera.position.y) - 5
+        );
+        context.moveTo(
+            Math.floor(this.position.x - camera.position.x) + 0.5, 
+            Math.floor(this.position.y - camera.position.y) + 4
+        );
         context.stroke();
     }
 
-    draw(context){
+    draw(context, camera){
         const [frameKey] = this.animations[this.currentState][this.animationFrame];
         const [[
             [x, y, width, height], 
@@ -427,11 +439,12 @@ export class Fighter{
             this.image, 
             x, y, 
             width, height, 
-            Math.floor(this.position.x * this.direction) - originX, Math.floor(this.position.y) - originY, 
+            Math.floor((this.position.x - camera.position.x) * this.direction) - originX, 
+            Math.floor(this.position.y - camera.position.y) - originY, 
             width, height
         );
         context.setTransform(1, 0, 0, 1, 0, 0)
 
-        this.drawDebug(context);
+        this.drawDebug(context, camera);
     }
 }
