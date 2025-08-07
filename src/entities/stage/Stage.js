@@ -54,8 +54,8 @@ export class Stage{
                 ['blue-coat-3', [704, 144, 48, 56]],
             ],
             [
-                ['blue-coat-1', 996], ['blue-coat-2', 133], ['blue-coat-3', 100], 
-                ['blue-coat-2', 133], ['blue-coat-1', 249], ['blue-coat-2', 133],
+                ['blue-coat-1', 246], ['blue-coat-2', 133], ['blue-coat-3', 100], 
+                ['blue-coat-2', 133], ['blue-coat-1', 544], ['blue-coat-2', 133],
                 ['blue-coat-3', 100], ['blue-coat-2', 133]
             ]
         );
