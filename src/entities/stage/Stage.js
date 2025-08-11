@@ -10,6 +10,9 @@ export class Stage{
             ['stage-background', [72, 208, 768, 176]],
             ['stage-boat', [8, 16, 521, 180]],
             ['stage-floor', [8, 392, 896, 72]],
+
+            ['grey-suit-1', [600, 24, 16, 24]],
+            ['grey-suit-2', [600, 88, 16, 24]],
         ]);
 
         this.flag = new BackgroundAnimation(
@@ -99,6 +102,12 @@ export class Stage{
         );
         //NPCsEnds
 
+        this.greySuitMan = {
+            animationFrame: 0,
+            animationTimer: 0,
+            animationDelay: 0,
+        };
+
         this.boat = {
             position: { x: 0, y: 0 },
             animationFrame: 0,
@@ -120,10 +129,19 @@ export class Stage{
         }
     }
 
+    updateGreySuitMan(time) {
+        if(time.previous > this.greySuitMan.animationTimer + this.greySuitMan.animationDelay){
+            this.greySuitMan.animationTimer = time.previous;
+            this.greySuitMan.animationDelay = 100 + (Math.random() * 900);
+            this.greySuitMan.animationFrame = !this.greySuitMan.animationFrame;
+        }
+    }
+
     update(time) {
         this.flag.update(time);
         this.updateBoat(time);
         this.baldMan.update(time);
+        this.updateGreySuitMan(time);
         this.cheeringWoman.update(time);
         this.greenJumperGuy.update(time);
         this.blueCoatGuy.update(time);
@@ -150,6 +168,11 @@ export class Stage{
 
         this.drawFrame(context, 'stage-boat', this.boat.position.x, this.boat.position.y);
         this.baldMan.draw(context, this.boat.position.x + 128, this.boat.position.y + 96);
+        this.drawFrame(
+            context, `grey-suit-${this.greySuitMan.animationFrame + 1}`, 
+            this.boat.position.x + 167, 
+            this.boat.position.y + 112
+        );
         this.cheeringWoman.draw(context, this.boat.position.x + 192, this.boat.position.y + 104);
         this.greenJumperGuy.draw(context, this.boat.position.x + 224, this.boat.position.y + 104);
         this.blueCoatGuy.draw(context, this.boat.position.x + 288, this.boat.position.y + 96);
