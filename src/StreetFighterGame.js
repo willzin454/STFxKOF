@@ -28,8 +28,11 @@ export class StreetFighterGame {
         this.entities = [
             ...this.fighters.map(fighter => new Shadow(fighter)),
             ...this.fighters,
-            new FpsCounter(),
+        ];
+        
+        this.overlays = [
             new StatusBar(this.fighters),
+            new FpsCounter(),
         ];
     }
 
@@ -40,6 +43,10 @@ export class StreetFighterGame {
         for (const entity of this.entities){
             entity.update(this.frameTime, this.context, this.camera);
         }
+
+        for (const overlay of this.overlays){
+            overlay.update(this.frameTime, this.context, this.camera);
+        }
     }
 
     draw(){
@@ -49,6 +56,9 @@ export class StreetFighterGame {
         }
 
         this.stage.drawForeground(this.context, this.camera);
+        for (const overlay of this.overlays){
+            overlay.draw(this.context, this.camera);
+        }
     }
 
     frame(time){

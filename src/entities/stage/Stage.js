@@ -1,5 +1,5 @@
 import { FRAME_TIME } from "../../constants/game.js";
-import { STAGE_PADDING } from "../../constants/stage.js";
+import { STAGE_PADDING, STAGE_MID_POINT} from "../../constants/stage.js";
 import { drawFrame } from "../../utils/context.js";
 import { BackgroundAnimation } from "./shared/BackgroundAnimation.js";
 import { SkewedFloor } from "./shared/SkewedFloor.js";
@@ -203,7 +203,7 @@ export class Stage{
         this.drawFrame(context, 'bollard-small', Math.floor(468 - 92 - cameraXOffset), y);
         this.drawFrame(context, 'bollard-small', Math.floor(468 + 92 - cameraXOffset), y);
     }
-    
+
     drawLargeBollards(context, camera){
         const midPoint = STAGE_MID_POINT + STAGE_PADDING;
         const cameraXOffset = camera.position.x / 0.958;
