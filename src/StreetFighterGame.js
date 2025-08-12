@@ -10,31 +10,32 @@ import { Camera } from "./Camera.js";
 import { getContext } from "./utils/context.js";
 
 export class StreetFighterGame {
-    constructor() {
-        this.context = getContext();
-        this.fighters = [new Iori(0), new Ryu(1)];
-
+    context = getContext();
+    fighters = [new Iori(0), new Ryu(1)];
+    camera = new Camera(STAGE_MID_POINT + STAGE_PADDING - (this.context.canvas.width / 2), 16, this.fighters);
+        
+    frameTime = {
+        previous:0,
+        secondsPassed:0,
+    };
+        
+    constructor(){
+        this.stage = new Stage();
+        
         this.fighters[0].opponent = this.fighters[1];
         this.fighters[1].opponent = this.fighters[0];
 
-        this.camera = new Camera(STAGE_MID_POINT + STAGE_PADDING - (this.context.canvas.width / 2), 16, this.fighters);
-
         this.entities = [
-            new Stage(),
             ...this.fighters.map(fighter => new Shadow(fighter)),
             ...this.fighters,
             new FpsCounter(),
             new StatusBar(this.fighters),
         ];
-        
-        this.frameTime = {
-            previous:0,
-            secondsPassed:0,
-        };
     }
 
     update(){
         this.camera.update(this.frameTime, this.context);
+        this.stage.update(this.frameTime, this.context);
 
         for (const entity of this.entities){
             entity.update(this.frameTime, this.context, this.camera);
@@ -42,9 +43,12 @@ export class StreetFighterGame {
     }
 
     draw(){
+        this.stage.drawBackground(this.context, this.camera);
         for (const entity of this.entities) {
             entity.draw(this.context, this.camera);
         }
+
+        this.stage.drawForeground(this.context, this.camera);
     }
 
     frame(time){
