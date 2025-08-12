@@ -203,6 +203,15 @@ export class Stage{
         this.drawFrame(context, 'bollard-small', Math.floor(468 - 92 - cameraXOffset), y);
         this.drawFrame(context, 'bollard-small', Math.floor(468 + 92 - cameraXOffset), y);
     }
+    
+    drawLargeBollards(context, camera){
+        const midPoint = STAGE_MID_POINT + STAGE_PADDING;
+        const cameraXOffset = camera.position.x / 0.958;
+        const y = 200 - camera.position.y;
+
+        this.drawFrame(context, 'bollard-large', Math.floor(midPoint - 147 - cameraXOffset), y);
+        this.drawFrame(context, 'bollard-large', Math.floor(midPoint + 147 - cameraXOffset), y);
+    }
 
     drawBackground(context, camera) {
         this.drawSkyOcean(context, camera);
@@ -212,8 +221,9 @@ export class Stage{
         this.drawFrame(context, 'barrels', Math.floor(872 - camera.position.x), 120 - camera.position.y);
     }
 
-    drawForeground(context, camera) {
 
+    drawForeground(context, camera) {
+        this.drawLargeBollards(context, camera);
     }
 }
  
