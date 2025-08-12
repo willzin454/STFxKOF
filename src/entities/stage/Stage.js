@@ -16,6 +16,9 @@ export class Stage{
 
             ['grey-suit-1', [600, 24, 16, 24]],
             ['grey-suit-2', [600, 88, 16, 24]],
+
+            ['bollard-small', [800, 184, 21, 16]],
+            ['bollard-large', [760, 176, 31, 24]]
         ]);
 
         this.flag = new BackgroundAnimation(
@@ -191,10 +194,19 @@ export class Stage{
         );
     }
 
+    drawSmallBollards(context, camera){
+        const cameraXOffset = camera.position.x / 1.54;
+        const y = 166 - camera.position.y;
+
+        this.drawFrame(context, 'bollard-small', Math.floor(468 - 92 - cameraXOffset), y);
+        this.drawFrame(context, 'bollard-small', Math.floor(468 + 92 - cameraXOffset), y);
+    }
+
     draw(context, camera) {
         this.drawSkyOcean(context, camera);
         this.drawBoat(context, camera);
-        this.floor.draw(context, camera, 176);
+        this.drawFloor(context, camera);
+        this.drawSmallBollards(context, camera);
     }
 }
  
