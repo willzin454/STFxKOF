@@ -1,15 +1,18 @@
 import { FRAME_TIME } from "../../constants/game.js";
+import { STAGE_PADDING } from "../../constants/stage.js";
 import { drawFrame } from "../../utils/context.js";
 import { BackgroundAnimation } from "./shared/BackgroundAnimation.js";
+import { SkewedFloor } from "./shared/SkewedFloor.js";
 
 export class Stage{
     constructor(){
         this.image = document.querySelector('img[alt="stage"]');
+        this.floor = new SkewedFloor(this.image, [8, 392, 896, 72]);
 
         this.frames = new Map([
             ['stage-background', [72, 208, 768, 176]],
             ['stage-boat', [8, 16, 521, 180]],
-            ['stage-floor', [8, 392, 896, 72]],
+            ['stage-floor-bottom', [8, 448, 896, 16]],
 
             ['grey-suit-1', [600, 24, 16, 24]],
             ['grey-suit-2', [600, 88, 16, 24]],
@@ -180,10 +183,18 @@ export class Stage{
         this.brownSuitGuy.draw(context, this.boat.position.x + 88, this.boat.position.y + 24);
     }
 
+    drawFloor(context, camera) {
+        this.floor.draw(context, camera, 176);
+        this.drawFrame(
+            context, 'stage-floor-bottom',
+            STAGE_PADDING - camera.position.x * 1.1, 232 - camera.position.y
+        );
+    }
+
     draw(context, camera) {
         this.drawSkyOcean(context, camera);
         this.drawBoat(context, camera);
-        this.drawFrame(context, 'stage-floor', Math.floor(192 - camera.position.x), 176 - camera.position.y);
+        this.floor.draw(context, camera, 176);
     }
 }
  
