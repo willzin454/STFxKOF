@@ -4,7 +4,7 @@ import { drawFrame } from "../../utils/context.js";
 import { BackgroundAnimation } from "./shared/BackgroundAnimation.js";
 import { SkewedFloor } from "./shared/SkewedFloor.js";
 
-export class Stage{
+export class KenStage{
     constructor(){
         this.image = document.querySelector('img[alt="stage"]');
         this.floor = new SkewedFloor(this.image, [8, 392, 896, 72]);

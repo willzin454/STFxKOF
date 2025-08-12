@@ -1,12 +1,12 @@
 import { Ryu } from "./entities/fighters/Ryu.js";
 import { Iori } from "./entities/fighters/Iori.js";
-import { Stage } from "./entities/stage/Stage.js";
-import { FpsCounter } from "./entities/FpsCounter.js";
+import { KenStage } from "./entities/stage/KenStage.js";
+import { FpsCounter } from "./entities/overlays/FpsCounter.js";
 import { STAGE_MID_POINT, STAGE_PADDING } from "./constants/stage.js";
-import { pollGamepads, registerGamepadEvents, registerKeyboardEvents } from "./InputHandler.js";
+import { pollGamepads, registerGamepadEvents, registerKeyboardEvents } from "./engine/InputHandler.js";
 import { Shadow } from "./entities/fighters/Shadow.js";
 import { StatusBar } from "./entities/overlays/StatusBar.js";
-import { Camera } from "./Camera.js";
+import { Camera } from "./engine/Camera.js";
 import { getContext } from "./utils/context.js";
 
 export class StreetFighterGame {
@@ -20,7 +20,7 @@ export class StreetFighterGame {
     };
         
     constructor(){
-        this.stage = new Stage();
+        this.stage = new KenStage();
         
         this.fighters[0].opponent = this.fighters[1];
         this.fighters[1].opponent = this.fighters[0];
