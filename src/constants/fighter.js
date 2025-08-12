@@ -7,6 +7,7 @@ export const FighterDirection = {
 };
 
 export const FighterState = {
+    //mov
     IDLE: 'idle',
     WALK_FORWARD: 'walkForwards',
     WALK_BACKWARD: 'walkBackwards',
@@ -20,6 +21,13 @@ export const FighterState = {
     CROUCH_UP: 'crouchUp',
     IDLE_TURN: 'idleTurn',
     CRUNCH_TURN: 'crunchTurn',
+    //atk
+    LIGHT_PUNCH: 'lightPunch',
+    MEDIUM_PUNCH: 'mediumPunch',
+    HEAVY_PUNCH: 'heavyPunch',
+    LIGHT_KICK: 'lightKick',
+    MEDIUM_KICK: 'mediumKick',
+    HEAVY_KICK: 'heavyKick',
 };
 
 export const FrameDelay = {
@@ -27,8 +35,15 @@ export const FrameDelay = {
     TRANSITION: -1,
 }
 
-export const PushBox = {
+export const PushBoxRyu = {
     IDLE: [-16, -80, 32, 78],
+    JUMP: [-16, -91, 32, 66],
+    BEND: [-16, -58, 32, 58],
+    CRUNCH: [-16, -50, 32, 50],
+}
+
+export const PushBoxIori = {
+    IDLE: [-25, -93, 60, 90],
     JUMP: [-16, -91, 32, 66],
     BEND: [-16, -58, 32, 58],
     CRUNCH: [-16, -50, 32, 50],
