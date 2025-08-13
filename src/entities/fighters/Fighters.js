@@ -1,3 +1,4 @@
+import { Control } from "../../constants/control.js";
 import { FIGHTER_START_DISTANCE, FighterDirection, FighterState, FrameDelay, PUSH_FRICTION } from "../../constants/fighter.js";
 import { STAGE_FLOOR, STAGE_MID_POINT, STAGE_PADDING } from "../../constants/stage.js";
 import * as control from "../../engine/InputHandler.js";
@@ -32,6 +33,7 @@ export class Fighter{
                     FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
                     FighterState.JUMP_UP, FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
                     FighterState.CROUCH_UP, FighterState.JUMP_LAND, FighterState.IDLE_TURN,
+                    FighterState.LIGHT_PUNCH,
                 ],
             },
             [FighterState.WALK_FORWARD] : {
@@ -111,6 +113,11 @@ export class Fighter{
                 update: this.handleCrunchTurnState.bind(this),
                 validFrom: [FighterState.CROUCH],
             },
+            [FighterState.LIGHT_PUNCH]: {
+                init: this.handleStandardLightAttackInit.bind(this),
+                update: this.handleLightPunchState.bind(this),
+                validFrom: [FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD],
+            }
         };
         
         this.changeState(FighterState.IDLE);
@@ -188,6 +195,10 @@ export class Fighter{
         this.resetVelocities();
     }
 
+    handleStandardLightAttackInit(){
+        this.handleIdleInit();
+    }
+
     handleIdleState(){
         if(control.isUp(this.playerId)) {
             this.changeState(FighterState.JUMP_START);
@@ -197,6 +208,8 @@ export class Fighter{
             this.changeState(FighterState.WALK_BACKWARD);
         } else if(control.isForward(this.playerId, this.direction)) {
             this.changeState(FighterState.WALK_FORWARD);
+        } else if(control.isControlDown(this.playerId, Control.LIGHT_PUNCH)){
+            this.changeState(FighterState.LIGHT_PUNCH);
         }
 
         const newDirection = this.getDirection();
@@ -301,28 +314,33 @@ export class Fighter{
         if (!this.isAnimationCompleted()) return;
         this.changeState(FighterState.IDLE);
     }
- 
+    
     handleCrunchTurnState(){
         this.handleCrunchState();
-
+        
         if (!this.isAnimationCompleted()) return;
         this.changeState(FighterState.CROUCH);
     }
-
+    
     handleJumpState(time){
         this.velocity.y += this.gravity * time.secondsPassed;
-
+        
         if(this.position.y > STAGE_FLOOR){
             this.position.y = STAGE_FLOOR;
             this.changeState(FighterState.JUMP_LAND);
         }
+    }
+    
+    handleLightPunchState(){
+        if(!this.isAnimationCompleted()) return;
+        this.changeState(FighterState.IDLE);
     }
 
     updateStageConstraints(time, context, camera){
         if (this.position.x > camera.position.x + context.canvas.width - this.pushBox.width){
             this.position.x = camera.position.x + context.canvas.width - this.pushBox.width; 
         }
-
+        
         if (this.position.x < camera.position.x + this.pushBox.width){
             this.position.x = camera.position.x + this.pushBox.width;
         }
@@ -358,6 +376,7 @@ export class Fighter{
             }
         }
     }
+
 
     updateAnimation(time){
         const animation = this.animations[this.currentState];
