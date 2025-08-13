@@ -76,11 +76,15 @@ export class Iori extends Fighter {
             ['crouch-turn-2', [[[490, 8350, 63, 62], [32, 57]], PushBoxIori.CRUNCH]],
 
             // Soco alto
-            ['light-punch-1', [[[10, 1305, 63, 98], [33, 93]], PushBoxIori.IDLE]],
-            ['light-punch-2', [[[88, 1307, 65, 96], [33, 92]], PushBoxIori.IDLE]],
-            ['light-punch-3', [[[168, 1309, 93, 94], [36, 89]], PushBoxIori.IDLE]],
-            ['light-punch-4', [[[276, 1309, 91, 94], [36, 89]], PushBoxIori.IDLE]],
-            ['light-punch-5', [[[382, 1307, 65, 96], [36, 91]], PushBoxIori.IDLE]],
+            ['light-punch-1', [[[10, 1418, 67, 110], [33, 106]], PushBoxIori.IDLE]],
+            ['light-punch-2', [[[94, 1425, 79, 103], [44, 98]], PushBoxIori.IDLE]],
+            ['light-punch-3', [[[188, 1444, 103, 84], [38, 79]], PushBoxIori.IDLE]],
+            ['light-punch-4', [[[306, 1441, 109, 87], [36, 84]], PushBoxIori.IDLE]],
+            ['light-punch-5', [[[430, 1438, 76, 90], [36, 86]], PushBoxIori.IDLE]],
+            ['light-punch-6', [[[521, 1422, 66, 106], [37, 102]], PushBoxIori.IDLE]],
+            ['light-punch-7', [[[602, 1426, 65, 102], [35, 98]], PushBoxIori.IDLE]],
+            ['light-punch-8', [[[682, 1428, 64, 100], [34, 96]], PushBoxIori.IDLE]],
+            ['light-punch-9', [[[761, 1426, 62, 102], [31, 97]], PushBoxIori.IDLE]],
         ]);
 
         this.animations = {
@@ -135,7 +139,8 @@ export class Iori extends Fighter {
             ],
             [FighterState.LIGHT_PUNCH]: [
                 ['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66], 
-                ['light-punch-4', 66], ['light-punch-5', 66], ['light-punch-5', FrameDelay.TRANSITION],
+                ['light-punch-4', 66], ['light-punch-5', 66], ['light-punch-6', 66],
+                ['light-punch-7', 66], ['light-punch-8', 66], ['light-punch-9', FrameDelay.TRANSITION],
             ]
         };
 
