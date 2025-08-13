@@ -38,7 +38,7 @@ export class Ryu extends Fighter{
             ['jump-up-5', [[[319, 234, 48, 89], [25, 85]], PushBoxRyu.JUMP]],
             ['jump-up-6', [[[375, 244, 55, 109], [28, 103]], PushBoxRyu.JUMP]],
 
-            //Pulo primeiro/ultimo frame
+            // Pulo primeiro/ultimo frame
             ['jump-land', [[[7, 268, 55, 85], [29, 83]], PushBoxRyu.IDLE]],
 
             // Pular para frente/tras
@@ -64,7 +64,7 @@ export class Ryu extends Fighter{
             ['crouch-turn-2', [[[816, 46, 52, 61], [27, 58]], PushBoxRyu.CRUNCH]],
             ['crouch-turn-3', [[[878, 46, 53, 61], [29, 58]], PushBoxRyu.CRUNCH]],
 
-            //soco alto
+            // Soco alto
             ['light-punch-1', [[[9, 365, 64, 91], [32, 88]], PushBoxRyu.IDLE]],
             ['light-punch-2', [[[98, 365, 92, 91], [32, 88]], PushBoxRyu.IDLE]],
         ]);
