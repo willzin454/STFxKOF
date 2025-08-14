@@ -367,7 +367,8 @@ export class Fighter{
     }
 
     handleHeavyPunchState(){
-        
+        if(!this.isAnimationCompleted()) return;
+        this.changeState(FighterState.IDLE);
     }
 
     updateStageConstraints(time, context, camera){
