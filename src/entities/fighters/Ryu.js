@@ -75,6 +75,20 @@ export class Ryu extends Fighter{
 
             // Soco forte
             ['heavy-punch-1', [[[175, 465, 108, 94], [24, 92]], PushBoxRyu.IDLE]],
+
+            // Chute leve/medio
+            ['light-kick-1', [[[87, 923, 66, 92], [46, 93]], PushBoxRyu.IDLE]],
+            ['light-kick-2', [[[162, 922, 114, 94], [68, 95]], PushBoxRyu.IDLE]],
+
+            // Chute medio
+            ['med-kick-1', [[[162, 922, 144, 94], [68, 95]], PushBoxRyu.IDLE]],
+
+            // Chute forte
+            ['heavy-kick-1', [[[5, 1196, 61, 90], [37, 87]], PushBoxRyu.IDLE]],
+            ['heavy-kick-2', [[[72, 1192, 94, 94], [44, 91]], PushBoxRyu.IDLE]],
+            ['heavy-kick-3', [[[176, 1191, 120, 94], [42, 91]], PushBoxRyu.IDLE]],
+            ['heavy-kick-4', [[[306, 1208, 101, 77], [39, 74]], PushBoxRyu.IDLE]],
+            ['heavy-kick-5', [[[418, 1204, 64, 81], [38, 78]], PushBoxRyu.IDLE]],
         ]);
 
         this.animations = {
@@ -132,8 +146,20 @@ export class Ryu extends Fighter{
                 ['med-punch-1', 50], ['med-punch-2', 33], ['heavy-punch-1', 100],
                 ['med-punch-2', 166], ['med-punch-1', 199], ['med-punch-1', FrameDelay.TRANSITION],
             ],
+            [FighterState.LIGHT_KICK]: [
+                ['med-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 133], 
+                ['light-kick-1', 66], ['med-punch-1', 16], ['med-punch-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.MEDIUM_KICK]: [
+                ['med-punch-1', 83], ['light-kick-1', 100], ['med-kick-1', 199],
+                ['light-kick-1', 116], ['light-kick-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HEAVY_KICK]: [
+                ['heavy-kick-1', 33], ['heavy-kick-2', 66], ['heavy-kick-3', 133],
+                ['heavy-kick-4', 166], ['heavy-kick-5', 116], ['heavy-kick-5', FrameDelay.TRANSITION],
+            ],
         };
-        //14
+        
         this.initialVelocity = {
             x: {
                 [FighterState.WALK_FORWARD]: 3 * 60,
