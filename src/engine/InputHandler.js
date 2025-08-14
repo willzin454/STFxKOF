@@ -127,3 +127,5 @@ export const isBackward = (id, direction) => direction === FighterDirection.LEFT
 export const isIdle = (id) => !(isLeft(id) || isRight(id) || isUp(id) || isDown(id));
 
 export const isLightPunch = (id) => isControlPressed(id, Control.LIGHT_PUNCH);
+export const isMediumPunch = (id) => isControlPressed(id, Control.MEDIUM_PUNCH);
+export const isHeavyPunch = (id) => isControlPressed(id, Control.HEAVY_PUNCH);

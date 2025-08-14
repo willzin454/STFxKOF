@@ -75,7 +75,7 @@ export class Iori extends Fighter {
             ['crouch-turn-1', [[[412, 8350, 63, 62], [31, 58]], PushBoxIori.CRUNCH]],
             ['crouch-turn-2', [[[490, 8350, 63, 62], [32, 57]], PushBoxIori.CRUNCH]],
 
-            // Soco alto
+            // Soco leve
             ['light-punch-1', [[[10, 1418, 67, 110], [33, 106]], PushBoxIori.IDLE]],
             ['light-punch-2', [[[94, 1425, 79, 103], [44, 98]], PushBoxIori.IDLE]],
             ['light-punch-3', [[[188, 1444, 103, 84], [38, 79]], PushBoxIori.IDLE]],
@@ -85,6 +85,19 @@ export class Iori extends Fighter {
             ['light-punch-7', [[[602, 1426, 65, 102], [35, 98]], PushBoxIori.IDLE]],
             ['light-punch-8', [[[682, 1428, 64, 100], [34, 96]], PushBoxIori.IDLE]],
             ['light-punch-9', [[[761, 1426, 62, 102], [31, 97]], PushBoxIori.IDLE]],
+
+            // Soco medio/forte
+            ['med-punch-1', [[[10, 1818, 64, 96], [30, 91]], PushBoxIori.IDLE]],
+            ['med-punch-2', [[[89, 1817, 74, 97], [32, 93]], PushBoxIori.IDLE]],
+            ['med-punch-3', [[[178, 1809, 74, 105], [32, 101]], PushBoxIori.IDLE]],
+            ['med-punch-4', [[[267, 1808, 75, 106], [33, 102]], PushBoxIori.IDLE]],
+            ['med-punch-5', [[[357, 1781, 63, 133], [33, 128]], PushBoxIori.IDLE]],
+            ['med-punch-6', [[[435, 1798, 61, 116], [32, 111]], PushBoxIori.IDLE]],
+            ['med-punch-7', [[[511, 1813, 60, 101], [32, 97]], PushBoxIori.IDLE]],
+            ['med-punch-8', [[[586, 1812, 63, 102], [31, 98]], PushBoxIori.IDLE]],
+
+            // Soco forte
+            ['heavy-punch-1', [[[357, 1781, 63, 133], [33, 128]], PushBoxIori.IDLE]],
         ]);
 
         this.animations = {
@@ -141,7 +154,17 @@ export class Iori extends Fighter {
                 ['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66], 
                 ['light-punch-4', 66], ['light-punch-5', 66], ['light-punch-6', 66],
                 ['light-punch-7', 66], ['light-punch-8', 66], ['light-punch-9', FrameDelay.TRANSITION],
-            ]
+            ],
+            [FighterState.MEDIUM_PUNCH]: [
+                ['med-punch-1', 16], ['med-punch-2', 33], ['med-punch-3', 33],
+                ['med-punch-4', 33], ['med-punch-5', 66], ['med-punch-6', 50], 
+                ['med-punch-7', 50], ['med-punch-8', FrameDelay.TRANSITION], 
+            ],
+            [FighterState.HEAVY_PUNCH]: [
+                ['med-punch-1', 50], ['med-punch-2', 33], ['med-punch-3', 33],
+                ['med-punch-4', 33], ['heavy-punch-1', 100], ['med-punch-6', 166],
+                ['med-punch-7', 199], ['med-punch-8', FrameDelay.TRANSITION], 
+            ],
         };
 
         this.initialVelocity = {
