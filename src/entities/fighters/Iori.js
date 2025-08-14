@@ -108,8 +108,19 @@ export class Iori extends Fighter {
             ['light-kick-6', [[[920, 1301, 60, 102], [33, 96]], PushBoxIori.IDLE]],
 
             // Chute medio
+            ['med-kick-1', [[[642, 1306, 89, 97], [23, 91]], PushBoxIori.IDLE]],
 
             // Chute forte
+            ['heavy-kick-1', [[[10, 1549, 61, 99], [31, 94]], PushBoxIori.IDLE]],
+            ['heavy-kick-2', [[[86, 1549, 75, 99], [48, 94]], PushBoxIori.IDLE]],
+            ['heavy-kick-3', [[[176, 1543, 74, 105], [33, 98]], PushBoxIori.IDLE]],
+            ['heavy-kick-4', [[[265, 1545, 100, 103], [34, 97]], PushBoxIori.IDLE]],
+            ['heavy-kick-5', [[[380, 1549, 104, 99], [34, 93]], PushBoxIori.IDLE]],
+            ['heavy-kick-6', [[[499, 1547, 104, 101], [34, 95]], PushBoxIori.IDLE]],
+            ['heavy-kick-7', [[[618, 1543, 72, 105], [34, 98]], PushBoxIori.IDLE]],
+            ['heavy-kick-8', [[[705, 1545, 51, 103], [26, 96]], PushBoxIori.IDLE]],
+            ['heavy-kick-9', [[[771, 1547, 46, 101], [22, 93]], PushBoxIori.IDLE]],
+            ['heavy-kick-10', [[[832, 1545, 63, 103], [26, 96]], PushBoxIori.IDLE]],
         ]);
 
         this.animations = {
