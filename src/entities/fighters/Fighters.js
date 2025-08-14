@@ -33,7 +33,7 @@ export class Fighter{
                     FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
                     FighterState.JUMP_UP, FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
                     FighterState.CROUCH_UP, FighterState.JUMP_LAND, FighterState.IDLE_TURN,
-                    FighterState.LIGHT_PUNCH,
+                    FighterState.LIGHT_PUNCH, FighterState.MEDIUM_PUNCH, FighterState.HEAVY_PUNCH,
                 ],
             },
             [FighterState.WALK_FORWARD] : {
@@ -117,7 +117,17 @@ export class Fighter{
                 init: this.handleStandardLightAttackInit.bind(this),
                 update: this.handleLightPunchState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD],
-            }
+            },
+            [FighterState.MEDIUM_PUNCH]: {
+                init: this.handleStandardMediumAttackInit.bind(this),
+                update: this.handleMediumPunchState.bind(this),
+                validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
+            },
+            [FighterState.HEAVY_PUNCH]: {
+                init: this.handleStandardHeavyAttackInit.bind(this),
+                update: this.handleHeavyPunchState.bind(this),
+                validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
+            },
         };
         
         this.changeState(FighterState.IDLE);
@@ -196,7 +206,15 @@ export class Fighter{
     }
 
     handleStandardLightAttackInit(){
-        this.handleIdleInit();
+        this.resetVelocities();
+    }
+
+    handleStandardMediumAttackInit() {
+        this.resetVelocities();
+    }
+
+    handleStandardHeavyAttackInit() {
+        this.resetVelocities();
     }
 
     handleIdleState(){
@@ -210,6 +228,10 @@ export class Fighter{
             this.changeState(FighterState.WALK_FORWARD);
         } else if(control.isLightPunch(this.playerId)){
             this.changeState(FighterState.LIGHT_PUNCH);
+        } else if (control.isMediumPunch(this.playerId)) {
+            this.changeState(FighterState.MEDIUM_PUNCH);
+        } else if (control.isHeavyPunch(this.playerId)) {
+            this.changeState(FighterState.HEAVY_PUNCH);
         }
 
         const newDirection = this.getDirection();
@@ -337,6 +359,15 @@ export class Fighter{
 
         if(!this.isAnimationCompleted()) return;
         this.changeState(FighterState.IDLE);
+    }
+
+    handleMediumPunchState(){
+        if(!this.isAnimationCompleted()) return;
+        this.changeState(FighterState.IDLE);
+    }
+
+    handleHeavyPunchState(){
+        
     }
 
     updateStageConstraints(time, context, camera){

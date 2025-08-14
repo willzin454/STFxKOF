@@ -157,8 +157,8 @@ export class Iori extends Fighter {
             ],
             [FighterState.MEDIUM_PUNCH]: [
                 ['med-punch-1', 16], ['med-punch-2', 33], ['med-punch-3', 33],
-                ['med-punch-4', 33], ['med-punch-5', 66], ['med-punch-6', 50], 
-                ['med-punch-7', 50], ['med-punch-8', FrameDelay.TRANSITION], 
+                ['med-punch-4', 33], ['med-punch-5', 100], ['med-punch-6', 80], 
+                ['med-punch-7', 80], ['med-punch-8', FrameDelay.TRANSITION], 
             ],
             [FighterState.HEAVY_PUNCH]: [
                 ['med-punch-1', 50], ['med-punch-2', 33], ['med-punch-3', 33],
