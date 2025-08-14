@@ -37,9 +37,9 @@ export const controls = [
             [Control.RIGHT]: 'KeyD',
             [Control.UP]: 'KeyW',
             [Control.DOWN]: 'KeyS',
-            [Control.LIGHT_PUNCH]: 'ControlLeft',
-            [Control.MEDIUM_PUNCH]: 'AltLeft',
-            [Control.HEAVY_PUNCH]: 'Space',
+            [Control.LIGHT_PUNCH]: 'KeyQ',
+            [Control.MEDIUM_PUNCH]: 'KeyE',
+            [Control.HEAVY_PUNCH]: 'KeyR',
         },
     },
     {
@@ -61,9 +61,9 @@ export const controls = [
             [Control.RIGHT]: 'ArrowRight',
             [Control.UP]: 'ArrowUp',
             [Control.DOWN]: 'ArrowDown',
-            [Control.LIGHT_PUNCH]: 'KeyQ',
-            [Control.MEDIUM_PUNCH]: 'KeyP',
-            [Control.HEAVY_PUNCH]: 'KeyO',
+            [Control.LIGHT_PUNCH]: 'KeyP',
+            [Control.MEDIUM_PUNCH]: 'KeyO',
+            [Control.HEAVY_PUNCH]: 'KeyI',
         },
     }
 ];
