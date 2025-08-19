@@ -9,10 +9,10 @@ export class Ryu extends Fighter{
 
         this.frames = new Map([
             // Instacia de parado
-            ['idle-1', [[[75, 14, 60, 89], [34, 86]], PushBoxRyu.IDLE]],
-            ['idle-2', [[[7, 14, 59, 90], [33, 87]], PushBoxRyu.IDLE]],
-            ['idle-3', [[[277, 11, 58, 92], [32, 89]], PushBoxRyu.IDLE]],
-            ['idle-4', [[[211, 10, 55, 93], [31, 90]], PushBoxRyu.IDLE]],
+            ['idle-1', [[[75, 14, 60, 89], [34, 86]], PushBoxRyu.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
+            ['idle-2', [[[7, 14, 59, 90], [33, 87]], PushBoxRyu.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
+            ['idle-3', [[[277, 11, 58, 92], [32, 89]], PushBoxRyu.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
+            ['idle-4', [[[211, 10, 55, 93], [31, 90]], PushBoxRyu.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
 
             // Mover para frente
             ['forwards-1', [[[4, 134, 64, 90], [27, 81]], PushBoxRyu.IDLE]],

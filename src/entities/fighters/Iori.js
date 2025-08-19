@@ -9,10 +9,10 @@ export class Iori extends Fighter {
 
         this.frames = new Map([
             // Instacia de parado
-            ['idle-1', [[[95, 225, 76, 110], [31, 100]], PushBoxIori.IDLE]],
-            ['idle-2', [[[8, 225, 76, 110], [31, 100]], PushBoxIori.IDLE]],
-            ['idle-3', [[[182, 225, 76, 110], [31, 100]], PushBoxIori.IDLE]],
-            ['idle-4', [[[269, 225, 76, 110], [31, 100]], PushBoxIori.IDLE]],
+            ['idle-1', [[[95, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
+            ['idle-2', [[[8, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
+            ['idle-3', [[[182, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
+            ['idle-4', [[[269, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
 
             // Mover para frente
             ['forwards-1', [[[10, 456, 59, 103], [29, 99]], PushBoxIori.IDLE]],
@@ -186,12 +186,12 @@ export class Iori extends Fighter {
                 ['med-punch-7', 133], ['med-punch-8', 100], ['med-punch-8', FrameDelay.TRANSITION], 
             ],
             [FighterState.LIGHT_KICK]: [
-                ['med-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 50], 
+                ['light-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 50], 
                 ['light-kick-3', 133], ['light-kick-4', 133], ['light-kick-5', 16], 
-                ['light-kick-6', 16], ['med-punch-1', 16], ['med-punch-1', FrameDelay.TRANSITION],
+                ['light-kick-6', 16], ['light-punch-1', 16], ['light-punch-1', FrameDelay.TRANSITION],
             ],
             [FighterState.MEDIUM_KICK]: [
-                ['med-punch-1', 83], ['light-kick-1', 100], ['med-kick-1', 199],
+                ['light-punch-1', 83], ['light-kick-1', 100], ['med-kick-1', 199],
                 ['light-kick-1', 116], ['light-kick-1', FrameDelay.TRANSITION],
             ],
             [FighterState.HEAVY_KICK]: [
