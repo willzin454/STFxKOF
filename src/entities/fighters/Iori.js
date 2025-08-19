@@ -75,29 +75,26 @@ export class Iori extends Fighter {
             ['crouch-turn-1', [[[412, 8350, 63, 62], [31, 58]], PushBoxIori.CRUNCH]],
             ['crouch-turn-2', [[[490, 8350, 63, 62], [32, 57]], PushBoxIori.CRUNCH]],
 
-            // Soco leve
-            ['light-punch-1', [[[10, 1418, 67, 110], [33, 106]], PushBoxIori.IDLE]],
-            ['light-punch-2', [[[94, 1425, 79, 103], [44, 98]], PushBoxIori.IDLE]],
-            ['light-punch-3', [[[188, 1444, 103, 84], [38, 79]], PushBoxIori.IDLE]],
-            ['light-punch-4', [[[306, 1441, 109, 87], [36, 84]], PushBoxIori.IDLE]],
-            ['light-punch-5', [[[430, 1438, 76, 90], [36, 86]], PushBoxIori.IDLE]],
-            ['light-punch-6', [[[521, 1422, 66, 106], [37, 102]], PushBoxIori.IDLE]],
-            ['light-punch-7', [[[602, 1426, 65, 102], [35, 98]], PushBoxIori.IDLE]],
-            ['light-punch-8', [[[682, 1428, 64, 100], [34, 96]], PushBoxIori.IDLE]],
-            ['light-punch-9', [[[761, 1426, 62, 102], [31, 97]], PushBoxIori.IDLE]],
+            // Soco Fraco
+            ['light-punch-1', [[[10, 1305, 63, 98], [32, 92]], PushBoxIori.IDLE]],
+            ['light-punch-2', [[[88, 1307, 65, 96], [35, 90]], PushBoxIori.IDLE]],
+            ['light-punch-3', [[[168, 1309, 93, 94], [32, 86]], PushBoxIori.IDLE]],
+            ['light-punch-4', [[[276, 1309, 91, 94], [32, 86]], PushBoxIori.IDLE]],
+            ['light-punch-5', [[[382, 1307, 65, 96], [34, 89]], PushBoxIori.IDLE]],
 
             // Soco medio/forte
-            ['med-punch-1', [[[10, 1818, 64, 96], [30, 91]], PushBoxIori.IDLE]],
-            ['med-punch-2', [[[89, 1817, 74, 97], [32, 93]], PushBoxIori.IDLE]],
-            ['med-punch-3', [[[178, 1809, 74, 105], [32, 101]], PushBoxIori.IDLE]],
-            ['med-punch-4', [[[267, 1808, 75, 106], [33, 102]], PushBoxIori.IDLE]],
-            ['med-punch-5', [[[357, 1781, 63, 133], [33, 128]], PushBoxIori.IDLE]],
-            ['med-punch-6', [[[435, 1798, 61, 116], [32, 111]], PushBoxIori.IDLE]],
-            ['med-punch-7', [[[511, 1813, 60, 101], [32, 97]], PushBoxIori.IDLE]],
-            ['med-punch-8', [[[586, 1812, 63, 102], [31, 98]], PushBoxIori.IDLE]],
+            ['med-punch-1', [[[10, 1418, 67, 110], [33, 106]], PushBoxIori.IDLE]],
+            ['med-punch-2', [[[94, 1425, 79, 103], [44, 98]], PushBoxIori.IDLE]],
+            ['med-punch-3', [[[188, 1444, 103, 84], [38, 79]], PushBoxIori.IDLE]],
+            ['med-punch-4', [[[306, 1441, 109, 87], [36, 84]], PushBoxIori.IDLE]],
+            ['med-punch-5', [[[430, 1438, 76, 90], [36, 86]], PushBoxIori.IDLE]],
+            ['med-punch-6', [[[521, 1422, 66, 106], [37, 102]], PushBoxIori.IDLE]],
+            ['med-punch-7', [[[602, 1426, 65, 102], [35, 98]], PushBoxIori.IDLE]],
+            ['med-punch-8', [[[682, 1428, 64, 100], [34, 96]], PushBoxIori.IDLE]],
+            ['med-punch-9', [[[761, 1426, 62, 102], [31, 97]], PushBoxIori.IDLE]],
 
             // Soco forte
-            ['heavy-punch-1', [[[357, 1781, 63, 133], [33, 128]], PushBoxIori.IDLE]],
+            ['heavy-punch-1', [[[306, 1441, 109, 87], [36, 84]], PushBoxIori.IDLE]],
 
             // Chute leve/medio
             ['light-kick-1', [[[497, 1301, 60, 102], [30, 97]], PushBoxIori.IDLE]],
@@ -174,19 +171,19 @@ export class Iori extends Fighter {
                 ['crouch-turn-2', 33], ['crouch-turn-1', 33], ['crouch-turn-1', FrameDelay.TRANSITION],
             ],
             [FighterState.LIGHT_PUNCH]: [
-                ['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66], 
-                ['light-punch-4', 66], ['light-punch-5', 66], ['light-punch-6', 66],
-                ['light-punch-7', 66], ['light-punch-8', 66], ['light-punch-9', FrameDelay.TRANSITION],
+                ['light-punch-1', 33], ['light-punch-2', 33], ['light-punch-3', 66], 
+                ['light-punch-4', 66], ['light-punch-5', 66], ['light-punch-5', FrameDelay.TRANSITION],
             ],
             [FighterState.MEDIUM_PUNCH]: [
                 ['med-punch-1', 16], ['med-punch-2', 33], ['med-punch-3', 33],
-                ['med-punch-4', 33], ['med-punch-5', 100], ['med-punch-6', 80], 
-                ['med-punch-7', 80], ['med-punch-8', FrameDelay.TRANSITION], 
+                ['med-punch-4', 80], ['med-punch-5', 80], ['med-punch-6', 50], 
+                ['med-punch-7', 50], ['med-punch-8', 50], ['med-punch-9', 50],  
+                ['med-punch-9', FrameDelay.TRANSITION], 
             ],
             [FighterState.HEAVY_PUNCH]: [
                 ['med-punch-1', 50], ['med-punch-2', 33], ['med-punch-3', 33],
-                ['med-punch-4', 33], ['heavy-punch-1', 100], ['med-punch-6', 166],
-                ['med-punch-7', 199], ['med-punch-8', FrameDelay.TRANSITION], 
+                ['med-punch-4', 33], ['heavy-punch-1', 100], ['med-punch-6', 133],
+                ['med-punch-7', 133], ['med-punch-8', 100], ['med-punch-8', FrameDelay.TRANSITION], 
             ],
             [FighterState.LIGHT_KICK]: [
                 ['med-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 50], 
