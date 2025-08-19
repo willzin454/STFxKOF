@@ -13,15 +13,15 @@ export class StreetFighterGame {
     context = getContext();
     fighters = [new Iori(0), new Ryu(1)];
     camera = new Camera(STAGE_MID_POINT + STAGE_PADDING - (this.context.canvas.width / 2), 16, this.fighters);
-        
+
     frameTime = {
-        previous:0,
-        secondsPassed:0,
+        previous: 0,
+        secondsPassed: 0,
     };
-        
-    constructor(){
+
+    constructor() {
         this.stage = new KenStage();
-        
+
         this.fighters[0].opponent = this.fighters[1];
         this.fighters[1].opponent = this.fighters[0];
 
@@ -29,39 +29,39 @@ export class StreetFighterGame {
             ...this.fighters.map(fighter => new Shadow(fighter)),
             ...this.fighters,
         ];
-        
+
         this.overlays = [
             new StatusBar(this.fighters),
             new FpsCounter(),
         ];
     }
 
-    update(){
+    update() {
         this.camera.update(this.frameTime, this.context);
         this.stage.update(this.frameTime, this.context);
 
-        for (const entity of this.entities){
+        for (const entity of this.entities) {
             entity.update(this.frameTime, this.context, this.camera);
         }
 
-        for (const overlay of this.overlays){
+        for (const overlay of this.overlays) {
             overlay.update(this.frameTime, this.context, this.camera);
         }
     }
 
-    draw(){
+    draw() {
         this.stage.drawBackground(this.context, this.camera);
         for (const entity of this.entities) {
             entity.draw(this.context, this.camera);
         }
 
         this.stage.drawForeground(this.context, this.camera);
-        for (const overlay of this.overlays){
+        for (const overlay of this.overlays) {
             overlay.draw(this.context, this.camera);
         }
     }
 
-    frame(time){
+    frame(time) {
         window.requestAnimationFrame(this.frame.bind(this));
         this.frameTime = {
             secondsPassed: (time - this.frameTime.previous) / 1000,
@@ -73,7 +73,7 @@ export class StreetFighterGame {
         this.draw();
     }
 
-    start(){  
+    start() {
         registerKeyboardEvents();
         registerGamepadEvents();
 

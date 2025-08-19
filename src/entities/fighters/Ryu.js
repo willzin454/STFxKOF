@@ -1,18 +1,18 @@
 import { Fighter } from "./Fighters.js";
-import { FighterState, FrameDelay, PushBoxRyu } from "../../constants/fighter.js";
+import { FighterState, FrameDelay, HurtBox, PushBoxRyu } from "../../constants/fighter.js";
 
-export class Ryu extends Fighter{
-    constructor(playerId){
+export class Ryu extends Fighter {
+    constructor(playerId) {
         super("Ryu", playerId);
 
         this.image = document.querySelector('img[alt="ryu"]');
 
         this.frames = new Map([
             // Instacia de parado
-            ['idle-1', [[[75, 14, 60, 89], [34, 86]], PushBoxRyu.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
-            ['idle-2', [[[7, 14, 59, 90], [33, 87]], PushBoxRyu.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
-            ['idle-3', [[[277, 11, 58, 92], [32, 89]], PushBoxRyu.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
-            ['idle-4', [[[211, 10, 55, 93], [31, 90]], PushBoxRyu.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
+            ['idle-1', [[[75, 14, 60, 89], [34, 86]], PushBoxRyu.IDLE, HurtBox.IDLE]],
+            ['idle-2', [[[7, 14, 59, 90], [33, 87]], PushBoxRyu.IDLE, HurtBox.IDLE]],
+            ['idle-3', [[[277, 11, 58, 92], [32, 89]], PushBoxRyu.IDLE, HurtBox.IDLE]],
+            ['idle-4', [[[211, 10, 55, 93], [31, 90]], PushBoxRyu.IDLE, HurtBox.IDLE]],
 
             // Mover para frente
             ['forwards-1', [[[4, 134, 64, 90], [27, 81]], PushBoxRyu.IDLE]],
@@ -105,7 +105,7 @@ export class Ryu extends Fighter{
                 ['backwards-4', 65], ['backwards-5', 65], ['backwards-6', 65],
             ],
             [FighterState.JUMP_START]: [
-                ['jump-land', 50], ['jump-land', FrameDelay.TRANSITION], 
+                ['jump-land', 50], ['jump-land', FrameDelay.TRANSITION],
             ],
             [FighterState.JUMP_UP]: [
                 ['jump-up-1', 180], ['jump-up-2', 100], ['jump-up-3', 100],
@@ -116,7 +116,7 @@ export class Ryu extends Fighter{
                 ['jump-roll-4', 50], ['jump-roll-5', 50], ['jump-roll-6', FrameDelay.FREEZE],
             ],
             [FighterState.JUMP_BACKWARD]: [
-                ['jump-roll-6', 200], ['jump-roll-5', 50], ['jump-roll-4', 50], 
+                ['jump-roll-6', 200], ['jump-roll-5', 50], ['jump-roll-4', 50],
                 ['jump-roll-3', 50], ['jump-roll-2', 50], ['jump-roll-1', FrameDelay.FREEZE],
             ],
             [FighterState.JUMP_LAND]: [
@@ -126,7 +126,7 @@ export class Ryu extends Fighter{
             [FighterState.CROUCH_DOWN]: [
                 ['crouch-1', 30], ['crouch-2', 30], ['crouch-3', 30], ['crouch-3', FrameDelay.TRANSITION],
             ],
-            [FighterState.CROUCH_UP]:[
+            [FighterState.CROUCH_UP]: [
                 ['crouch-3', 30], ['crouch-2', 30], ['crouch-1', 30], ['crouch-1', FrameDelay.TRANSITION],
             ],
             [FighterState.IDLE_TURN]: [
@@ -139,15 +139,15 @@ export class Ryu extends Fighter{
                 ['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-1', 66], ['light-punch-1', FrameDelay.TRANSITION],
             ],
             [FighterState.MEDIUM_PUNCH]: [
-                ['med-punch-1', 16], ['med-punch-2', 33], ['med-punch-3', 66], 
-                ['med-punch-2', 50], ['med-punch-1', 50], ['med-punch-1', FrameDelay.TRANSITION], 
+                ['med-punch-1', 16], ['med-punch-2', 33], ['med-punch-3', 66],
+                ['med-punch-2', 50], ['med-punch-1', 50], ['med-punch-1', FrameDelay.TRANSITION],
             ],
             [FighterState.HEAVY_PUNCH]: [
                 ['med-punch-1', 50], ['med-punch-2', 33], ['heavy-punch-1', 100],
                 ['med-punch-2', 166], ['med-punch-1', 199], ['med-punch-1', FrameDelay.TRANSITION],
             ],
             [FighterState.LIGHT_KICK]: [
-                ['med-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 133], 
+                ['med-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 133],
                 ['light-kick-1', 66], ['med-punch-1', 16], ['med-punch-1', FrameDelay.TRANSITION],
             ],
             [FighterState.MEDIUM_KICK]: [
@@ -159,7 +159,7 @@ export class Ryu extends Fighter{
                 ['heavy-kick-4', 166], ['heavy-kick-5', 116], ['heavy-kick-5', FrameDelay.TRANSITION],
             ],
         };
-        
+
         this.initialVelocity = {
             x: {
                 [FighterState.WALK_FORWARD]: 3 * 60,

@@ -1,13 +1,13 @@
-export class FpsCounter{
+export class FpsCounter {
     constructor() {
         this.fps = 0;
     }
 
-    update(time){
-        this.fps = Math.trunc(1/time.secondsPassed);
+    update(time) {
+        this.fps = Math.trunc(1 / time.secondsPassed);
     }
 
-    draw(context){
+    draw(context) {
         context.font = "14px Arial";
         context.fillStyle = "#00FF00";
         context.textAlign = "right";

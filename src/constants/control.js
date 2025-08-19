@@ -6,8 +6,8 @@ export const GamepadThumbstick = {
 
 export const Control = {
     LEFT: 'left',
-    RIGHT: 'right', 
-    UP: 'up',   
+    RIGHT: 'right',
+    UP: 'up',
     DOWN: 'down',
     LIGHT_PUNCH: 'lightPunch',
     MEDIUM_PUNCH: 'mediumPunch',
@@ -21,13 +21,13 @@ export const controls = [
     {
         gamePad: {
             [GamepadThumbstick.DEAD_ZONE]: 0.5,
-            [GamepadThumbstick.HORIZONTAL_AXE_ID]: 0, 
-            [GamepadThumbstick.VERTICAL_AXE_ID]: 1,  
+            [GamepadThumbstick.HORIZONTAL_AXE_ID]: 0,
+            [GamepadThumbstick.VERTICAL_AXE_ID]: 1,
 
-            [Control.LEFT]: 14,   
-            [Control.RIGHT]: 15,  
-            [Control.UP]: 12,     
-            [Control.DOWN]: 13,  
+            [Control.LEFT]: 14,
+            [Control.RIGHT]: 15,
+            [Control.UP]: 12,
+            [Control.DOWN]: 13,
             [Control.LIGHT_PUNCH]: 2,
             [Control.MEDIUM_PUNCH]: 3,
             [Control.HEAVY_PUNCH]: 5,

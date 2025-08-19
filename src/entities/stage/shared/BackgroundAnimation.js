@@ -1,5 +1,5 @@
 export class BackgroundAnimation {
-    constructor(image, frames, animation, startFrame = 0){
+    constructor(image, frames, animation, startFrame = 0) {
         this.image = image;
         this.frames = new Map(frames);
         this.animation = animation;
@@ -9,9 +9,9 @@ export class BackgroundAnimation {
     }
 
     update(time) {
-        if(time.previous > this.animationTimer + this.animationDelay){
+        if (time.previous > this.animationTimer + this.animationDelay) {
             this.animationFrame += 1;
-            if(this.animationFrame >= this.animation.length){
+            if (this.animationFrame >= this.animation.length) {
                 this.animationFrame = 0;
             }
 
@@ -20,7 +20,7 @@ export class BackgroundAnimation {
         }
     }
 
-    draw(context, x, y){
+    draw(context, x, y) {
         const [frameKey] = this.animation[this.animationFrame];
         const [frameX, frameY, frameWidth, frameHeight] = this.frames.get(frameKey);
 

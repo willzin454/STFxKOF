@@ -1,5 +1,5 @@
 import { Fighter } from "./Fighters.js";
-import { FighterState, FrameDelay, PushBoxIori } from "../../constants/fighter.js";  
+import { FighterState, FrameDelay, PushBoxIori } from "../../constants/fighter.js";
 
 export class Iori extends Fighter {
     constructor(playerId) {
@@ -150,9 +150,9 @@ export class Iori extends Fighter {
                 ['jump-roll-7', 50], ['jump-roll-8', 50], ['jump-roll-9', FrameDelay.FrameDelay],
             ],
             [FighterState.JUMP_BACKWARD]: [
-                ['jump-roll-9', 200], ['jump-roll-8', 50],['jump-roll-7', 50], 
-                ['jump-roll-6', 50], ['jump-roll-5', 50],['jump-roll-4', 50], 
-                ['jump-roll-3', 50], ['jump-roll-2', 50],['jump-roll-1', FrameDelay.FrameDelay],
+                ['jump-roll-9', 200], ['jump-roll-8', 50], ['jump-roll-7', 50],
+                ['jump-roll-6', 50], ['jump-roll-5', 50], ['jump-roll-4', 50],
+                ['jump-roll-3', 50], ['jump-roll-2', 50], ['jump-roll-1', FrameDelay.FrameDelay],
             ],
             [FighterState.JUMP_LAND]: [
                 ['jump-land', 33], ['jump-land', 117], ['jump-land', FrameDelay.TRANSITION],
@@ -161,7 +161,7 @@ export class Iori extends Fighter {
             [FighterState.CROUCH_DOWN]: [
                 ['crouch-1', 30], ['crouch-2', 30], ['crouch-3', 30], ['crouch-3', FrameDelay.TRANSITION],
             ],
-            [FighterState.CROUCH_UP]:[
+            [FighterState.CROUCH_UP]: [
                 ['crouch-3', 30], ['crouch-2', 30], ['crouch-1', 30], ['crouch-1', FrameDelay.TRANSITION],
             ],
             [FighterState.IDLE_TURN]: [
@@ -171,23 +171,23 @@ export class Iori extends Fighter {
                 ['crouch-turn-2', 33], ['crouch-turn-1', 33], ['crouch-turn-1', FrameDelay.TRANSITION],
             ],
             [FighterState.LIGHT_PUNCH]: [
-                ['light-punch-1', 33], ['light-punch-2', 33], ['light-punch-3', 66], 
+                ['light-punch-1', 33], ['light-punch-2', 33], ['light-punch-3', 66],
                 ['light-punch-4', 66], ['light-punch-5', 66], ['light-punch-5', FrameDelay.TRANSITION],
             ],
             [FighterState.MEDIUM_PUNCH]: [
                 ['med-punch-1', 16], ['med-punch-2', 33], ['med-punch-3', 33],
-                ['med-punch-4', 80], ['med-punch-5', 80], ['med-punch-6', 50], 
-                ['med-punch-7', 50], ['med-punch-8', 50], ['med-punch-9', 50],  
-                ['med-punch-9', FrameDelay.TRANSITION], 
+                ['med-punch-4', 80], ['med-punch-5', 80], ['med-punch-6', 50],
+                ['med-punch-7', 50], ['med-punch-8', 50], ['med-punch-9', 50],
+                ['med-punch-9', FrameDelay.TRANSITION],
             ],
             [FighterState.HEAVY_PUNCH]: [
                 ['med-punch-1', 50], ['med-punch-2', 33], ['med-punch-3', 33],
                 ['med-punch-4', 33], ['heavy-punch-1', 100], ['med-punch-6', 133],
-                ['med-punch-7', 133], ['med-punch-8', 100], ['med-punch-8', FrameDelay.TRANSITION], 
+                ['med-punch-7', 133], ['med-punch-8', 100], ['med-punch-8', FrameDelay.TRANSITION],
             ],
             [FighterState.LIGHT_KICK]: [
-                ['light-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 50], 
-                ['light-kick-3', 133], ['light-kick-4', 133], ['light-kick-5', 16], 
+                ['light-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 50],
+                ['light-kick-3', 133], ['light-kick-4', 133], ['light-kick-5', 16],
                 ['light-kick-6', 16], ['light-punch-1', 16], ['light-punch-1', FrameDelay.TRANSITION],
             ],
             [FighterState.MEDIUM_KICK]: [
@@ -196,9 +196,9 @@ export class Iori extends Fighter {
             ],
             [FighterState.HEAVY_KICK]: [
                 ['heavy-kick-1', 33], ['heavy-kick-2', 66], ['heavy-kick-3', 66],
-                ['heavy-kick-4', 122], ['heavy-kick-5', 122], ['heavy-kick-6', 122], 
+                ['heavy-kick-4', 122], ['heavy-kick-5', 122], ['heavy-kick-6', 122],
                 ['heavy-kick-7', 66], ['heavy-kick-8', 66], ['heavy-kick-9', 66],
-                ['heavy-kick-10', 33], ['heavy-kick-10', FrameDelay.TRANSITION], 
+                ['heavy-kick-10', 33], ['heavy-kick-10', FrameDelay.TRANSITION],
             ],
         };
 
