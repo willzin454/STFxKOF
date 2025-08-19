@@ -81,7 +81,7 @@ export class Ryu extends Fighter{
             ['light-kick-2', [[[162, 922, 114, 94], [68, 95]], PushBoxRyu.IDLE]],
 
             // Chute medio
-            ['med-kick-1', [[[162, 922, 144, 94], [68, 95]], PushBoxRyu.IDLE]],
+            ['med-kick-1', [[[162, 922, 114, 94], [68, 95]], PushBoxRyu.IDLE]],
 
             // Chute forte
             ['heavy-kick-1', [[[5, 1196, 61, 90], [37, 87]], PushBoxRyu.IDLE]],

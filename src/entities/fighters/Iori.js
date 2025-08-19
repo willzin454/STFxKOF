@@ -188,6 +188,21 @@ export class Iori extends Fighter {
                 ['med-punch-4', 33], ['heavy-punch-1', 100], ['med-punch-6', 166],
                 ['med-punch-7', 199], ['med-punch-8', FrameDelay.TRANSITION], 
             ],
+            [FighterState.LIGHT_KICK]: [
+                ['med-punch-1', 50], ['light-kick-1', 50], ['light-kick-2', 50], 
+                ['light-kick-3', 133], ['light-kick-4', 133], ['light-kick-5', 16], 
+                ['light-kick-6', 16], ['med-punch-1', 16], ['med-punch-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.MEDIUM_KICK]: [
+                ['med-punch-1', 83], ['light-kick-1', 100], ['med-kick-1', 199],
+                ['light-kick-1', 116], ['light-kick-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HEAVY_KICK]: [
+                ['heavy-kick-1', 33], ['heavy-kick-2', 66], ['heavy-kick-3', 66],
+                ['heavy-kick-4', 122], ['heavy-kick-5', 122], ['heavy-kick-6', 122], 
+                ['heavy-kick-7', 66], ['heavy-kick-8', 66], ['heavy-kick-9', 66],
+                ['heavy-kick-10', 33], ['heavy-kick-10', FrameDelay.TRANSITION], 
+            ],
         };
 
         this.initialVelocity = {
