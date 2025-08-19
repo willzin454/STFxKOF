@@ -8,11 +8,11 @@ export class Iori extends Fighter {
         this.image = document.querySelector('img[alt="iori"]');
 
         this.frames = new Map([
-            // Instacia de parado
-            ['idle-1', [[[95, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
-            ['idle-2', [[[8, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
-            ['idle-3', [[[182, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
-            ['idle-4', [[[269, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[-8, -88, 24, 16], [-26, -74, 40, 42], [-26, -31, 40, 32]]]],
+            // Instacia de parado                                          primeira e terceira HORIZONTAL, segunda e quarta VERTICAL (começar ajustando a primeira e a segunda primeiro)
+            ['idle-1', [[[95, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[10, -100, 18, 18], [-10, -82, 46, 51], [-20, -31, 50, 32]]]],
+            ['idle-2', [[[8, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[10, -100, 18, 18], [-10, -82, 46, 51], [-20, -31, 50, 32]]]],
+            ['idle-3', [[[182, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[10, -100, 18, 18], [-10, -82, 46, 51], [-20, -31, 50, 32]]]],
+            ['idle-4', [[[269, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[10, -100, 18, 18], [-10, -82, 46, 51], [-20, -31, 50, 32]]]],
 
             // Mover para frente
             ['forwards-1', [[[10, 456, 59, 103], [29, 99]], PushBoxIori.IDLE]],
