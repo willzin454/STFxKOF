@@ -1,5 +1,5 @@
 import { Fighter } from "./Fighters.js";
-import { FighterState, FrameDelay, PushBoxIori } from "../../constants/fighter.js";
+import { FighterState, FrameDelay, HurtBoxIori, PushBoxIori } from "../../constants/fighter.js";
 
 export class Iori extends Fighter {
     constructor(playerId) {
@@ -8,49 +8,35 @@ export class Iori extends Fighter {
         this.image = document.querySelector('img[alt="iori"]');
 
         this.frames = new Map([
-            // Instacia de parado                                          primeira e terceira HORIZONTAL, segunda e quarta VERTICAL (começar ajustando a primeira e a segunda primeiro)
-            ['idle-1', [[[95, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[10, -100, 18, 18], [-10, -82, 46, 51], [-20, -31, 50, 32]]]],
-            ['idle-2', [[[8, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[10, -100, 18, 18], [-10, -82, 46, 51], [-20, -31, 50, 32]]]],
-            ['idle-3', [[[182, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[10, -100, 18, 18], [-10, -82, 46, 51], [-20, -31, 50, 32]]]],
-            ['idle-4', [[[269, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, [[10, -100, 18, 18], [-10, -82, 46, 51], [-20, -31, 50, 32]]]],
+            // Instacia de parado                                          
+            ['idle-1', [[[95, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, HurtBoxIori.IDLE]],
+            ['idle-2', [[[8, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, HurtBoxIori.IDLE]],
+            ['idle-3', [[[182, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, HurtBoxIori.IDLE]],
+            ['idle-4', [[[269, 225, 76, 110], [31, 100]], PushBoxIori.IDLE, HurtBoxIori.IDLE]],
 
             // Mover para frente
-            ['forwards-1', [[[10, 456, 59, 103], [29, 99]], PushBoxIori.IDLE]],
-            ['forwards-2', [[[84, 456, 51, 103], [25, 99]], PushBoxIori.IDLE]],
-            ['forwards-3', [[[150, 456, 46, 103], [22, 100]], PushBoxIori.IDLE]],
-            ['forwards-4', [[[211, 457, 41, 102], [22, 99]], PushBoxIori.IDLE]],
-            ['forwards-5', [[[267, 458, 48, 101], [25, 97]], PushBoxIori.IDLE]],
-            ['forwards-6', [[[330, 456, 49, 103], [25, 99]], PushBoxIori.IDLE]],
-            ['forwards-7', [[[394, 455, 41, 104], [21, 101]], PushBoxIori.IDLE]],
-            ['forwards-8', [[[450, 455, 50, 104], [22, 101]], PushBoxIori.IDLE]],
-            ['forwards-9', [[[515, 456, 64, 103], [29, 100]], PushBoxIori.IDLE]],
-            ['forwards-10', [[[594, 457, 63, 102], [29, 99]], PushBoxIori.IDLE]],
+            ['forwards-1', [[[10, 456, 59, 103], [29, 99]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-2', [[[84, 456, 51, 103], [25, 99]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-3', [[[150, 456, 46, 103], [22, 100]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-4', [[[211, 457, 41, 102], [22, 99]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-5', [[[267, 458, 48, 101], [25, 97]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-6', [[[330, 456, 49, 103], [25, 99]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-7', [[[394, 455, 41, 104], [21, 101]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-8', [[[450, 455, 50, 104], [22, 101]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-9', [[[515, 456, 64, 103], [29, 100]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
+            ['forwards-10', [[[594, 457, 63, 102], [29, 99]], PushBoxIori.IDLE, HurtBoxIori.FORWARD]],
 
             // Mover para trás
-            ['backwards-1', [[[10, 586, 63, 103], [29, 99]], PushBoxIori.IDLE]],
-            ['backwards-2', [[[88, 585, 53, 104], [23, 101]], PushBoxIori.IDLE]],
-            ['backwards-3', [[[156, 584, 47, 105], [23, 101]], PushBoxIori.IDLE]],
-            ['backwards-4', [[[218, 583, 46, 106], [21, 101]], PushBoxIori.IDLE]],
-            ['backwards-5', [[[279, 583, 50, 106], [23, 102]], PushBoxIori.IDLE]],
-            ['backwards-6', [[[344, 583, 44, 106], [22, 102]], PushBoxIori.IDLE]],
-            ['backwards-7', [[[403, 584, 43, 105], [21, 102]], PushBoxIori.IDLE]],
-            ['backwards-8', [[[461, 585, 45, 104], [24, 101]], PushBoxIori.IDLE]],
-            ['backwards-9', [[[521, 586, 58, 103], [31, 100]], PushBoxIori.IDLE]],
-
-            // Pular
-            ['jump-up-1', [[[10, 970, 63, 88], [30, 85]], PushBoxIori.JUMP]],
-            ['jump-up-2', [[[88, 910, 41, 148], [14, 143]], PushBoxIori.JUMP]],
-            ['jump-up-3', [[[144, 940, 46, 118], [17, 113]], PushBoxIori.JUMP]],
-            ['jump-up-4', [[[205, 971, 60, 87], [25, 81]], PushBoxIori.JUMP]],
-            ['jump-up-5', [[[280, 990, 57, 68], [23, 63]], PushBoxIori.JUMP]],
-            ['jump-up-6', [[[352, 983, 55, 75], [30, 86]], PushBoxIori.JUMP]],
-            ['jump-up-7', [[[422, 971, 60, 87], [27, 82]], PushBoxIori.JUMP]],
-            ['jump-up-8', [[[497, 940, 46, 118], [19, 113]], PushBoxIori.JUMP]],
-            ['jump-up-9', [[[558, 970, 63, 88], [29, 83]], PushBoxIori.JUMP]],
-
-            // Pulo primeiro/ultimo frame
-            ['jump-land', [[[10, 970, 63, 88], [29, 83]], PushBoxIori.IDLE]],
-
+            ['backwards-1', [[[10, 586, 63, 103], [29, 99]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            ['backwards-2', [[[88, 585, 53, 104], [23, 101]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            ['backwards-3', [[[156, 584, 47, 105], [23, 101]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            ['backwards-4', [[[218, 583, 46, 106], [21, 101]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            ['backwards-5', [[[279, 583, 50, 106], [23, 102]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            ['backwards-6', [[[344, 583, 44, 106], [22, 102]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            ['backwards-7', [[[403, 584, 43, 105], [21, 102]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            ['backwards-8', [[[461, 585, 45, 104], [24, 101]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            ['backwards-9', [[[521, 586, 58, 103], [31, 100]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
+            
             // Pular para frente/tras
             ['jump-roll-1', [[[10, 970, 63, 88], [31, 85]], PushBoxIori.JUMP]],
             ['jump-roll-2', [[[88, 910, 41, 148], [17, 143]], PushBoxIori.JUMP]],
@@ -62,10 +48,24 @@ export class Iori extends Fighter {
             ['jump-roll-8', [[[497, 940, 46, 118], [17, 113]], PushBoxIori.JUMP]],
             ['jump-roll-9', [[[558, 970, 63, 88], [28, 85]], PushBoxIori.JUMP]],
 
+            // Pular
+            ['jump-up-1', [[[10, 970, 63, 88], [30, 85]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+            ['jump-up-2', [[[88, 910, 41, 148], [14, 143]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+            ['jump-up-3', [[[144, 940, 46, 118], [17, 113]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+            ['jump-up-4', [[[205, 971, 60, 87], [25, 81]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+            ['jump-up-5', [[[280, 990, 57, 68], [23, 63]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+            ['jump-up-6', [[[352, 983, 55, 75], [30, 86]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+            ['jump-up-7', [[[422, 971, 60, 87], [27, 82]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+            ['jump-up-8', [[[497, 940, 46, 118], [19, 113]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+            ['jump-up-9', [[[558, 970, 63, 88], [29, 83]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
+
+            // Pulo primeiro/ultimo frame
+            ['jump-land', [[[10, 970, 63, 88], [29, 83]], PushBoxIori.IDLE, HurtBoxIori.IDLE]],
+
             // Agachar
-            ['crouch-1', [[[10, 343, 63, 97], [30, 94]], PushBoxIori.IDLE]],
-            ['crouch-2', [[[88, 373, 64, 67], [31, 64]], PushBoxIori.BEND]],
-            ['crouch-3', [[[167, 380, 65, 60], [30, 57]], PushBoxIori.CRUNCH]],
+            ['crouch-1', [[[10, 343, 63, 97], [30, 94]], PushBoxIori.IDLE, HurtBoxIori.IDLE]],
+            ['crouch-2', [[[88, 373, 64, 67], [31, 64]], PushBoxIori.BEND, HurtBoxIori.BEND]],
+            ['crouch-3', [[[167, 380, 65, 60], [30, 57]], PushBoxIori.CRUNCH, HurtBoxIori.CROUCH]],
 
             // Virar em pé
             ['idle-turn-1', [[[519, 8226, 61, 103], [28, 99]], PushBoxIori.IDLE]],

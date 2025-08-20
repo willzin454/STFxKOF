@@ -1,5 +1,5 @@
 import { Fighter } from "./Fighters.js";
-import { FighterState, FrameDelay, HurtBox, PushBoxRyu } from "../../constants/fighter.js";
+import { FighterState, FrameDelay, HurtBoxRyu, PushBoxRyu } from "../../constants/fighter.js";
 
 export class Ryu extends Fighter {
     constructor(playerId) {
@@ -9,37 +9,26 @@ export class Ryu extends Fighter {
 
         this.frames = new Map([
             // Instacia de parado
-            ['idle-1', [[[75, 14, 60, 89], [34, 86]], PushBoxRyu.IDLE, HurtBox.IDLE]],
-            ['idle-2', [[[7, 14, 59, 90], [33, 87]], PushBoxRyu.IDLE, HurtBox.IDLE]],
-            ['idle-3', [[[277, 11, 58, 92], [32, 89]], PushBoxRyu.IDLE, HurtBox.IDLE]],
-            ['idle-4', [[[211, 10, 55, 93], [31, 90]], PushBoxRyu.IDLE, HurtBox.IDLE]],
+            ['idle-1', [[[75, 14, 60, 89], [34, 86]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
+            ['idle-2', [[[7, 14, 59, 90], [33, 87]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
+            ['idle-3', [[[277, 11, 58, 92], [32, 89]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
+            ['idle-4', [[[211, 10, 55, 93], [31, 90]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
 
             // Mover para frente
-            ['forwards-1', [[[4, 134, 64, 90], [27, 81]], PushBoxRyu.IDLE]],
-            ['forwards-2', [[[72, 127, 73, 96], [35, 86]], PushBoxRyu.IDLE]],
-            ['forwards-3', [[[152, 128, 64, 92], [35, 89]], PushBoxRyu.IDLE]],
-            ['forwards-4', [[[229, 130, 63, 90], [29, 89]], PushBoxRyu.IDLE]],
-            ['forwards-5', [[[307, 128, 54, 91], [25, 89]], PushBoxRyu.IDLE]],
-            ['forwards-6', [[[371, 128, 50, 89], [25, 86]], PushBoxRyu.IDLE]],
+            ['forwards-1', [[[4, 134, 64, 90], [27, 81]], PushBoxRyu.IDLE, HurtBoxRyu.FORWARD]],
+            ['forwards-2', [[[72, 127, 73, 96], [35, 86]], PushBoxRyu.IDLE, HurtBoxRyu.FORWARD]],
+            ['forwards-3', [[[152, 128, 64, 92], [35, 89]], PushBoxRyu.IDLE, HurtBoxRyu.FORWARD]],
+            ['forwards-4', [[[229, 130, 63, 90], [29, 89]], PushBoxRyu.IDLE, HurtBoxRyu.FORWARD]],
+            ['forwards-5', [[[307, 128, 54, 91], [25, 89]], PushBoxRyu.IDLE, HurtBoxRyu.FORWARD]],
+            ['forwards-6', [[[371, 128, 50, 89], [25, 86]], PushBoxRyu.IDLE, HurtBoxRyu.FORWARD]],
 
             // Mover para trás
-            ['backwards-1', [[[777, 128, 61, 87], [35, 85]], PushBoxRyu.IDLE]],
-            ['backwards-2', [[[430, 124, 59, 90], [36, 87]], PushBoxRyu.IDLE]],
-            ['backwards-3', [[[495, 124, 57, 90], [36, 88]], PushBoxRyu.IDLE]],
-            ['backwards-4', [[[559, 124, 58, 90], [38, 89]], PushBoxRyu.IDLE]],
-            ['backwards-5', [[[631, 125, 58, 91], [36, 88]], PushBoxRyu.IDLE]],
-            ['backwards-6', [[[707, 126, 57, 89], [36, 87]], PushBoxRyu.IDLE]],
-
-            // Pular
-            ['jump-up-1', [[[67, 244, 56, 104], [27, 101]], PushBoxRyu.JUMP]],
-            ['jump-up-2', [[[138, 233, 50, 89], [25, 85]], PushBoxRyu.JUMP]],
-            ['jump-up-3', [[[197, 233, 54, 77], [27, 75]], PushBoxRyu.JUMP]],
-            ['jump-up-4', [[[259, 240, 48, 70], [25, 68]], PushBoxRyu.JUMP]],
-            ['jump-up-5', [[[319, 234, 48, 89], [25, 85]], PushBoxRyu.JUMP]],
-            ['jump-up-6', [[[375, 244, 55, 109], [28, 103]], PushBoxRyu.JUMP]],
-
-            // Pulo primeiro/ultimo frame
-            ['jump-land', [[[7, 268, 55, 85], [29, 83]], PushBoxRyu.IDLE]],
+            ['backwards-1', [[[777, 128, 61, 87], [35, 85]], PushBoxRyu.IDLE, HurtBoxRyu.BACKWARD]],
+            ['backwards-2', [[[430, 124, 59, 90], [36, 87]], PushBoxRyu.IDLE, HurtBoxRyu.BACKWARD]],
+            ['backwards-3', [[[495, 124, 57, 90], [36, 88]], PushBoxRyu.IDLE, HurtBoxRyu.BACKWARD]],
+            ['backwards-4', [[[559, 124, 58, 90], [38, 89]], PushBoxRyu.IDLE, HurtBoxRyu.BACKWARD]],
+            ['backwards-5', [[[631, 125, 58, 91], [36, 88]], PushBoxRyu.IDLE, HurtBoxRyu.BACKWARD]],
+            ['backwards-6', [[[707, 126, 57, 89], [36, 87]], PushBoxRyu.IDLE, HurtBoxRyu.BACKWARD]],
 
             // Pular para frente/tras
             ['jump-roll-1', [[[442, 261, 61, 78], [22, 90]], PushBoxRyu.JUMP]],
@@ -48,11 +37,22 @@ export class Ryu extends Fighter {
             ['jump-roll-4', [[[676, 257, 122, 44], [71, 81]], PushBoxRyu.JUMP]],
             ['jump-roll-5', [[[804, 258, 71, 87], [53, 98]], PushBoxRyu.JUMP]],
             ['jump-roll-6', [[[883, 261, 54, 109], [31, 113]], PushBoxRyu.JUMP]],
+            
+            // Pular
+            ['jump-up-1', [[[67, 244, 56, 104], [32, 107]], PushBoxRyu.JUMP, HurtBoxRyu.JUMP]],
+            ['jump-up-2', [[[138, 233, 50, 89], [25, 103]], PushBoxRyu.JUMP, HurtBoxRyu.JUMP]],
+            ['jump-up-3', [[[197, 233, 54, 77], [25, 103]], PushBoxRyu.JUMP, HurtBoxRyu.JUMP]],
+            ['jump-up-4', [[[259, 240, 48, 70], [28, 101]], PushBoxRyu.JUMP, HurtBoxRyu.JUMP]],
+            ['jump-up-5', [[[319, 234, 48, 89], [25, 106]], PushBoxRyu.JUMP, HurtBoxRyu.JUMP]],
+            ['jump-up-6', [[[375, 244, 55, 109], [31, 113]], PushBoxRyu.JUMP, HurtBoxRyu.JUMP]],
+            
+            // Pulo primeiro/ultimo frame
+            ['jump-land', [[[7, 268, 55, 85], [29, 83]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
 
             // Agachar
-            ['crouch-1', [[[551, 21, 53, 83], [27, 81]], PushBoxRyu.IDLE]],
-            ['crouch-2', [[[611, 36, 57, 69], [25, 66]], PushBoxRyu.BEND]],
-            ['crouch-3', [[[679, 44, 61, 61], [25, 58]], PushBoxRyu.CRUNCH]],
+            ['crouch-1', [[[551, 21, 53, 83], [27, 81]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
+            ['crouch-2', [[[611, 36, 57, 69], [25, 66]], PushBoxRyu.BEND, HurtBoxRyu.BEND]],
+            ['crouch-3', [[[679, 44, 61, 61], [25, 58]], PushBoxRyu.CRUNCH, HurtBoxRyu.CROUCH]],
 
             // Virar em pé
             ['idle-turn-1', [[[348, 8, 54, 95], [29, 92]], PushBoxRyu.IDLE]],
@@ -65,16 +65,16 @@ export class Ryu extends Fighter {
             ['crouch-turn-3', [[[878, 46, 53, 61], [29, 58]], PushBoxRyu.CRUNCH]],
 
             // Soco leve
-            ['light-punch-1', [[[9, 365, 64, 91], [32, 88]], PushBoxRyu.IDLE]],
-            ['light-punch-2', [[[98, 365, 92, 91], [32, 88]], PushBoxRyu.IDLE]],
+            ['light-punch-1', [[[9, 365, 64, 91], [32, 88]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
+            ['light-punch-2', [[[98, 365, 92, 91], [32, 88]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
 
             // Soco medio/forte
-            ['med-punch-1', [[[6, 466, 60, 94], [29, 92]], PushBoxRyu.IDLE]],
-            ['med-punch-2', [[[86, 465, 74, 95], [29, 92]], PushBoxRyu.IDLE]],
-            ['med-punch-3', [[[175, 465, 108, 94], [24, 92]], PushBoxRyu.IDLE]],
+            ['med-punch-1', [[[6, 466, 60, 94], [29, 92]], PushBoxRyu.IDLE, HurtBoxRyu.IDLE]],
+            ['med-punch-2', [[[86, 465, 74, 95], [29, 92]], PushBoxRyu.IDLE, HurtBoxRyu.PUNCH]],
+            ['med-punch-3', [[[175, 465, 108, 94], [24, 92]], PushBoxRyu.IDLE, HurtBoxRyu.PUNCH]],
 
             // Soco forte
-            ['heavy-punch-1', [[[175, 465, 108, 94], [24, 92]], PushBoxRyu.IDLE]],
+            ['heavy-punch-1', [[[175, 465, 108, 94], [24, 92]], PushBoxRyu.IDLE, HurtBoxRyu.PUNCH]],
 
             // Chute leve/medio
             ['light-kick-1', [[[87, 923, 66, 92], [46, 93]], PushBoxRyu.IDLE]],
