@@ -167,18 +167,22 @@ export class Fighter {
         this.velocity.y = 0;
     }
 
+    getWorldPushBox(fighter) {
+        const { x, y, width, height } = fighter.boxes.push;
+
+        const worldX = fighter.direction === FighterDirection.RIGHT
+            ? fighter.position.x + x
+            : fighter.position.x - x - width;
+
+        return { x: worldX, y: fighter.position.y + y, width, height };
+    }
+
     getDirection() {
-        if (
-            this.position.x + this.boxes.push.x + this.boxes.push.width
-            <= this.opponent.position.x + this.opponent.boxes.push.x
-        ) {
-            return FighterDirection.RIGHT;
-        } else if (
-            this.position.x + this.boxes.push.x
-            >= this.opponent.position.x + this.opponent.boxes.push.x + this.opponent.boxes.push.width
-        ) {
-            return FighterDirection.LEFT;
-        }
+        const A = this.getWorldPushBox(this);
+        const B = this.getWorldPushBox(this.opponent);
+
+        if (A.x + A.width <= B.x) return FighterDirection.RIGHT;
+        if (A.x >= B.x + B.width) return FighterDirection.LEFT;
         return this.direction;
     }
 
@@ -421,42 +425,38 @@ export class Fighter {
     }
 
     updateStageConstraints(time, context, camera) {
-        if (this.position.x > camera.position.x + context.canvas.width - this.boxes.push.width) {
-            this.position.x = camera.position.x + context.canvas.width - this.boxes.push.width;
+        const A = this.getWorldPushBox(this);
+        const B = this.getWorldPushBox(this.opponent);
+
+        const leftBoundary = camera.position.x;
+        const rightBoundary = camera.position.x + context.canvas.width;
+
+        if (A.x < leftBoundary) {
+            this.position.x += (leftBoundary - A.x);
         }
 
-        if (this.position.x < camera.position.x + this.boxes.push.width) {
-            this.position.x = camera.position.x + this.boxes.push.width;
+        if (A.x + A.width > rightBoundary) {
+            this.position.x -= (A.x + A.width - rightBoundary);
         }
 
-        if (this.hasCollidedWithOpponent()) {
-            if (this.position.x <= this.opponent.position.x) {
-                this.position.x = Math.max(
-                    (this.opponent.position.x + this.opponent.boxes.push.x) - (this.boxes.push.x + this.boxes.push.width),
-                    this.boxes.push.width,
-                );
+        const overlapX = Math.min(A.x + A.width, B.x + B.width) - Math.max(A.x, B.x);
+        const overlapY = Math.min(A.y + A.height, B.y + B.height) - Math.max(A.y, B.y);
 
-                if ([
-                    FighterState.IDLE, FighterState.CROUCH, FighterState.JUMP_UP,
-                    FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
-                ].includes(this.opponent.currentState)) {
-                    this.opponent.position.x += PUSH_FRICTION * time.secondsPassed;
-                }
+        if (overlapX > 0 && overlapY > 0) {
+            const push = overlapX / 2;
+
+            if (A.x < B.x) {
+                this.position.x -= push;
+                this.opponent.position.x += push;
+            } else {
+                this.position.x += push;
+                this.opponent.position.x -= push;
             }
 
-            if (this.position.x >= this.opponent.position.x) {
-                this.position.x = Math.min(
-                    (this.opponent.position.x + this.opponent.boxes.push.x + this.opponent.boxes.push.width)
-                    + (this.boxes.push.width + this.boxes.push.x),
-                    camera.position.x + context.canvas.width - this.boxes.push.width,
-                );
-
-                if ([
-                    FighterState.IDLE, FighterState.CROUCH, FighterState.JUMP_UP,
-                    FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
-                ].includes(this.opponent.currentState)) {
-                    this.opponent.position.x -= PUSH_FRICTION * time.secondsPassed;
-                }
+            if ([FighterState.IDLE, FighterState.CROUCH].includes(this.opponent.currentState)) {
+                const extra = PUSH_FRICTION * time.secondsPassed;
+                if (A.x < B.x) this.opponent.position.x += extra;
+                else this.opponent.position.x -= extra;
             }
         }
     }
