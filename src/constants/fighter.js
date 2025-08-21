@@ -35,15 +35,8 @@ export const FrameDelay = {
     TRANSITION: -1,
 };
 
-export const PushBoxRyu = {
-    IDLE: [-30, -80, 50, 78],
-    JUMP: [-16, -91, 32, 66],
-    BEND: [-16, -58, 32, 58],
-    CRUNCH: [-16, -50, 32, 50],
-};
-
-export const PushBoxIori = {
-    IDLE: [-25, -93, 60, 90],
+export const PushBox = {
+    IDLE: [-16, -80, 32, 78],
     JUMP: [-16, -91, 32, 66],
     BEND: [-16, -58, 32, 58],
     CRUNCH: [-16, -50, 32, 50],
