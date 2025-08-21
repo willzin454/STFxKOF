@@ -1,11 +1,11 @@
 import { FRAME_TIME } from "../../constants/game.js";
-import { STAGE_PADDING, STAGE_MID_POINT} from "../../constants/stage.js";
+import { STAGE_PADDING, STAGE_MID_POINT } from "../../constants/stage.js";
 import { drawFrame } from "../../utils/context.js";
 import { BackgroundAnimation } from "./shared/BackgroundAnimation.js";
 import { SkewedFloor } from "./shared/SkewedFloor.js";
 
-export class KenStage{
-    constructor(){
+export class KenStage {
+    constructor() {
         this.image = document.querySelector('img[alt="stage"]');
         this.floor = new SkewedFloor(this.image, [8, 392, 896, 72]);
 
@@ -65,7 +65,7 @@ export class KenStage{
                 ['green-jumper-2', [664, 80, 32, 56]],
             ],
             [
-                ['green-jumper-1', 664], ['green-jumper-2', 498], ['green-jumper-1', 113], 
+                ['green-jumper-1', 664], ['green-jumper-2', 498], ['green-jumper-1', 113],
                 ['green-jumper-2', 133]
             ]
         );
@@ -77,7 +77,7 @@ export class KenStage{
                 ['blue-coat-3', [704, 144, 48, 56]],
             ],
             [
-                ['blue-coat-1', 246], ['blue-coat-2', 133], ['blue-coat-3', 100], 
+                ['blue-coat-1', 246], ['blue-coat-2', 133], ['blue-coat-3', 100],
                 ['blue-coat-2', 133], ['blue-coat-1', 544], ['blue-coat-2', 133],
                 ['blue-coat-3', 100], ['blue-coat-2', 133]
             ]
@@ -89,7 +89,7 @@ export class KenStage{
                 ['purple-jumper-2', [808, 72, 48, 32]],
                 ['purple-jumper-3', [808, 120, 48, 32]],
             ],
-            [   
+            [
                 ['purple-jumper-1', 1992], ['purple-jumper-2', 166], ['purple-jumper-3', 166],
                 ['purple-jumper-2', 166], ['purple-jumper-1', 664], ['purple-jumper-2', 166],
                 ['purple-jumper-3', 166], ['purple-jumper-2', 166], ['purple-jumper-3', 166],
@@ -125,20 +125,20 @@ export class KenStage{
         };
     }
 
-    updateBoat(time){
-        if(time.previous > this.boat.animationTimer + this.boat.animationDelay * FRAME_TIME){
+    updateBoat(time) {
+        if (time.previous > this.boat.animationTimer + this.boat.animationDelay * FRAME_TIME) {
             this.boat.animationTimer = time.previous;
             this.boat.animationFrame += 1;
             this.boat.animationDelay = 22 + (Math.random() * 16 - 8);
         }
 
-        if(this.boat.animationFrame >= this.boat.animation.length){
+        if (this.boat.animationFrame >= this.boat.animation.length) {
             this.boat.animationFrame = 0;
         }
     }
 
     updateGreySuitMan(time) {
-        if(time.previous > this.greySuitMan.animationTimer + this.greySuitMan.animationDelay){
+        if (time.previous > this.greySuitMan.animationTimer + this.greySuitMan.animationDelay) {
             this.greySuitMan.animationTimer = time.previous;
             this.greySuitMan.animationDelay = 100 + (Math.random() * 900);
             this.greySuitMan.animationFrame = !this.greySuitMan.animationFrame;
@@ -168,7 +168,7 @@ export class KenStage{
         this.flag.draw(context, backgroundX + 560, 16 - camera.position.y);
     }
 
-    drawBoat(context, camera){
+    drawBoat(context, camera) {
         this.boat.position = {
             x: Math.floor(150 - (camera.position.x / 1.613445)),
             y: Math.floor(-camera.position.y + this.boat.animation[this.boat.animationFrame]),
@@ -177,8 +177,8 @@ export class KenStage{
         this.drawFrame(context, 'stage-boat', this.boat.position.x, this.boat.position.y);
         this.baldMan.draw(context, this.boat.position.x + 128, this.boat.position.y + 96);
         this.drawFrame(
-            context, `grey-suit-${this.greySuitMan.animationFrame + 1}`, 
-            this.boat.position.x + 167, 
+            context, `grey-suit-${this.greySuitMan.animationFrame + 1}`,
+            this.boat.position.x + 167,
             this.boat.position.y + 112
         );
         this.cheeringWoman.draw(context, this.boat.position.x + 192, this.boat.position.y + 104);
@@ -196,7 +196,7 @@ export class KenStage{
         );
     }
 
-    drawSmallBollards(context, camera){
+    drawSmallBollards(context, camera) {
         const cameraXOffset = camera.position.x / 1.54;
         const y = 166 - camera.position.y;
 
@@ -204,7 +204,7 @@ export class KenStage{
         this.drawFrame(context, 'bollard-small', Math.floor(468 + 92 - cameraXOffset), y);
     }
 
-    drawLargeBollards(context, camera){
+    drawLargeBollards(context, camera) {
         const midPoint = STAGE_MID_POINT + STAGE_PADDING;
         const cameraXOffset = camera.position.x / 0.958;
         const y = 200 - camera.position.y;
@@ -226,4 +226,3 @@ export class KenStage{
         this.drawLargeBollards(context, camera);
     }
 }
- 

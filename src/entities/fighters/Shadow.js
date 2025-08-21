@@ -4,13 +4,13 @@ export class Shadow {
     constructor(fighter) {
         this.image = document.querySelector('img[alt="shadow"]');
         this.fighter = fighter;
-        this.frames = [[-5, 0, 80, 12], [40, 6]]; 
+        this.frames = [[-5, 0, 80, 12], [40, 6]];
     }
 
-    update(){ }
+    update() { }
 
-    draw(context, camera){
-        const[
+    draw(context, camera) {
+        const [
             [x, y, width, height],
             [originX, originY]
         ] = this.frames;

@@ -1,8 +1,8 @@
 import { TIME_DELAY, TIME_FRAME_KEYS, TIME_FLASH_DELAY } from "../../constants/battle.js";
 import { drawFrame } from "../../utils/context.js";
 
-export class StatusBar{
-    constructor(fighters){
+export class StatusBar {
+    constructor(fighters) {
         this.image = document.querySelector('img[alt="misc"]');
         this.time = 99;
         this.timeTimer = 0;
@@ -42,7 +42,7 @@ export class StatusBar{
             ['score-2', [41, 101, 10, 10]],
             ['score-3', [53, 101, 10, 10]],
             ['score-4', [65, 101, 10, 10]],
-            ['score-5', [77, 101, 10, 10]], 
+            ['score-5', [77, 101, 10, 10]],
             ['score-6', [89, 101, 10, 10]],
             ['score-7', [101, 101, 10, 10]],
             ['score-8', [113, 101, 10, 10]],
@@ -93,16 +93,16 @@ export class StatusBar{
             this.timeTimer = time.previous;
         }
 
-        if(
+        if (
             this.time < 15 && this.time > -1
             && time.previous > this.timeFlashTimer + TIME_FLASH_DELAY
-        ){
+        ) {
             this.useFlashFrames = !this.useFlashFrames;
             this.timeFlashTimer = time.previous;
         }
     }
 
-    update(time){
+    update(time) {
         this.updateTime(time);
     }
 
@@ -131,7 +131,7 @@ export class StatusBar{
         this.drawFrame(context, `${flashFrame}-${timeString.charAt(1)}`, 194, 33);
     }
 
-    drawScore(context, score, x){
+    drawScore(context, score, x) {
         const strValue = String(score);
         const buffer = ((6 * 12) - (strValue.length * 12));
 
@@ -141,15 +141,15 @@ export class StatusBar{
     }
 
     drawScoreLabel(context, label, x) {
-        for (const index in label){
+        for (const index in label) {
             this.drawFrame(context, `score-${label.charAt(index)}`, x + index * 12, 1);
         }
     }
 
-    drawScores(context){
+    drawScores(context) {
         this.drawScoreLabel(context, 'P1', 4);
         this.drawScore(context, 1, 45);
-        
+
         this.drawScoreLabel(context, 'ANT', 133);
         this.drawScore(context, 50000, 177);
 

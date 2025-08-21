@@ -1,17 +1,17 @@
 import { STAGE_PADDING, STAGE_WIDTH } from "../../../constants/stage.js";
 
 export class SkewedFloor {
-    constructor (image, dimensions) {
+    constructor(image, dimensions) {
         this.image = image;
         this.dimensions = dimensions;
     }
 
-    draw(context, camera, y){
+    draw(context, camera, y) {
         const [sourceX, sourceY, sourceWidth, sourceHeight] = this.dimensions;
 
         context.save();
         context.setTransform(
-            1, 0, -5.15 - ((camera.position.x - (STAGE_WIDTH + STAGE_PADDING)) / 112), 
+            1, 0, -5.15 - ((camera.position.x - (STAGE_WIDTH + STAGE_PADDING)) / 112),
             1, 32 - camera.position.x / 1.55, y - camera.position.y,
         );
 

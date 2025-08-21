@@ -1,4 +1,4 @@
-export function getContext(){
+export function getContext() {
     const canvasEl = document.querySelector('canvas');
     const context = canvasEl.getContext('2d');
     context.imageSmoothingEnabled = false;
