@@ -38,13 +38,13 @@ export class Iori extends Fighter {
             ['backwards-9', [[[521, 586, 58, 103], [31, 100]], PushBoxIori.IDLE, HurtBoxIori.BACKWARD]],
             
             // Pular para frente/tras
-            ['jump-roll-1', [[[10, 970, 63, 88], [31, 85]], PushBoxIori.JUMP, [[-10, -90, 24, 16], [-15, -90, 40, 42], [-18, -60, 40, 32]]]],
-            ['jump-roll-2', [[[144, 940, 46, 118], [19, 113]], PushBoxIori.JUMP, [[-10, -90, 24, 16], [-15, -90, 40, 42], [-18, -60, 40, 32]]]],
-            ['jump-roll-3', [[[205, 971, 60, 87], [25, 82]], PushBoxIori.JUMP, [[-10, -90, 24, 16], [-15, -90, 40, 42], [-18, -60, 40, 32]]]],
-            ['jump-roll-4', [[[280, 990, 57, 68], [23, 65]], PushBoxIori.JUMP, [[-10, -90, 24, 16], [-15, -90, 40, 42], [-18, -60, 40, 32]]]],
-            ['jump-roll-5', [[[352, 983, 55, 75], [20, 71]], PushBoxIori.JUMP, [[-10, -90, 24, 16], [-15, -90, 40, 42], [-18, -60, 40, 32]]]],
-            ['jump-roll-6', [[[422, 971, 60, 87], [25, 81]], PushBoxIori.JUMP, [[-10, -90, 24, 16], [-15, -90, 40, 42], [-18, -60, 40, 32]]]],
-            ['jump-roll-7', [[[558, 970, 63, 88], [28, 85]], PushBoxIori.JUMP, [[-10, -90, 24, 16], [-15, -90, 40, 42], [-18, -60, 40, 32]]]],
+            ['jump-roll-1', [[[10, 970, 63, 88], [31, 85]], PushBoxIori.JUMP, [[-3, -90, 24, 20], [-28, -70, 60, 32], [-18, -40, 40, 32]]]],
+            ['jump-roll-2', [[[144, 940, 46, 118], [19, 113]], PushBoxIori.JUMP, [[-3, -90, 24, 20], [-28, -70, 60, 32], [-18, -40, 40, 32]]]],
+            ['jump-roll-3', [[[205, 971, 60, 87], [25, 82]], PushBoxIori.JUMP, [[-3, -90, 24, 20], [-28, -70, 60, 32], [-18, -40, 40, 32]]]],
+            ['jump-roll-4', [[[280, 990, 57, 68], [23, 65]], PushBoxIori.JUMP, [[-3, -90, 24, 20], [-28, -70, 60, 32], [-18, -40, 40, 32]]]],
+            ['jump-roll-5', [[[352, 983, 55, 75], [20, 71]], PushBoxIori.JUMP, [[-3, -90, 24, 20], [-28, -70, 60, 32], [-18, -40, 40, 32]]]],
+            ['jump-roll-6', [[[422, 971, 60, 87], [25, 81]], PushBoxIori.JUMP, [[-3, -90, 24, 20], [-28, -70, 60, 32], [-18, -40, 40, 32]]]],
+            ['jump-roll-7', [[[558, 970, 63, 88], [28, 85]], PushBoxIori.JUMP, [[-3, -90, 24, 20], [-28, -70, 60, 32], [-18, -40, 40, 32]]]],
 
             // Pular
             ['jump-up-1', [[[10, 970, 63, 88], [30, 85]], PushBoxIori.JUMP, HurtBoxIori.JUMP]],
@@ -143,12 +143,12 @@ export class Iori extends Fighter {
                 ['jump-up-7', 100], ['jump-up-8', 100], ['jump-up-9', -1],
             ],
             [FighterState.JUMP_FORWARD]: [
-                ['jump-roll-1', 200], ['jump-roll-2', 50], ['jump-roll-3', 50],
+                ['jump-roll-1', 200], ['jump-roll-2', 150], ['jump-roll-3', 100],
                 ['jump-roll-4', 50], ['jump-roll-5', 50], ['jump-roll-6', 50],
-                ['jump-roll-1', FrameDelay.FrameDelay],
+                ['jump-roll-7', FrameDelay.FrameDelay],
             ],
             [FighterState.JUMP_BACKWARD]: [
-                ['jump-roll-7', 200], ['jump-roll-6', 50], ['jump-roll-5', 50], 
+                ['jump-roll-7', 200], ['jump-roll-6', 150], ['jump-roll-5', 100], 
                 ['jump-roll-4', 50], ['jump-roll-3', 50], ['jump-roll-2', 50], 
                 ['jump-roll-1', FrameDelay.FrameDelay],
             ],
