@@ -424,19 +424,21 @@ export class Fighter {
     }
 
     updateStageConstraints(time, context, camera) {
-        if (this.position.x > camera.position.x + context.canvas.width - this.boxes.push.width) {
-            this.position.x = camera.position.x + context.canvas.width - this.boxes.push.width;
+        const WIDTH = 40;
+
+        if (this.position.x > camera.position.x + context.canvas.width - WIDTH) {
+            this.position.x = camera.position.x + context.canvas.width - WIDTH;
         }
 
-        if (this.position.x < camera.position.x + this.boxes.push.width) {
-            this.position.x = camera.position.x + this.boxes.push.width;
+        if (this.position.x < camera.position.x + WIDTH) {
+            this.position.x = camera.position.x + WIDTH;
         }
 
         if (this.hasCollidedWithOpponent()) {
             if (this.position.x <= this.opponent.position.x) {
                 this.position.x = Math.max(
-                    (this.opponent.position.x + this.opponent.boxes.push.x) - (this.boxes.push.x + this.boxes.push.width),
-                    this.boxes.push.width,
+                    (this.opponent.position.x + this.opponent.boxes.push.x) - (this.boxes.push.width + this.boxes.push.x),
+                    camera.position.x + WIDTH,
                 );
 
                 if ([
@@ -451,19 +453,18 @@ export class Fighter {
                 this.position.x = Math.min(
                     (this.opponent.position.x + this.opponent.boxes.push.x + this.opponent.boxes.push.width)
                     + (this.boxes.push.width + this.boxes.push.x),
-                    camera.position.x + context.canvas.width - this.boxes.push.width,
+                    camera.position.x + context.canvas.width - WIDTH,
                 );
 
                 if ([
                     FighterState.IDLE, FighterState.CROUCH, FighterState.JUMP_UP,
                     FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
                 ].includes(this.opponent.currentState)) {
-                    this.opponent.position.x -= PUSH_FRICTION * time.secondsPassed;
+                    this.opponent.position.x += -PUSH_FRICTION * time.secondsPassed;
                 }
             }
         }
     }
-
 
     updateAnimation(time) {
         const animation = this.animations[this.currentState];
