@@ -25,6 +25,7 @@ export class Fighter {
         this.boxes = {
             push: { x: 0, y: 0, width: 0, height: 0 },
             hurt: [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+            hit: { x: 0, y: 0, width: 0, height: 0 }
         };
 
         this.states = {
@@ -184,13 +185,15 @@ export class Fighter {
 
     getBoxes(frameKey) {
         const [,
-            [x = 0, y = 0, width = 0, height = 0] = [],
+            [pushX = 0, pushY = 0, pushWidth = 0, pushHeight = 0] = [],
             [head = [0, 0, 0, 0], body = [0, 0, 0, 0], feet = [0, 0, 0, 0]] = [],
+            [hitX = 0, hitY = 0, hitWidth = 0, hitHeight = 0] = [],
         ] = this.frames.get(frameKey);
 
         return {
-            push: { x, y, width, height },
+            push: { x: pushX, y: pushY, width: pushWidth, height: pushHeight },
             hurt: [head, body, feet],
+            hit: { x: hitX, y: hitY, width: hitWidth, height: hitHeight },
         };
     }
 
@@ -520,6 +523,9 @@ export class Fighter {
         for (const hurtBox of boxes.hurt) {
             this.drawDebugBox(context, camera, hurtBox, '#7777FF');
         }
+
+        //Hit Box
+        this.drawDebugBox(context, camera, Object.values(boxes.hit), '#FF5555');
 
         //Origem
         context.beginPath();
