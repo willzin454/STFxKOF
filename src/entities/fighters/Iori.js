@@ -66,12 +66,12 @@ export class Iori extends Fighter {
             ['crouch-3', [[[167, 380, 65, 60], [30, 57]], PushBoxIori.CRUNCH, HurtBoxIori.CROUCH]],
 
             // Virar em pé
-            ['idle-turn-1', [[[519, 8226, 61, 103], [28, 99]], PushBoxIori.IDLE]],
-            ['idle-turn-2', [[[595, 8226, 61, 103], [32, 98]], PushBoxIori.IDLE]],
+            ['idle-turn-1', [[[519, 8226, 61, 103], [28, 99]], PushBoxIori.IDLE, [[-10, -89, 28, 18], [-14, -74, 40, 42], [-14, -31, 40, 32]]]],
+            ['idle-turn-2', [[[595, 8226, 61, 103], [32, 98]], PushBoxIori.IDLE, [[-10, -89, 28, 18], [-14, -74, 40, 42], [-14, -31, 40, 32]]]],
 
             // Virar agachado
-            ['crouch-turn-1', [[[412, 8350, 63, 62], [31, 58]], PushBoxIori.CRUNCH]],
-            ['crouch-turn-2', [[[490, 8350, 63, 62], [32, 57]], PushBoxIori.CRUNCH]],
+            ['crouch-turn-1', [[[412, 8350, 63, 62], [31, 58]], PushBoxIori.CRUNCH, [[-7, -60, 24, 18], [-28, -46, 44, 24], [-28, -24, 44, 24]]]],
+            ['crouch-turn-2', [[[490, 8350, 63, 62], [32, 57]], PushBoxIori.CRUNCH, [[-7, -60, 24, 18], [-28, -46, 44, 24], [-28, -24, 44, 24]]]],
 
             // Soco Fraco
             ['light-punch-1', [[[10, 1305, 63, 98], [32, 92]], PushBoxIori.IDLE]],
@@ -95,12 +95,12 @@ export class Iori extends Fighter {
             ['heavy-punch-1', [[[306, 1441, 109, 87], [36, 84]], PushBoxIori.IDLE]],
 
             // Chute leve/medio
-            ['light-kick-1', [[[497, 1301, 60, 102], [30, 97]], PushBoxIori.IDLE]],
-            ['light-kick-2', [[[572, 1304, 55, 99], [28, 93]], PushBoxIori.IDLE]],
-            ['light-kick-3', [[[642, 1306, 89, 97], [23, 91]], PushBoxIori.IDLE]],
-            ['light-kick-4', [[[746, 1304, 89, 99], [23, 91]], PushBoxIori.IDLE]],
-            ['light-kick-5', [[[850, 1304, 55, 99], [28, 93]], PushBoxIori.IDLE]],
-            ['light-kick-6', [[[920, 1301, 60, 102], [33, 96]], PushBoxIori.IDLE]],
+            ['light-kick-1', [[[497, 1301, 60, 102], [30, 97]], PushBoxIori.IDLE, [[-10, -93, 19, 18], [-21, -79, 42, 38], [-20, -40, 44, 47]]]],
+            ['light-kick-2', [[[572, 1304, 55, 99], [28, 93]], PushBoxIori.IDLE, [[-10, -93, 19, 18], [-21, -79, 42, 38], [-20, -40, 44, 47]]]],
+            ['light-kick-3', [[[642, 1306, 89, 97], [23, 91]], PushBoxIori.IDLE, [[-10, -93, 19, 18], [-21, -79, 42, 38], [-20, -40, 44, 47]]]],
+            ['light-kick-4', [[[746, 1304, 89, 99], [23, 91]], PushBoxIori.IDLE, [[-10, -93, 19, 18], [-21, -79, 42, 38], [-20, -40, 44, 47]]]],
+            ['light-kick-5', [[[850, 1304, 55, 99], [28, 93]], PushBoxIori.IDLE, [[-10, -93, 19, 18], [-21, -79, 42, 38], [-20, -40, 44, 47]]]],
+            ['light-kick-6', [[[920, 1301, 60, 102], [33, 96]], PushBoxIori.IDLE, [[-10, -93, 19, 18], [-21, -79, 42, 38], [-20, -40, 44, 47]]]],
 
             // Chute medio
             ['med-kick-1', [[[642, 1306, 89, 97], [23, 91]], PushBoxIori.IDLE]],
