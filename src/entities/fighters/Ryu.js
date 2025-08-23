@@ -66,7 +66,7 @@ export class Ryu extends Fighter {
 
             // Soco leve
             ['light-punch-1', [[[9, 365, 64, 91], [32, 88]], PushBox.IDLE, HurtBoxRyu.IDLE]],
-            ['light-punch-2', [[[98, 365, 92, 91], [32, 88]], PushBox.IDLE, HurtBoxRyu.IDLE, [11, -85, 50, 18]]],
+            ['light-punch-2', [[[98, 365, 92, 91], [32, 88]], PushBox.IDLE, HurtBoxRyu.IDLE, [11, -78, 50, 18]]],
 
             // Soco medio/forte
             ['med-punch-1', [[[6, 466, 60, 94], [29, 92]], PushBox.IDLE, HurtBoxRyu.IDLE]],

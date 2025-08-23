@@ -74,17 +74,16 @@ export class Iori extends Fighter {
             ['crouch-turn-2', [[[490, 8350, 63, 62], [32, 57]], PushBox.CRUNCH, [[-7, -60, 24, 18], [-28, -46, 44, 24], [-28, -24, 44, 24]]]],
 
             // Soco Fraco
-            ['light-punch-1', [[[10, 1305, 63, 98], [32, 92]], PushBox.IDLE]],
-            ['light-punch-2', [[[88, 1307, 65, 96], [35, 90]], PushBox.IDLE]],
-            ['light-punch-3', [[[168, 1309, 93, 94], [32, 86]], PushBox.IDLE]],
-            ['light-punch-4', [[[276, 1309, 91, 94], [32, 86]], PushBox.IDLE]],
-            ['light-punch-5', [[[382, 1307, 65, 96], [34, 89]], PushBox.IDLE]],
+            ['light-punch-1', [[[10, 1305, 63, 98], [32, 92]], PushBox.IDLE, HurtBoxIori.LPUNCH]],
+            ['light-punch-2', [[[88, 1307, 65, 96], [35, 90]], PushBox.IDLE, HurtBoxIori.LPUNCH]],
+            ['light-punch-3', [[[168, 1309, 93, 94], [32, 86]], PushBox.IDLE, HurtBoxIori.LPUNCH, [25, -68, 35, 18]]],
+            ['light-punch-4', [[[276, 1309, 91, 94], [32, 86]], PushBox.IDLE, HurtBoxIori.LPUNCH, [25, -68, 35, 18]]],
+            ['light-punch-5', [[[382, 1307, 65, 96], [34, 89]], PushBox.IDLE, HurtBoxIori.LPUNCH]],
 
             // Soco medio/forte
             ['med-punch-1', [[[10, 1418, 67, 110], [33, 106]], PushBox.IDLE]],
             ['med-punch-2', [[[94, 1425, 79, 103], [44, 98]], PushBox.IDLE]],
             ['med-punch-3', [[[188, 1444, 103, 84], [38, 79]], PushBox.IDLE]],
-            ['med-punch-4', [[[306, 1441, 109, 87], [36, 84]], PushBox.IDLE]],
             ['med-punch-5', [[[430, 1438, 76, 90], [36, 86]], PushBox.IDLE]],
             ['med-punch-6', [[[521, 1422, 66, 106], [37, 102]], PushBox.IDLE]],
             ['med-punch-7', [[[602, 1426, 65, 102], [35, 98]], PushBox.IDLE]],
