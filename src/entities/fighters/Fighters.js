@@ -1,7 +1,11 @@
-import { FIGHTER_START_DISTANCE, FighterDirection, FighterState, FrameDelay, PUSH_FRICTION } from "../../constants/fighter.js";
+import { FIGHTER_START_DISTANCE, 
+    FighterDirection, 
+    FighterState, FrameDelay, 
+    PUSH_FRICTION, 
+    FighterAttackType } from "../../constants/fighter.js";
 import { STAGE_FLOOR, STAGE_MID_POINT, STAGE_PADDING } from "../../constants/stage.js";
 import * as control from "../../engine/InputHandler.js";
-import { rectsOverlap } from "../../utils/collisions.js";
+import { boxOverlap, getActualBoxDimensions, rectsOverlap } from "../../utils/collisions.js";
 
 export class Fighter {
     constructor(name, playerId) {
@@ -118,31 +122,37 @@ export class Fighter {
                 validFrom: [FighterState.CROUCH],
             },
             [FighterState.LIGHT_PUNCH]: {
+                attackType: FighterAttackType.PUNCH,
                 init: this.handleStandardLightAttackInit.bind(this),
                 update: this.handleLightPunchState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD],
             },
             [FighterState.MEDIUM_PUNCH]: {
+                attackType: FighterAttackType.PUNCH,
                 init: this.handleStandardMediumAttackInit.bind(this),
                 update: this.handleMediumPunchState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
             },
             [FighterState.HEAVY_PUNCH]: {
+                attackType: FighterAttackType.PUNCH,
                 init: this.handleStandardHeavyAttackInit.bind(this),
                 update: this.handleHeavyPunchState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
             },
             [FighterState.LIGHT_KICK]: {
+                attackType: FighterAttackType.KICK,
                 init: this.handleStandardLightAttackInit.bind(this),
                 update: this.handleLightKickState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD],
             },
             [FighterState.MEDIUM_KICK]: {
+                attackType: FighterAttackType.KICK,
                 init: this.handleStandardMediumAttackInit.bind(this),
                 update: this.handleMediumKickState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
             },
             [FighterState.HEAVY_KICK]: {
+                attackType: FighterAttackType.KICK,
                 init: this.handleStandardHeavyAttackInit.bind(this),
                 update: this.handleHeavyKickState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
@@ -480,12 +490,35 @@ export class Fighter {
         this.boxes = this.getBoxes(animation[this.animationFrame][0]);
     }
 
+    updateAttackBoxCollided(time){
+        if(!this.states[this.currentState].attackType) return;
+
+        const actualHitBox = getActualBoxDimensions(this.position, this.direction, this.boxes.hit);
+
+        for (const hurt of this.opponent.boxes.hurt) {
+            const [x, y, width, height] = hurt;
+            const actualOpponentHurtBox = getActualBoxDimensions(
+                this.opponent.position,
+                this.opponent.direction,
+                { x, y, width, height },
+            );
+
+            if(!boxOverlap(actualHitBox, actualOpponentHurtBox)) continue;
+
+            const hurtIndex = this.opponent.boxes.hurt.indexOf(hurt);
+            const hurtName = ['head', 'body', 'feet'];
+
+            console.log(`${this.name} has hit ${this.opponent.name}'s ${hurtName[hurtIndex]}`);
+        }
+    }
+
     update(time, context, camera) {
         this.position.x += (this.velocity.x * this.direction) * time.secondsPassed;
         this.position.y += this.velocity.y * time.secondsPassed;
         this.states[this.currentState].update(time, context);
         this.updateAnimation(time);
         this.updateStageConstraints(time, context, camera);
+        this.updateAttackBoxCollided(time);
     }
 
     drawDebugBox(context, camera, dimensions, baseColor) {

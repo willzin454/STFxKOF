@@ -6,6 +6,11 @@ export const FighterDirection = {
     RIGHT: 1,
 };
 
+export const FighterAttackType = {
+    PUNCH: 'punch',
+    KICK: 'kick',
+};
+
 export const FighterState = {
     //mov
     IDLE: 'idle',
