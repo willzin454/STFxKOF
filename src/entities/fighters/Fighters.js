@@ -292,8 +292,20 @@ export class Fighter {
             this.changeState(FighterState.JUMP_START);
         } else if (control.isDown(this.playerId)) {
             this.changeState(FighterState.CROUCH_DOWN);
+        } else if (control.isLightPunch(this.playerId)) {
+            this.changeState(FighterState.LIGHT_PUNCH);
+        } else if (control.isMediumPunch(this.playerId)) {
+            this.changeState(FighterState.MEDIUM_PUNCH);
+        } else if (control.isHeavyPunch(this.playerId)) {
+            this.changeState(FighterState.HEAVY_PUNCH);
+        } else if (control.isLightKick(this.playerId)) {
+            this.changeState(FighterState.LIGHT_KICK);
+        } else if (control.isMediumKick(this.playerId)) {
+            this.changeState(FighterState.MEDIUM_KICK);
+        } else if (control.isHeavyKick(this.playerId)) {
+            this.changeState(FighterState.HEAVY_KICK);
         }
-
+        
         this.direction = this.getDirection();
     }
 
@@ -304,6 +316,18 @@ export class Fighter {
             this.changeState(FighterState.JUMP_START);
         } else if (control.isDown(this.playerId)) {
             this.changeState(FighterState.CROUCH_DOWN);
+        } else if (control.isLightPunch(this.playerId)) {
+            this.changeState(FighterState.LIGHT_PUNCH);
+        } else if (control.isMediumPunch(this.playerId)) {
+            this.changeState(FighterState.MEDIUM_PUNCH);
+        } else if (control.isHeavyPunch(this.playerId)) {
+            this.changeState(FighterState.HEAVY_PUNCH);
+        } else if (control.isLightKick(this.playerId)) {
+            this.changeState(FighterState.LIGHT_KICK);
+        } else if (control.isMediumKick(this.playerId)) {
+            this.changeState(FighterState.MEDIUM_KICK);
+        } else if (control.isHeavyKick(this.playerId)) {
+            this.changeState(FighterState.HEAVY_KICK);
         }
 
         this.direction = this.getDirection();
