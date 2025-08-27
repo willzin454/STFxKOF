@@ -6,6 +6,8 @@ import { KenStage } from "../entities/stage/KenStage.js";
 import { StatusBar } from "../entities/overlays/StatusBar.js";
 import { FpsCounter } from "../entities/overlays/FpsCounter.js";
 import { STAGE_MID_POINT, STAGE_PADDING } from "../constants/stage.js";
+import { gameState } from "../state/gameState.js";
+import { FighterId } from "../constants/fighter.js";
 
 export class BattleScene {
     fighters = [];
@@ -25,8 +27,25 @@ export class BattleScene {
         ];
     }
 
+    getFighterEntityClass(id) {
+        switch (id) {
+            case FighterId.RYU:
+                return Ryu
+            case FighterId.IORI:
+                return Iori
+            default:
+                throw new Error('Necesaria implementação de uma entidade Fighter!');
+        }
+    }
+
+    getFighterEntity(fighterState, index) {
+        const FighterEntityClass = this.getFighterEntityClass(fighterState.id);
+
+        return new FighterEntityClass(index);
+    }
+
     getFighterEntities() {
-        const FighterEntities = [new Ryu(0), new Iori(1)];
+        const FighterEntities = gameState.fighters.map(this.getFighterEntity.bind(this));
 
         FighterEntities[0].opponent = FighterEntities[1];
         FighterEntities[1].opponent = FighterEntities[0];

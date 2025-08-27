@@ -3,7 +3,7 @@ import { FighterState, FrameDelay, HurtBoxRyu, PushBox } from "../../constants/f
 
 export class Ryu extends Fighter {
     constructor(playerId) {
-        super("Ryu", playerId);
+        super(playerId);
 
         this.image = document.querySelector('img[alt="ryu"]');
 
