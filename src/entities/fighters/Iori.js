@@ -193,10 +193,10 @@ export class Iori extends Fighter {
                 ['light-kick-1', 7], ['light-kick-1', FrameDelay.TRANSITION],
             ],
             [FighterState.HEAVY_KICK]: [
-                ['heavy-kick-1', 2], ['heavy-kick-2', 4], ['heavy-kick-3', 4],
-                ['heavy-kick-4', 4], ['heavy-kick-5', 4], ['heavy-kick-6', 4],
-                ['heavy-kick-7', 8], ['heavy-kick-8', 8], ['heavy-kick-9', 10],
-                ['heavy-kick-10', 7], ['heavy-kick-10', FrameDelay.TRANSITION],
+                ['heavy-kick-1', 2], ['heavy-kick-2', 3], ['heavy-kick-3', 4],
+                ['heavy-kick-4', 3], ['heavy-kick-5', 3], ['heavy-kick-6', 4],
+                ['heavy-kick-7', 6], ['heavy-kick-8', 7], ['heavy-kick-9', 6],
+                ['heavy-kick-10', 5], ['heavy-kick-10', FrameDelay.TRANSITION],
             ],
         };
 
