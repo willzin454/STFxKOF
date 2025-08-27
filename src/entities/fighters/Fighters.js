@@ -24,6 +24,7 @@ export class Fighter {
         this.initialVelocity = {};
         this.direction = playerId === 0 ? FighterDirection.RIGHT : FighterDirection.LEFT;
         this.gravity = 0;
+        this.attackStruck = false;
         this.frames = new Map();
         this.animationFrame = 0;
         this.animationTimer = 0;
@@ -232,6 +233,7 @@ export class Fighter {
 
     handleIdleInit() {
         this.resetVelocities();
+        this.attackStruck = false;
     }
 
     handleMoveInit() {
@@ -527,8 +529,8 @@ export class Fighter {
         this.boxes = this.getBoxes(animation[this.animationFrame][0]);
     }
 
-    updateAttackBoxCollided(time) {
-        if (!this.states[this.currentState].attackType) return;
+    updateAttackBoxCollided() {
+        if (!this.states[this.currentState].attackType || this.attackStruck) return;
 
         const actualHitBox = getActualBoxDimensions(this.position, this.direction, this.boxes.hit);
 
@@ -550,6 +552,9 @@ export class Fighter {
             gameState.fighters[this.opponent.playerId].hitPoints -= FighterAttackBaseData[strength].damage;
 
             console.log(`${gameState.fighters[this.playerId].id} has hit ${gameState.fighters[this.opponent.playerId].id}'s ${hurtName[hurtIndex]}`);
+
+            this.attackStruck = true;
+            return;
         }
     }
 
