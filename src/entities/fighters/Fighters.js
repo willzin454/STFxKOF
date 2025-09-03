@@ -3,16 +3,18 @@ import {
     FighterDirection,
     FighterState, FrameDelay,
     PUSH_FRICTION,
-    FighterAttackType
+    FighterAttackType,
+    FighterAttackStrength,
+    FighterAttackBaseData,
 } from "../../constants/fighter.js";
 import { STAGE_FLOOR, STAGE_MID_POINT, STAGE_PADDING } from "../../constants/stage.js";
 import * as control from "../../engine/InputHandler.js";
 import { boxOverlap, getActualBoxDimensions, rectsOverlap } from "../../utils/collisions.js";
 import { FRAME_TIME } from "../../constants/game.js";
+import { gameState } from "../../state/gameState.js";
 
 export class Fighter {
-    constructor(name, playerId) {
-        this.name = name;
+    constructor(playerId) {
         this.playerId = playerId;
         this.position = {
             x: STAGE_MID_POINT + STAGE_PADDING + (playerId === 0 ? -FIGHTER_START_DISTANCE : FIGHTER_START_DISTANCE),
@@ -22,6 +24,7 @@ export class Fighter {
         this.initialVelocity = {};
         this.direction = playerId === 0 ? FighterDirection.RIGHT : FighterDirection.LEFT;
         this.gravity = 0;
+        this.attackStruck = false;
         this.frames = new Map();
         this.animationFrame = 0;
         this.animationTimer = 0;
@@ -126,36 +129,42 @@ export class Fighter {
             },
             [FighterState.LIGHT_PUNCH]: {
                 attackType: FighterAttackType.PUNCH,
+                attackStrength: FighterAttackStrength.LIGHT,
                 init: this.handleStandardLightAttackInit.bind(this),
                 update: this.handleLightPunchState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD],
             },
             [FighterState.MEDIUM_PUNCH]: {
                 attackType: FighterAttackType.PUNCH,
+                attackStrength: FighterAttackStrength.MEDIUM,
                 init: this.handleStandardMediumAttackInit.bind(this),
                 update: this.handleMediumPunchState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
             },
             [FighterState.HEAVY_PUNCH]: {
                 attackType: FighterAttackType.PUNCH,
+                attackStrength: FighterAttackStrength.HEAVY,
                 init: this.handleStandardHeavyAttackInit.bind(this),
                 update: this.handleHeavyPunchState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
             },
             [FighterState.LIGHT_KICK]: {
                 attackType: FighterAttackType.KICK,
+                attackStrength: FighterAttackStrength.LIGHT,
                 init: this.handleStandardLightAttackInit.bind(this),
                 update: this.handleLightKickState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD],
             },
             [FighterState.MEDIUM_KICK]: {
                 attackType: FighterAttackType.KICK,
+                attackStrength: FighterAttackStrength.MEDIUM,
                 init: this.handleStandardMediumAttackInit.bind(this),
                 update: this.handleMediumKickState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
             },
             [FighterState.HEAVY_KICK]: {
                 attackType: FighterAttackType.KICK,
+                attackStrength: FighterAttackStrength.HEAVY,
                 init: this.handleStandardHeavyAttackInit.bind(this),
                 update: this.handleHeavyKickState.bind(this),
                 validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
@@ -224,6 +233,7 @@ export class Fighter {
 
     handleIdleInit() {
         this.resetVelocities();
+        this.attackStruck = false;
     }
 
     handleMoveInit() {
@@ -519,8 +529,8 @@ export class Fighter {
         this.boxes = this.getBoxes(animation[this.animationFrame][0]);
     }
 
-    updateAttackBoxCollided(time) {
-        if (!this.states[this.currentState].attackType) return;
+    updateAttackBoxCollided() {
+        if (!this.states[this.currentState].attackType || this.attackStruck) return;
 
         const actualHitBox = getActualBoxDimensions(this.position, this.direction, this.boxes.hit);
 
@@ -536,8 +546,15 @@ export class Fighter {
 
             const hurtIndex = this.opponent.boxes.hurt.indexOf(hurt);
             const hurtName = ['head', 'body', 'feet'];
+            const strength = this.states[this.currentState].attackStrength;
 
-            console.log(`${this.name} has hit ${this.opponent.name}'s ${hurtName[hurtIndex]}`);
+            gameState.fighters[this.playerId].score += FighterAttackBaseData[strength].score;
+            gameState.fighters[this.opponent.playerId].hitPoints -= FighterAttackBaseData[strength].damage;
+
+            console.log(`${gameState.fighters[this.playerId].id} has hit ${gameState.fighters[this.opponent.playerId].id}'s ${hurtName[hurtIndex]}`);
+
+            this.attackStruck = true;
+            return;
         }
     }
 
