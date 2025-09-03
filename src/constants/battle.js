@@ -8,3 +8,4 @@ export const HEALTH_COLOR = '#F3F300';
 export const HEALTH_DAMAGE_COLOR = '#F30000';
 export const KO_FLASH_DELAY = [4 * FRAME_TIME, 7 * FRAME_TIME];
 export const KO_ANIMATION = ['ko-white', 'ko-red'];
+export const HEALTH_CRITICAL_HIT_POINTS = 45;
