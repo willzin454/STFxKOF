@@ -7,7 +7,8 @@ import { StatusBar } from "../entities/overlays/StatusBar.js";
 import { FpsCounter } from "../entities/overlays/FpsCounter.js";
 import { STAGE_MID_POINT, STAGE_PADDING } from "../constants/stage.js";
 import { gameState } from "../state/gameState.js";
-import { FighterId } from "../constants/fighter.js";
+import { FighterAttackBaseData, FighterAttackStrength, FighterId } from "../constants/fighter.js";
+import { LightHitSplash, MediumHitSplash, HeavyHitSplash } from "../entities/fighters/shared/index.js";
 
 export class BattleScene {
     fighters = [];
@@ -41,7 +42,7 @@ export class BattleScene {
     getFighterEntity(fighterState, index) {
         const FighterEntityClass = this.getFighterEntityClass(fighterState.id);
 
-        return new FighterEntityClass(index);
+        return new FighterEntityClass(index, this.handleAttackHit.bind(this));
     }
 
     getFighterEntities() {
@@ -51,6 +52,34 @@ export class BattleScene {
         FighterEntities[1].opponent = FighterEntities[0];
 
         return FighterEntities;
+    }
+
+    getHitSplashClass(strength){
+        switch (strength){
+            case FighterAttackStrength.LIGHT:
+                return LightHitSplash;
+            case FighterAttackStrength.MEDIUM:
+                return MediumHitSplash;
+            case FighterAttackStrength.HEAVY:
+                return HeavyHitSplash;
+            default:
+                throw new Error("Unknown strength requested!");
+        }
+    }
+
+    addEntity(EntityClass, ...args){
+        this.entities.push(new EntityClass(...args, this.removeEntity.bind(this)));
+    }
+
+    removeEntity(entity){
+        this.entities = this.entities.filter((thisEntity) => thisEntity != entity);
+    }
+
+    handleAttackHit(playerId, opponentId, position, strength){
+        gameState.fighters[playerId].score += FighterAttackBaseData[strength].score;
+        gameState.fighters[opponentId].hitPoints -= FighterAttackBaseData[strength].damage;
+
+        this.addEntity(this.getHitSplashClass(strength), position.x, position.y, playerId);
     }
 
     updateFighters(time, context) {

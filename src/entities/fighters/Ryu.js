@@ -2,8 +2,8 @@ import { Fighter } from "./Fighters.js";
 import { FighterState, FrameDelay, HurtBoxRyu, PushBox } from "../../constants/fighter.js";
 
 export class Ryu extends Fighter {
-    constructor(playerId) {
-        super(playerId);
+    constructor(playerId, onAttackHit) {
+        super(playerId, onAttackHit);
 
         this.image = document.querySelector('img[alt="ryu"]');
 
