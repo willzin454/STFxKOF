@@ -2,8 +2,8 @@ import { Fighter } from "./Fighters.js";
 import { FighterState, FrameDelay, HurtBoxIori, PushBox } from "../../constants/fighter.js";
 
 export class Iori extends Fighter {
-    constructor(playerId) {
-        super(playerId);
+    constructor(playerId, onAttackHit) {
+        super(playerId, onAttackHit);
 
         this.image = document.querySelector('img[alt="iori"]');
 
