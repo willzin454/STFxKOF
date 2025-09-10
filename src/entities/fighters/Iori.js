@@ -1,5 +1,5 @@
 import { Fighter } from "./Fighters.js";
-import { FighterState, FrameDelay, HurtBoxIori, PushBox } from "../../constants/fighter.js";
+import { FIGHTER_HURT_DELAY, FighterState, FrameDelay, HurtBoxIori, PushBox } from "../../constants/fighter.js";
 
 export class Iori extends Fighter {
     constructor(playerId, onAttackHit) {

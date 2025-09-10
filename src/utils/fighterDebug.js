@@ -1,3 +1,5 @@
+import { gameState } from "../state/gameState";
+
 function drawCross(context, camera, position, color) {
     context.beginPath();
     context.strokeStyle = color;
@@ -50,11 +52,15 @@ export function DEBUG_drawCollisionInfo(figther, context, camera) {
 
     drawBox(context, camera, position, direction, Object.values(boxes.push), '#55FF55');
 
-    for (const hurtBox of boxes.hurt) {
+    for (const hurtBox of Object.values(boxes.hurt)) {
         drawBox(context, camera, position, direction, hurtBox, '#7777FF');
     }
 
     drawBox(context, camera, position, direction, Object.values(boxes.hit), '#FF5555');
 
     drawCross(context, camera, position, '#FFFFFF');
+}
+
+export function DEBUG_logHit(fighter, hitStrength, hitLocation){
+    console.log(`${gameState.fighters[fighter.playerId].id} has hit ${gameState.fighters[fighter.opponent.playerId].id}'s ${hitLocation} with a ${hitStrength} attack`);
 }
