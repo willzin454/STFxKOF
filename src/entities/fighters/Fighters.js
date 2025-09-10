@@ -549,7 +549,9 @@ export class Fighter {
     }
 
     updateAttackBoxCollided() {
-        if (!this.states[this.currentState].attackType || this.attackStruck) return;
+        const { attackType, attackStrength } = this.states[this.currentState];
+
+        if (!attackType || this.attackStruck) return;
 
         const actualHitBox = getActualBoxDimensions(this.position, this.direction, this.boxes.hit);
 
@@ -563,9 +565,11 @@ export class Fighter {
 
             if (!boxOverlap(actualHitBox, actualOpponentHurtBox)) continue;
 
+            this.soundAttacks[attackStrength].pause();
+            this.soundHits[attackStrength][attackType].play();
+
             const hurtIndex = this.opponent.boxes.hurt.indexOf(hurt);
             const hurtName = ['head', 'body', 'feet'];
-            const strength = this.states[this.currentState].attackStrength;
 
             const hitPosition = {
                 x: (actualHitBox.x + (actualHitBox.width / 2) + actualOpponentHurtBox.x + (actualOpponentHurtBox.width / 2)) / 2,
@@ -574,10 +578,12 @@ export class Fighter {
             hitPosition.x -= 4 - Math.random() * 8;
             hitPosition.y -= 4 - Math.random() * 8;
 
-            this.onAttackHit(this.playerId, this.opponent.playerId, hitPosition, strength);
+            this.onAttackHit(
+                this.playerId, this.opponent.playerId, hitPosition, 
+                this.states[this.currentState].attackStrength,
+            );
 
             console.log(`${gameState.fighters[this.playerId].id} has hit ${gameState.fighters[this.opponent.playerId].id}'s ${hurtName[hurtIndex]}`);
-
             this.attackStruck = true;
             return;
         }
