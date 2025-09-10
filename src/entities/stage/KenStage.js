@@ -124,6 +124,7 @@ export class KenStage {
     };
 
     constructor() {
+        this.music.volume = 0.5;
         this.music.play();
     }
 
