@@ -181,7 +181,7 @@ export class Ryu extends Fighter {
             [FighterState.HURT_HEAD_MEDIUM]: [
                 ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-1', 2],
                 ['hit-face-2', 4], ['hit-face-1', 8], ['stun-2', FrameDelay.TRANSITION],
-            ],  
+            ],
             [FighterState.HURT_HEAD_HEAVY]: [
                 ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-2', 4], ['hit-face-3', 6],
                 ['hit-face-2', 8], ['hit-face-1', 4], ['stun-3', FrameDelay.TRANSITION],

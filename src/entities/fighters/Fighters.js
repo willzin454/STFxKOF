@@ -12,7 +12,6 @@ import { STAGE_FLOOR, STAGE_MID_POINT, STAGE_PADDING } from "../../constants/sta
 import * as control from "../../engine/InputHandler.js";
 import { boxOverlap, getActualBoxDimensions, rectsOverlap } from "../../utils/collisions.js";
 import { FRAME_TIME } from "../../constants/game.js";
-import { gameState } from "../../state/gameState.js";
 import { DEBUG_drawCollisionInfo, DEBUG_logHit } from "../../utils/fighterDebug.js";
 import { playSound, stopSound } from "../../engine/soundHandler.js";
 
@@ -49,6 +48,8 @@ export class Fighter {
                 FighterState.CROUCH_UP, FighterState.JUMP_LAND, FighterState.IDLE_TURN,
                 FighterState.LIGHT_PUNCH, FighterState.MEDIUM_PUNCH, FighterState.HEAVY_PUNCH,
                 FighterState.LIGHT_KICK, FighterState.MEDIUM_KICK, FighterState.HEAVY_KICK,
+                FighterState.HURT_HEAD_LIGHT, FighterState.HURT_HEAD_MEDIUM, FighterState.HURT_HEAD_HEAVY,
+                FighterState.HURT_BODY_LIGHT, FighterState.HURT_BODY_MEDIUM, FighterState.HURT_BODY_HEAVY,
             ],
         },
         [FighterState.WALK_FORWARD]: {
@@ -283,10 +284,10 @@ export class Fighter {
         };
     }
 
-    getHitState(attackStrength, hitLocation){
-        switch (attackStrength){
+    getHitState(attackStrength, hitLocation) {
+        switch (attackStrength) {
             case FighterAttackStrength.LIGHT:
-                if(hitLocation === FighterHurtBox.HEAD) return FighterState.HURT_HEAD_LIGHT;
+                if (hitLocation === FighterHurtBox.HEAD) return FighterState.HURT_HEAD_LIGHT;
                 return FighterState.HURT_BODY_LIGHT;
             case FighterAttackStrength.MEDIUM:
                 if (hitLocation === FighterHurtBox.HEAD) return FighterState.HURT_HEAD_MEDIUM;

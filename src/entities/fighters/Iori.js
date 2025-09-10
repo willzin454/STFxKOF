@@ -202,8 +202,8 @@ export class Iori extends Fighter {
             ],
             [FighterState.HEAVY_PUNCH]: [
                 ['med-punch-1', 3], ['med-punch-2', 2], ['med-punch-3', 2],
-                ['heavy-punch-1', 5], ['med-punch-5', 5], ['med-punch-6', 5], 
-                ['med-punch-7', 6], ['med-punch-8', 6], ['med-punch-9', 6], 
+                ['heavy-punch-1', 5], ['med-punch-5', 5], ['med-punch-6', 5],
+                ['med-punch-7', 6], ['med-punch-8', 6], ['med-punch-9', 6],
                 ['med-punch-9', FrameDelay.TRANSITION],
             ],
             [FighterState.LIGHT_KICK]: [
@@ -231,7 +231,7 @@ export class Iori extends Fighter {
             ],
             [FighterState.HURT_HEAD_HEAVY]: [
                 ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-2', 4], ['hit-face-3', 6],
-                ['hit-face-4', 8], ['hit-face-5', 4], ['hit-face-6', 4], ['hit-face-7', 6], 
+                ['hit-face-4', 8], ['hit-face-5', 4], ['hit-face-6', 4], ['hit-face-7', 6],
                 ['stun-3', 4], ['stun-4', FrameDelay.TRANSITION],
             ],
             [FighterState.HURT_BODY_LIGHT]: [
@@ -240,7 +240,7 @@ export class Iori extends Fighter {
             ],
             [FighterState.HURT_BODY_MEDIUM]: [
                 ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-1', 3],
-                ['hit-stomach-2', 6], ['hit-stomach-3', 9], ['hit-stomach-2', 6], 
+                ['hit-stomach-2', 6], ['hit-stomach-3', 9], ['hit-stomach-2', 6],
                 ['stun-2', FrameDelay.TRANSITION],
             ],
             [FighterState.HURT_BODY_HEAVY]: [

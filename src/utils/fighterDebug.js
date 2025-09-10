@@ -1,4 +1,4 @@
-import { gameState } from "../state/gameState";
+import { gameState } from "../state/gameState.js";
 
 function drawCross(context, camera, position, color) {
     context.beginPath();
@@ -61,6 +61,6 @@ export function DEBUG_drawCollisionInfo(figther, context, camera) {
     drawCross(context, camera, position, '#FFFFFF');
 }
 
-export function DEBUG_logHit(fighter, hitStrength, hitLocation){
+export function DEBUG_logHit(fighter, hitStrength, hitLocation) {
     console.log(`${gameState.fighters[fighter.playerId].id} has hit ${gameState.fighters[fighter.opponent.playerId].id}'s ${hitLocation} with a ${hitStrength} attack`);
 }
