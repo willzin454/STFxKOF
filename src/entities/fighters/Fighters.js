@@ -140,7 +140,7 @@ export class Fighter {
             attackType: FighterAttackType.PUNCH,
             attackStrength: FighterAttackStrength.HEAVY,
             init: this.handleAttackInit.bind(this),
-            update: this.handleHeavyPunchState.bind(this),
+            update: this.handleMediumPunchState.bind(this),
             validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
         },
         [FighterState.LIGHT_KICK]: {
@@ -161,8 +161,38 @@ export class Fighter {
             attackType: FighterAttackType.KICK,
             attackStrength: FighterAttackStrength.HEAVY,
             init: this.handleAttackInit.bind(this),
-            update: this.handleHeavyKickState.bind(this),
+            update: this.handleMediumKickState.bind(this),
             validFrom: [FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD],
+        },
+        [FighterState.HURT_HEAD_LIGHT]: {
+            init: this.handleHurtInit.bind(this),
+            update: this.handleHurtState.bind(this),
+            validFrom: [],
+        },
+        [FighterState.HURT_HEAD_MEDIUM]: {
+            init: this.handleHurtInit.bind(this),
+            update: this.handleHurtState.bind(this),
+            validFrom: [],
+        },
+        [FighterState.HURT_HEAD_HEAVY]: {
+            init: this.handleHurtInit.bind(this),
+            update: this.handleHurtState.bind(this),
+            validFrom: [],
+        },
+        [FighterState.HURT_BODY_LIGHT]: {
+            init: this.handleHurtInit.bind(this),
+            update: this.handleHurtState.bind(this),
+            validFrom: [],
+        },
+        [FighterState.HURT_BODY_MEDIUM]: {
+            init: this.handleHurtInit.bind(this),
+            update: this.handleHurtState.bind(this),
+            validFrom: [],
+        },
+        [FighterState.HURT_BODY_HEAVY]: {
+            init: this.handleHurtInit.bind(this),
+            update: this.handleHurtState.bind(this),
+            validFrom: [],
         },
     };
 
@@ -287,6 +317,10 @@ export class Fighter {
     handleAttackInit() {
         this.resetVelocities();
         playSound(this.soundAttacks[this.states[this.currentState].attackStrength]);
+    }
+
+    handleHurtInit() {
+        this.resetVelocities();
     }
 
     handleIdleState() {
@@ -474,11 +508,6 @@ export class Fighter {
         this.changeState(FighterState.IDLE);
     }
 
-    handleHeavyPunchState() {
-        if (!this.isAnimationCompleted()) return;
-        this.changeState(FighterState.IDLE);
-    }
-
     handleLightKickState() {
         if (this.animationFrame < 2) return;
         if (control.isLightKick(this.playerId)) this.handleLightAttackReset();
@@ -492,7 +521,7 @@ export class Fighter {
         this.changeState(FighterState.IDLE);
     }
 
-    handleHeavyKickState() {
+    handleHurtState() {
         if (!this.isAnimationCompleted()) return;
         this.changeState(FighterState.IDLE);
     }

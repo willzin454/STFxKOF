@@ -1,5 +1,5 @@
 import { Fighter } from "./Fighters.js";
-import { FighterState, FrameDelay, HurtBoxRyu, PushBox } from "../../constants/fighter.js";
+import { FIGHTER_HURT_DELAY, FighterState, FrameDelay, HurtBoxRyu, PushBox } from "../../constants/fighter.js";
 
 export class Ryu extends Fighter {
     constructor(playerId, onAttackHit) {
@@ -89,6 +89,23 @@ export class Ryu extends Fighter {
             ['heavy-kick-3', [[[176, 1191, 120, 94], [42, 91]], PushBox.IDLE, [[17, -91, 62, 34], [-25, -78, 42, 42], [-11, -50, 42, 50]], [18, -90, 60, 28]]],
             ['heavy-kick-4', [[[306, 1208, 101, 77], [39, 74]], PushBox.IDLE, [[-41, -78, 20, 20], [-25, -78, 42, 42], [-11, -50, 42, 50]]]],
             ['heavy-kick-5', [[[418, 1204, 64, 81], [38, 78]], PushBox.IDLE, [[-41, -78, 20, 20], [-25, -78, 42, 42], [-11, -50, 42, 50]]]],
+
+            // Golpe Cabeça
+            ['hit-face-1', [[[169, 2024, 62, 90], [41, 87]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+            ['hit-face-2', [[[238, 2025, 68, 89], [47, 86]], PushBox.IDLE, [[-42, -88, 20, 20], [-46, -74, 40, 46], [-33, -37, 40, 38]]]],
+            ['hit-face-3', [[[314, 2025, 72, 88], [53, 85]], PushBox.IDLE, [[-52, -87, 20, 20], [-53, -71, 40, 46], [-33, -37, 40, 38]]]],
+            ['hit-face-4', [[[1031, 2257, 81, 93], [56, 90]], PushBox.IDLE, [[-57, -88, 20, 20], [-53, -71, 40, 46], [-33, -37, 40, 38]]]],
+
+            // Golpe estomago
+            ['hit-stomach-1', [[[397, 2029, 58, 85], [37, 83]], PushBox.IDLE, [[-15, -85, 28, 18], [-31, -69, 42, 42], [-30, -34, 42, 34]]]],
+            ['hit-stomach-2', [[[470, 2032, 66, 82], [41, 80]], PushBox.IDLE, [[-17, 82, 28, 18], [-33, -65, 38, 36], [-34, -34, 42, 34]]]],
+            ['hit-stomach-3', [[[544, 2034, 68, 84], [40, 81]], PushBox.IDLE, [[-17, 82, 28, 18], [-41, -59, 38, 30], [-34, -34, 42, 34]]]],
+            ['hit-stomach-4', [[[936, 2280, 75, 72], [50, 69]], PushBox.IDLE, [[-28, -67, 28, 18], [-41, -59, 38, 30], [-40, -34, 42, 34]]]],
+
+            // Stunado
+            ['stun-1', [[[947, 1926, 77, 87], [28, 85]], PushBox.IDLE, [[8, -87, 28, 18], [-16, -75, 40, 46], [-26, -31, 40, 32]]]],
+            ['stun-2', [[[1034, 1924, 65, 89], [28, 87]], PushBox.IDLE, [[-9, -89, 28, 18], [-23, -75, 40, 46], [-26, -31, 40, 32]]]],
+            ['stun-3', [[[1108, 1923, 67, 90], [35, 88]], PushBox.IDLE, [[-22, -91, 28, 18], [-30, -72, 42, 40], [-26, -31, 40, 32]]]],
         ]);
 
         this.animations = {
@@ -158,6 +175,30 @@ export class Ryu extends Fighter {
             [FighterState.HEAVY_KICK]: [
                 ['heavy-kick-1', 2], ['heavy-kick-2', 4], ['heavy-kick-3', 8],
                 ['heavy-kick-4', 10], ['heavy-kick-5', 7], ['heavy-kick-5', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_LIGHT]: [
+                ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-1', 3],
+                ['hit-face-2', 8], ['hit-face-2', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_MEDIUM]: [
+                ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-1', 3],
+                ['hit-face-2', 4], ['hit-face-3', 9], ['hit-face-3', FrameDelay.TRANSITION],
+            ],  
+            [FighterState.HURT_HEAD_HEAVY]: [
+                ['hit-face-3', FIGHTER_HURT_DELAY], ['hit-face-3', 7], ['hit-face-4', 4],
+                ['stun-3', 9], ['stun-3', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_LIGHT]: [
+                ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-1', 11],
+                ['hit-stomach-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_MEDIUM]: [
+                ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-1', 7],
+                ['hit-stomach-2', 9], ['hit-stomach-2', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_HEAVY]: [
+                ['hit-stomach-2', FIGHTER_HURT_DELAY], ['hit-stomach-2', 3], ['hit-stomach-3', 4],
+                ['hit-stomach-4', 4], ['stun-3', 9], ['stun-3', FrameDelay.TRANSITION],
             ],
         };
 

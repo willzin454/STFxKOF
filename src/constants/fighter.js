@@ -1,5 +1,6 @@
 export const PUSH_FRICTION = 66;
 export const FIGHTER_START_DISTANCE = 88;
+export const FIGHTER_HURT_DELAY = 7 + 8;
 
 export const FighterDirection = {
     LEFT: -1,
@@ -40,25 +41,31 @@ export const FighterAttackBaseData = {
 export const FighterState = {
     //mov
     IDLE: 'idle',
-    WALK_FORWARD: 'walkForwards',
-    WALK_BACKWARD: 'walkBackwards',
-    JUMP_START: "jumpStart",
-    JUMP_UP: 'jumpUp',
-    JUMP_FORWARD: 'jumpForwards',
-    JUMP_BACKWARD: 'jumpBackwards',
-    JUMP_LAND: "jumpLand",
+    WALK_FORWARD: 'walk-forwards',
+    WALK_BACKWARD: 'walk-backwards',
+    JUMP_START: "jump-start",
+    JUMP_UP: 'jump-up',
+    JUMP_FORWARD: 'jump-forwards',
+    JUMP_BACKWARD: 'jump-backwards',
+    JUMP_LAND: "jump-land",
     CROUCH: 'crouch',
-    CROUCH_DOWN: 'crouchDown',
-    CROUCH_UP: 'crouchUp',
-    IDLE_TURN: 'idleTurn',
-    CRUNCH_TURN: 'crunchTurn',
+    CROUCH_DOWN: 'crouch-down',
+    CROUCH_UP: 'crouch-up',
+    IDLE_TURN: 'idle-turn',
+    CRUNCH_TURN: 'crunch-turn',
     //atk
-    LIGHT_PUNCH: 'lightPunch',
-    MEDIUM_PUNCH: 'mediumPunch',
-    HEAVY_PUNCH: 'heavyPunch',
-    LIGHT_KICK: 'lightKick',
-    MEDIUM_KICK: 'mediumKick',
-    HEAVY_KICK: 'heavyKick',
+    LIGHT_PUNCH: 'light-punch',
+    MEDIUM_PUNCH: 'medium-punch',
+    HEAVY_PUNCH: 'heavy-punch',
+    LIGHT_KICK: 'light-kick',
+    MEDIUM_KICK: 'medium-kick',
+    HEAVY_KICK: 'heavy-kick',
+    HURT_HEAD_LIGHT: 'hurt-head-light',
+    HURT_HEAD_MEDIUM: 'hurt-head-medium',
+    HURT_HEAD_HEAVY: 'hurt-head-heavy',
+    HURT_BODY_LIGHT: 'hurt-body-light',
+    HURT_BODY_MEDIUM: 'hurt-body-medium',
+    HURT_BODY_HEAVY: 'hurt-body-heavy',
 };
 
 export const FrameDelay = {
