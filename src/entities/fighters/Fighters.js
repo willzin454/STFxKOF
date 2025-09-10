@@ -12,6 +12,7 @@ import { boxOverlap, getActualBoxDimensions, rectsOverlap } from "../../utils/co
 import { FRAME_TIME } from "../../constants/game.js";
 import { gameState } from "../../state/gameState.js";
 import { DEBUG_drawCollisionInfo } from "../../utils/fighterDebug.js";
+import { playSound, stopSound } from "../../engine/soundHandler.js";
 
 export class Fighter {
     velocity = { x: 0, y: 0 };
@@ -285,7 +286,7 @@ export class Fighter {
 
     handleAttackInit() {
         this.resetVelocities();
-        this.soundAttacks[this.states[this.currentState].attackStrength].play();
+        playSound(this.soundAttacks[this.states[this.currentState].attackStrength]);
     }
 
     handleIdleState() {
@@ -445,6 +446,12 @@ export class Fighter {
         this.changeState(FighterState.CROUCH);
     }
 
+    handleLightAttackReset() {
+        this.animationFrame = 0;
+        this.handleAttackInit();
+        this.attackStruck = false;
+    }
+
     handleJumpState(time) {
         this.velocity.y += this.gravity * time.secondsPassed;
 
@@ -456,7 +463,7 @@ export class Fighter {
 
     handleLightPunchState() {
         if (this.animationFrame < 2) return;
-        if (control.isLightPunch(this.playerId)) this.animationFrame = 0;
+        if (control.isLightPunch(this.playerId)) this.handleLightAttackReset();
 
         if (!this.isAnimationCompleted()) return;
         this.changeState(FighterState.IDLE);
@@ -474,7 +481,7 @@ export class Fighter {
 
     handleLightKickState() {
         if (this.animationFrame < 2) return;
-        if (control.isLightKick(this.playerId)) this.animationFrame = 0;
+        if (control.isLightKick(this.playerId)) this.handleLightAttackReset();
 
         if (!this.isAnimationCompleted()) return;
         this.changeState(FighterState.IDLE);
@@ -548,7 +555,7 @@ export class Fighter {
         this.boxes = this.getBoxes(animation[this.animationFrame][0]);
     }
 
-    updateAttackBoxCollided() {
+    updateHitBoxCollided() {
         const { attackType, attackStrength } = this.states[this.currentState];
 
         if (!attackType || this.attackStruck) return;
@@ -565,8 +572,8 @@ export class Fighter {
 
             if (!boxOverlap(actualHitBox, actualOpponentHurtBox)) continue;
 
-            this.soundAttacks[attackStrength].pause();
-            this.soundHits[attackStrength][attackType].play();
+            stopSound(this.soundAttacks[attackStrength]);
+            playSound(this.soundHits[attackStrength][attackType]);
 
             const hurtIndex = this.opponent.boxes.hurt.indexOf(hurt);
             const hurtName = ['head', 'body', 'feet'];
@@ -579,7 +586,7 @@ export class Fighter {
             hitPosition.y -= 4 - Math.random() * 8;
 
             this.onAttackHit(
-                this.playerId, this.opponent.playerId, hitPosition, 
+                this.playerId, this.opponent.playerId, hitPosition,
                 this.states[this.currentState].attackStrength,
             );
 
@@ -595,7 +602,7 @@ export class Fighter {
         this.states[this.currentState].update(time, context);
         this.updateAnimation(time);
         this.updateStageConstraints(time, context, camera);
-        this.updateAttackBoxCollided(time);
+        this.updateHitBoxCollided(time);
     }
 
     draw(context, camera) {
