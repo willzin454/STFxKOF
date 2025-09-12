@@ -7,6 +7,7 @@ import {
     FighterAttackStrength,
     FighterHurtBox,
     hurtStateValidFrom,
+    FIGHTER_HURT_DELAY,
 } from "../../constants/fighter.js";
 import { STAGE_FLOOR, STAGE_MID_POINT, STAGE_PADDING } from "../../constants/stage.js";
 import * as control from "../../engine/InputHandler.js";
@@ -16,16 +17,23 @@ import { DEBUG_drawCollisionInfo, DEBUG_logHit } from "../../utils/fighterDebug.
 import { playSound, stopSound } from "../../engine/soundHandler.js";
 
 export class Fighter {
-    velocity = { x: 0, y: 0 };
-    initialVelocity = {};
-    gravity = 0;
-    attackStruck = false;
     frames = new Map();
+    image = new Image();
+
+    animations = {};
     animationFrame = 0;
     animationTimer = 0;
-    animations = {};
-    image = new Image();
+
+    currentState = undefined;
     opponent = undefined;
+
+    hurtShake = 0;
+    hurtShakeTimer = 0;
+
+    gravity = 0;
+    velocity = { x: 0, y: 0 };
+    initialVelocity = {};
+    attackStruck = false;
 
     boxes = {
         push: { x: 0, y: 0, width: 0, height: 0 },
@@ -343,6 +351,8 @@ export class Fighter {
 
     handleHurtInit() {
         this.resetVelocities();
+        this.hurtShake = 2;
+        this.hurtShakeTimer = performance.now();
     }
 
     handleIdleState() {
@@ -545,6 +555,8 @@ export class Fighter {
 
     handleHurtState() {
         if (!this.isAnimationCompleted()) return;
+        this.hurtShake = 0;
+        this.hurtShakeTimer = 0;
         this.changeState(FighterState.IDLE);
     }
 
@@ -651,6 +663,15 @@ export class Fighter {
         }
     }
 
+    updateHurtShake(time, delay) {
+        if (this.hurtShakeTimer === 0 || time.previous <= this.hurtShakeTimer) return;
+
+        const shakeAmount = (delay - time.previous < (FIGHTER_HURT_DELAY * FRAME_TIME) / 2 ? 1 : 2);
+
+        this.hurtShake = shakeAmount - this.hurtShake;
+        this.hurtShakeTimer = time.previous + FRAME_TIME;
+    }
+
     update(time, context, camera) {
         this.position.x += (this.velocity.x * this.direction) * time.secondsPassed;
         this.position.y += this.velocity.y * time.secondsPassed;
@@ -663,20 +684,20 @@ export class Fighter {
     draw(context, camera) {
         const [frameKey] = this.animations[this.currentState][this.animationFrame];
         const [[
-            [x, y, width, height],
+            [frameX, frameY, frameWidth, frameHeight],
             [originX, originY],
         ]] = this.frames.get(frameKey);
 
         context.scale(this.direction, 1);
         context.drawImage(
             this.image,
-            x, y,
-            width, height,
-            Math.floor((this.position.x - camera.position.x) * this.direction) - originX,
-            Math.floor(this.position.y - camera.position.y) - originY,
-            width, height
+            frameX, frameY,
+            frameWidth, frameHeight,
+            Math.floor((this.position.x - this.hurtShake - camera.position.x) * this.direction - originX),
+            Math.floor(this.position.y - camera.position.y - originY),
+            frameWidth, frameHeight
         );
-        context.setTransform(1, 0, 0, 1, 0, 0)
+        context.setTransform(1, 0, 0, 1, 0, 0);
 
         DEBUG_drawCollisionInfo(this, context, camera);
     }

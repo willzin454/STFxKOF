@@ -91,8 +91,11 @@ export class BattleScene {
 
     updateFighters(time, context) {
         for (const fighter of this.fighters) {
-            if (time.previous < this.hurtTimer) return;
-            fighter.update(time, context, this.camera);
+            if (time.previous < this.hurtTimer) {
+                fighter.updateHurtShake(time, this.hurtTimer);
+            } else {
+                fighter.update(time, context, this.camera);
+            }
         }
     }
 
