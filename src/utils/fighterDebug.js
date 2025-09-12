@@ -45,7 +45,7 @@ function drawBox(context, camera, position, direction, dimensions, color) {
     context.stroke();
 }
 
-export function DEBUG_drawCollisionInfo(figther, context, camera) {
+export function drawCollisionInfo(figther, context, camera) {
     const { position, direction, boxes } = figther;
 
     context.lineWidth = 1;
@@ -61,6 +61,6 @@ export function DEBUG_drawCollisionInfo(figther, context, camera) {
     drawCross(context, camera, position, '#FFFFFF');
 }
 
-export function DEBUG_logHit(fighter, hitStrength, hitLocation) {
+export function logHit(fighter, hitStrength, hitLocation) {
     console.log(`${gameState.fighters[fighter.playerId].id} has hit ${gameState.fighters[fighter.opponent.playerId].id}'s ${hitLocation} with a ${hitStrength} attack`);
 }
