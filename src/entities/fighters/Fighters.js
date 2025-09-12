@@ -299,10 +299,7 @@ export class Fighter {
     }
 
     changeState(newState) {
-        if (
-            newState === this.currentState
-            || !this.states[newState].validFrom.includes(this.currentState)
-        ) {
+        if (!this.states[newState].validFrom.includes(this.currentState)) {
             console.warn(`Transição inválida de "${this.currentState}" para "${newState}"`);
             return;
         }
@@ -616,7 +613,7 @@ export class Fighter {
         this.boxes = this.getBoxes(animation[this.animationFrame][0]);
     }
 
-    updateHitBoxCollided() {
+    updateHitBoxCollided(time) {
         const { attackType, attackStrength } = this.states[this.currentState];
 
         if (!attackType || this.attackStruck) return;
@@ -644,6 +641,7 @@ export class Fighter {
             hitPosition.y -= 4 - Math.random() * 8;
 
             this.onAttackHit(
+                time,
                 this.playerId, this.opponent.playerId, hitPosition,
                 this.states[this.currentState].attackStrength,
             );

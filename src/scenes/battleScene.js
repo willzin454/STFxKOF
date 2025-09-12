@@ -5,14 +5,17 @@ import { StatusBar } from "../entities/overlays/StatusBar.js";
 import { FpsCounter } from "../entities/overlays/FpsCounter.js";
 import { STAGE_MID_POINT, STAGE_PADDING } from "../constants/stage.js";
 import { gameState } from "../state/gameState.js";
-import { FighterAttackBaseData, FighterAttackStrength, FighterId } from "../constants/fighter.js";
+import { FIGHTER_HURT_DELAY, FighterAttackBaseData, FighterAttackStrength, FighterId } from "../constants/fighter.js";
 import { LightHitSplash, MediumHitSplash, HeavyHitSplash, Shadow } from "../entities/fighters/shared/index.js";
+import { FRAME_TIME } from "../constants/game.js";
 
 export class BattleScene {
     fighters = [];
     camera = undefined;
     shadows = [];
     entities = [];
+    hurtTimer = undefined;
+    fighterDrawOrder = [0, 1];
 
     constructor() {
         this.stage = new KenStage();
@@ -71,10 +74,12 @@ export class BattleScene {
         this.entities = this.entities.filter((thisEntity) => thisEntity != entity);
     }
 
-    handleAttackHit(playerId, opponentId, position, strength) {
+    handleAttackHit(time, playerId, opponentId, position, strength) {
         gameState.fighters[playerId].score += FighterAttackBaseData[strength].score;
         gameState.fighters[opponentId].hitPoints -= FighterAttackBaseData[strength].damage;
 
+        this.hurtTimer = time.previous + (FIGHTER_HURT_DELAY * FRAME_TIME);
+        this.fighterDrawOrder = [playerId, opponentId];
         this.addEntity(this.getHitSplashClass(strength), position.x, position.y, playerId);
     }
 
@@ -86,6 +91,7 @@ export class BattleScene {
 
     updateFighters(time, context) {
         for (const fighter of this.fighters) {
+            if (time.previous < this.hurtTimer) return;
             fighter.update(time, context, this.camera);
         }
     }
@@ -118,8 +124,8 @@ export class BattleScene {
     }
 
     drawFighters(context) {
-        for (const fighter of this.fighters) {
-            fighter.draw(context, this.camera);
+        for (const fighterId of this.fighterDrawOrder) {
+            this.fighters[fighterId].draw(context, this.camera);
         }
     }
 
