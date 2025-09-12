@@ -16,13 +16,13 @@ export class HitSplash {
         this.animationFrame += 1;
         this.animationTimer = time.previous;
 
-        if(this.animationFrame >= 4) this.onEnd(this);
+        if (this.animationFrame >= 4) this.onEnd(this);
     }
 
     draw(context, camera) {
-        const[
+        const [
             [x, y, width, height], [originX, originY],
-        ] = this.frames[this.animationFrame + this.playerId *4];
+        ] = this.frames[this.animationFrame + this.playerId * 4];
 
         context.drawImage(
             this.image,

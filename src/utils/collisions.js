@@ -6,7 +6,7 @@ export function boxOverlap(box1, box2) {
     return rectsOverlap(box1.x, box1.y, box1.width, box1.height, box2.x, box2.y, box2.width, box2.height);
 }
 
-export function getActualBoxDimensions(position, direction, box){
+export function getActualBoxDimensions(position, direction, box) {
     const x1 = position.x + (box.x * direction);
     const x2 = x1 + (box.width * direction);
 

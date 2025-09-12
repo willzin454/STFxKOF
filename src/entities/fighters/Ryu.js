@@ -1,5 +1,5 @@
 import { Fighter } from "./Fighters.js";
-import { FighterState, FrameDelay, HurtBoxRyu, PushBox } from "../../constants/fighter.js";
+import { FIGHTER_HURT_DELAY, FighterState, FrameDelay, HurtBoxRyu, PushBox } from "../../constants/fighter.js";
 
 export class Ryu extends Fighter {
     constructor(playerId, onAttackHit) {
@@ -89,6 +89,21 @@ export class Ryu extends Fighter {
             ['heavy-kick-3', [[[176, 1191, 120, 94], [42, 91]], PushBox.IDLE, [[17, -91, 62, 34], [-25, -78, 42, 42], [-11, -50, 42, 50]], [18, -90, 60, 28]]],
             ['heavy-kick-4', [[[306, 1208, 101, 77], [39, 74]], PushBox.IDLE, [[-41, -78, 20, 20], [-25, -78, 42, 42], [-11, -50, 42, 50]]]],
             ['heavy-kick-5', [[[418, 1204, 64, 81], [38, 78]], PushBox.IDLE, [[-41, -78, 20, 20], [-25, -78, 42, 42], [-11, -50, 42, 50]]]],
+
+            // Golpe Cabeça
+            ['hit-face-1', [[[169, 2152, 62, 90], [37, 85]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+            ['hit-face-2', [[[238, 2153, 68, 89], [42, 84]], PushBox.IDLE, [[-42, -88, 20, 20], [-46, -74, 40, 46], [-33, -37, 40, 38]]]],
+            ['hit-face-3', [[[314, 2153, 72, 88], [48, 83]], PushBox.IDLE, [[-52, -87, 20, 20], [-53, -71, 40, 46], [-33, -37, 40, 38]]]],
+
+            // Golpe estomago
+            ['hit-stomach-1', [[[397, 2157, 58, 85], [30, 81]], PushBox.IDLE, [[-15, -85, 28, 18], [-31, -69, 42, 42], [-30, -34, 42, 34]]]],
+            ['hit-stomach-2', [[[470, 2160, 66, 82], [31, 77]], PushBox.IDLE, [[-17, 82, 28, 18], [-33, -65, 38, 36], [-34, -34, 42, 34]]]],
+            ['hit-stomach-3', [[[544, 2167, 68, 79], [34, 73]], PushBox.IDLE, [[-17, 82, 28, 18], [-41, -59, 38, 30], [-34, -34, 42, 34]]]],
+
+            // Stunado
+            ['stun-1', [[[170, 2044, 67, 90], [33, 85]], PushBox.IDLE, [[8, -87, 28, 18], [-16, -75, 40, 46], [-26, -31, 40, 32]]]],
+            ['stun-2', [[[93, 2045, 65, 89], [26, 84]], PushBox.IDLE, [[-9, -89, 28, 18], [-23, -75, 40, 46], [-26, -31, 40, 32]]]],
+            ['stun-3', [[[7, 2047, 77, 87], [28, 82]], PushBox.IDLE, [[-22, -91, 28, 18], [-30, -72, 42, 40], [-26, -31, 40, 32]]]],
         ]);
 
         this.animations = {
@@ -158,6 +173,30 @@ export class Ryu extends Fighter {
             [FighterState.HEAVY_KICK]: [
                 ['heavy-kick-1', 2], ['heavy-kick-2', 4], ['heavy-kick-3', 8],
                 ['heavy-kick-4', 10], ['heavy-kick-5', 7], ['heavy-kick-5', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_LIGHT]: [
+                ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-1', 3],
+                ['hit-face-2', 6], ['stun-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_MEDIUM]: [
+                ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-1', 2],
+                ['hit-face-2', 4], ['hit-face-1', 8], ['stun-2', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_HEAVY]: [
+                ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-2', 4], ['hit-face-3', 6],
+                ['hit-face-2', 8], ['hit-face-1', 4], ['stun-3', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_LIGHT]: [
+                ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-1', 4],
+                ['hit-stomach-2', 8], ['stun-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_MEDIUM]: [
+                ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-1', 3],
+                ['hit-stomach-2', 6], ['hit-stomach-1', 9], ['stun-2', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_HEAVY]: [
+                ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-2', 5], ['hit-stomach-3', 10],
+                ['hit-stomach-2', 8], ['hit-stomach-1', 4], ['stun-3', FrameDelay.TRANSITION],
             ],
         };
 

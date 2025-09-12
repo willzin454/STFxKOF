@@ -1,5 +1,5 @@
 import { Fighter } from "./Fighters.js";
-import { FighterState, FrameDelay, HurtBoxIori, PushBox } from "../../constants/fighter.js";
+import { FIGHTER_HURT_DELAY, FighterState, FrameDelay, HurtBoxIori, PushBox } from "../../constants/fighter.js";
 
 export class Iori extends Fighter {
     constructor(playerId, onAttackHit) {
@@ -85,11 +85,11 @@ export class Iori extends Fighter {
             ['med-punch-2', [[[94, 1425, 79, 103], [44, 98]], PushBox.IDLE, [[10, -80, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
             ['med-punch-3', [[[188, 1444, 103, 84], [38, 79]], PushBox.IDLE, [[10, -76, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
             ['med-punch-4', [[[306, 1441, 109, 87], [36, 84]], PushBox.IDLE, [[15, -75, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]], [40, -78, 35, 38]]],
-            ['med-punch-5', [[[430, 1438, 76, 90], [36, 86]], PushBox.IDLE, [[15, -74, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
-            ['med-punch-6', [[[521, 1422, 66, 106], [37, 102]], PushBox.IDLE, [[15, -73, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
-            ['med-punch-7', [[[602, 1426, 65, 102], [35, 98]], PushBox.IDLE, [[10, -69, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
-            ['med-punch-8', [[[682, 1428, 64, 100], [34, 96]], PushBox.IDLE, [[10, -68, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
-            ['med-punch-9', [[[761, 1426, 62, 102], [31, 97]], PushBox.IDLE, [[10, -67, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
+            ['med-punch-5', [[[430, 1438, 76, 90], [36, 86]], PushBox.IDLE, [[14, -75, 20, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
+            ['med-punch-6', [[[521, 1422, 66, 106], [37, 102]], PushBox.IDLE, [[13, -75, 18, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
+            ['med-punch-7', [[[602, 1426, 65, 102], [35, 98]], PushBox.IDLE, [[12, -87, 16, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
+            ['med-punch-8', [[[682, 1428, 64, 100], [34, 96]], PushBox.IDLE, [[11, -92, 14, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
+            ['med-punch-9', [[[761, 1426, 62, 102], [31, 97]], PushBox.IDLE, [[10, -94, 12, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]]]],
 
             // Soco forte
             ['heavy-punch-1', [[[306, 1441, 109, 87], [36, 84]], PushBox.IDLE, [[15, -75, 24, 18], [-14, -80, 40, 50], [-20, -31, 50, 32]], [40, -78, 35, 38]]],
@@ -116,6 +116,28 @@ export class Iori extends Fighter {
             ['heavy-kick-8', [[[705, 1545, 51, 103], [26, 96]], PushBox.IDLE, [[-25, -95, 20, 20], [-25, -90, 42, 42], [-20, -46, 42, 50]]]],
             ['heavy-kick-9', [[[771, 1547, 46, 101], [22, 93]], PushBox.IDLE, [[-24, -95, 20, 20], [-25, -90, 42, 42], [-20, -46, 42, 50]]]],
             ['heavy-kick-10', [[[832, 1545, 63, 103], [26, 96]], PushBox.IDLE, [[-23, -95, 20, 20], [-25, -90, 42, 42], [-20, -46, 42, 50]]]],
+
+            // Golpe Cabeça
+            ['hit-face-1', [[[449, 8432, 64, 108], [27, 103]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+            ['hit-face-2', [[[371, 8428, 63, 112], [28, 107]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+            ['hit-face-3', [[[287, 8432, 69, 108], [37, 103]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+            ['hit-face-4', [[[287, 8431, 69, 109], [37, 103]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+            ['hit-face-5', [[[192, 8440, 80, 100], [55, 95]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+            ['hit-face-6', [[[94, 8427, 83, 113], [63, 108]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+            ['hit-face-7', [[[10, 8431, 69, 109], [37, 103]], PushBox.IDLE, [[-25, -89, 20, 20], [-33, -74, 40, 46], [-30, -37, 40, 38]]]],
+
+            // Golpe estomago
+            ['hit-stomach-1', [[[877, 8444, 63, 96], [28, 91]], PushBox.IDLE, [[-15, -85, 28, 18], [-31, -69, 42, 42], [-30, -34, 42, 34]]]],
+            ['hit-stomach-2', [[[800, 8452, 62, 88], [27, 83]], PushBox.IDLE, [[-15, -85, 28, 18], [-31, -69, 42, 42], [-30, -34, 42, 34]]]],
+            ['hit-stomach-3', [[[724, 8456, 61, 84], [28, 79]], PushBox.IDLE, [[-15, -85, 28, 18], [-31, -69, 42, 42], [-30, -34, 42, 34]]]],
+            ['hit-stomach-4', [[[639, 8464, 70, 76], [44, 71]], PushBox.IDLE, [[-15, -85, 28, 18], [-31, -69, 42, 42], [-30, -34, 42, 34]]]],
+            ['hit-stomach-5', [[[563, 8456, 61, 84], [27, 79]], PushBox.IDLE, [[-15, -85, 28, 18], [-31, -69, 42, 42], [-30, -34, 42, 34]]]],
+
+            // Stunado
+            ['stun-1', [[[619, 8566, 64, 101], [28, 96]], PushBox.IDLE, [[8, -87, 28, 18], [-16, -75, 40, 46], [-26, -31, 40, 32]]]],
+            ['stun-2', [[[541, 8555, 63, 112], [28, 107]], PushBox.IDLE, [[8, -87, 28, 18], [-16, -75, 40, 46], [-26, -31, 40, 32]]]],
+            ['stun-3', [[[463, 8560, 63, 107], [28, 102]], PushBox.IDLE, [[8, -87, 28, 18], [-16, -75, 40, 46], [-26, -31, 40, 32]]]],
+            ['stun-4', [[[384, 8571, 64, 96], [30, 91]], PushBox.IDLE, [[8, -87, 28, 18], [-16, -75, 40, 46], [-26, -31, 40, 32]]]],
         ]);
 
         this.animations = {
@@ -180,8 +202,9 @@ export class Iori extends Fighter {
             ],
             [FighterState.HEAVY_PUNCH]: [
                 ['med-punch-1', 3], ['med-punch-2', 2], ['med-punch-3', 2],
-                ['med-punch-4', 2], ['heavy-punch-1', 6], ['med-punch-6', 10],
-                ['med-punch-7', 10], ['med-punch-8', 12], ['med-punch-8', FrameDelay.TRANSITION],
+                ['heavy-punch-1', 5], ['med-punch-5', 5], ['med-punch-6', 5],
+                ['med-punch-7', 6], ['med-punch-8', 6], ['med-punch-9', 6],
+                ['med-punch-9', FrameDelay.TRANSITION],
             ],
             [FighterState.LIGHT_KICK]: [
                 ['light-punch-1', 3], ['light-kick-1', 3], ['light-kick-2', 3],
@@ -197,6 +220,32 @@ export class Iori extends Fighter {
                 ['heavy-kick-4', 3], ['heavy-kick-5', 3], ['heavy-kick-6', 4],
                 ['heavy-kick-7', 6], ['heavy-kick-8', 7], ['heavy-kick-9', 6],
                 ['heavy-kick-10', 5], ['heavy-kick-10', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_LIGHT]: [
+                ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-1', 3],
+                ['hit-face-2', 6], ['stun-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_MEDIUM]: [
+                ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-1', 2],
+                ['hit-face-2', 4], ['hit-face-3', 6], ['hit-face-4', 8], ['stun-2', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_HEAVY]: [
+                ['hit-face-1', FIGHTER_HURT_DELAY], ['hit-face-2', 4], ['hit-face-3', 6],
+                ['hit-face-4', 8], ['hit-face-5', 4], ['hit-face-6', 4], ['hit-face-7', 6],
+                ['stun-3', 4], ['stun-4', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_LIGHT]: [
+                ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-1', 4],
+                ['hit-stomach-2', 8], ['stun-1', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_MEDIUM]: [
+                ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-1', 3],
+                ['hit-stomach-2', 6], ['hit-stomach-3', 9], ['hit-stomach-2', 6],
+                ['stun-2', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_BODY_HEAVY]: [
+                ['hit-stomach-1', FIGHTER_HURT_DELAY], ['hit-stomach-2', 5], ['hit-stomach-3', 10],
+                ['hit-stomach-4', 8], ['hit-stomach-5', 4], ['stun-3', 3], ['stun-4', FrameDelay.TRANSITION],
             ],
         };
 

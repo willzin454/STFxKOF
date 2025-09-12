@@ -1,5 +1,6 @@
 import { FRAME_TIME } from "../../constants/game.js";
 import { STAGE_PADDING, STAGE_MID_POINT } from "../../constants/stage.js";
+import { playSound } from "../../engine/soundHandler.js";
 import { drawFrame } from "../../utils/context.js";
 import { BackgroundAnimation } from "./shared/BackgroundAnimation.js";
 import { SkewedFloor } from "./shared/SkewedFloor.js";
@@ -124,7 +125,7 @@ export class KenStage {
     };
 
     constructor() {
-        this.music.play();
+        playSound(this.music, 0.5);
     }
 
     updateBoat(time) {
